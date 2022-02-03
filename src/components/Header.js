@@ -55,7 +55,7 @@ const Nav = styled.div`
   z-index: 1;
 `;
 const Logo = styled.img`
-    width:90px;
+    width:100px;
     border-radius: 50%;
     margin-right 80%;
     padding-top:20px;
@@ -64,9 +64,11 @@ const Logo = styled.img`
 
 const CustomMenu = styled(MenuIcon)`
   cursor: pointer;
-  transform: scale(2.5);
-  color: black; //black for now but original color is #AE9376
-
+  transform: scale(2.8);
+  color: #AE9376; //black for now but original color is #AE9376
+  display: block;
+  width: 400px;
+  min-width: 400px;
 `;
 const BurgerNav = styled.div`
   position: fixed;
@@ -74,7 +76,7 @@ const BurgerNav = styled.div`
   bottom: 0;
   right: 0;
   background: white;
-  width: 300px;
+  width: 200px;
   z-index: 16;
   list-style: none;
   padding: 20px;
@@ -85,7 +87,7 @@ const BurgerNav = styled.div`
 
   li {
     padding: 15px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
     a {
       font-weight: 600;
     }
