@@ -42,6 +42,7 @@ function Header() {
 
 export default Header;
 
+
 const Nav = styled.div`
   min-height: 60px;
   position: fixed;

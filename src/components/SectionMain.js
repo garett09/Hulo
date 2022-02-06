@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Fade from 'react-reveal/Fade';
+import {createGlobalStyle} from "styled-components";
 
 function SectionMain() {
   return (
@@ -23,6 +24,13 @@ function SectionMain() {
 }
 
 export default SectionMain;
+
+export const GlobalStyles = createGlobalStyle`
+  *{
+    margin: 0;
+    padding: 0;
+  }
+`
 
 const Wrap = styled.div`
   width: 100vw;
