@@ -8,7 +8,7 @@ function Header() {
   return (
     <Nav>
       <Logo
-        src="/images/Hulo Farm Transparent white.png"
+        src="/images/Hulofarmlogo.png"
         alt="Hulo Farm Logo"
       />
       <CustomMenu onClick={() => setBurgerStatus(true)} />
@@ -56,10 +56,14 @@ const Nav = styled.div`
   z-index: 1;
 `;
 const Logo = styled.img`
-    width:100px;
+    width:80px;
+    background: transparent;
     border-radius: 50%;
     margin-right 80%;
-    padding-top:20px;
+    margin-left: 20px;
+    padding-top:0px;
+    margin-top: 10px;
+    background-color: rgb(300, 300, 300);
    
 `;
 
