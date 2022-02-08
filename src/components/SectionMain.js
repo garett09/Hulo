@@ -13,9 +13,12 @@ function SectionMain() {
       </ItemText>
       <Footer>
         <FooterText>
-          <h1>
+          <h1 className="lefttext">
             The Hulo Agri & Leisure Farm remains to be a COVID-free safe place.
             All staff are fully vaccinated.
+          </h1>
+          <h1 className="righttext">
+            2020 Hulo Farm, All right resrved.
           </h1>
         </FooterText>
       </Footer>
@@ -60,12 +63,25 @@ const Footer = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
+  display:flex;
+
+
 `;
 
 const FooterText = styled.div`
-  display: block;
-  width: 60%;
-  padding-left: 2 rem;
+  display: flex;
+  width: 100%;
   font-size: 10px;
   color: #FFFFF;
+
+.righttext{
+  margin-left: 8rem;
+  float: left;
+  width: 40%;
+}
+.lefttext{
+  margin-right: 8rem;
+  width: 60%;
+  float: right;
+}
 `;
