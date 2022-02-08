@@ -59,7 +59,7 @@ const Logo = styled.img`
     width:80px;
     background: transparent;
     border-radius: 50%;
-    margin-right 80%;
+    margin-right: 80%;
     margin-left: 20px;
     padding-top:0px;
     margin-top: 10px;

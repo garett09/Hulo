@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Fade from 'react-reveal/Fade';
 import {createGlobalStyle} from "styled-components";
+import { Button, ListGroup, ListGroupItem } from 'reactstrap';
+
 
 function SectionMain() {
   return (
@@ -11,16 +13,17 @@ function SectionMain() {
         <h1>Welcome to Hulo Farm</h1>
         </Fade>
       </ItemText>
+      <Button color="danger">Danger!</Button>         
       <Footer>
-        <FooterText>
-          <h1 className="lefttext">
+        <ListGroup horizontal="lg">
+          <ListGroupItem>
             The Hulo Agri & Leisure Farm remains to be a COVID-free safe place.
             All staff are fully vaccinated.
-          </h1>
-          <h1 className="righttext">
+          </ListGroupItem>
+          <ListGroupItem>
             2020 Hulo Farm, All right resrved.
-          </h1>
-        </FooterText>
+          </ListGroupItem>
+        </ListGroup>
       </Footer>
     </Wrap>
   );
@@ -46,6 +49,7 @@ const Wrap = styled.div`
   flex-direction: column;
   justify-content: space-between; // vertical alignment
   align-items: center; // horizontal alignment
+  position: relative;
 `;
 const ItemText = styled.div`
     text-align: center;
@@ -64,6 +68,11 @@ const Footer = styled.div`
   left: 0;
   width: 100%;
   display:flex;
+
+  .ListGroup{
+    background-color: black;
+  }
+
 
 
 `;
