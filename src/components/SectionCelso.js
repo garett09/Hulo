@@ -2,35 +2,31 @@ import React from "react";
 import styled from "styled-components";
 import Fade from 'react-reveal/Fade';
 import {createGlobalStyle} from "styled-components";
-import { Button, ListGroup, ListGroupItem } from 'reactstrap';
-import { width } from "@mui/system";
 
-
-function SectionMain() {
+function SectionCelso() {
   return (
     <Wrap>
       <ItemText>
       <Fade left>
-        <h1>Welcome to Hulo Farm</h1>
+        <h1>Celso Hall</h1>
         </Fade>
       </ItemText>
-      <Button color="danger">Danger!</Button>         
       <Footer>
-        <ListGroup horizontal="lg">
-          <ListGroupItem style ={{backgroundColor: '#ae9376', borderWidth: 0}}>
+        <FooterText>
+          <h1 className="lefttext">
             The Hulo Agri & Leisure Farm remains to be a COVID-free safe place.
             All staff are fully vaccinated.
-          </ListGroupItem>
-          <ListGroupItem style = {{backgroundColor: '#ae9376', borderWidth: 0}}>
+          </h1>
+          <h1 className="righttext">
             2020 Hulo Farm, All right resrved.
-          </ListGroupItem>
-        </ListGroup>
+          </h1>
+        </FooterText>
       </Footer>
     </Wrap>
   );
 }
 
-export default SectionMain;
+export default SectionCelso;
 
 export const GlobalStyles = createGlobalStyle`
   *{
@@ -45,12 +41,11 @@ const Wrap = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url("/images/HuloIntro.JPG");
+  background-image: url("/images/CelsoHall.JPG");
   display: flex;
   flex-direction: column;
   justify-content: space-between; // vertical alignment
   align-items: center; // horizontal alignment
-  position: relative;
 `;
 const ItemText = styled.div`
     text-align: center;
@@ -69,11 +64,6 @@ const Footer = styled.div`
   left: 0;
   width: 100%;
   display:flex;
-
-  .ListGroup{
-    background-color: black;
-  }
-
 
 
 `;
