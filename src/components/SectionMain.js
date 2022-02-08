@@ -1,30 +1,31 @@
 import React from "react";
 import styled from "styled-components";
-import Fade from 'react-reveal/Fade';
-import {createGlobalStyle} from "styled-components";
-import { Button, ListGroup, ListGroupItem } from 'reactstrap';
+import Fade from "react-reveal/Fade";
+import { createGlobalStyle } from "styled-components";
+import { Button, ListInlineItem, List } from "reactstrap";
 import { width } from "@mui/system";
-
 
 function SectionMain() {
   return (
     <Wrap>
       <ItemText>
-      <Fade left>
-        <h1>Welcome to Hulo Farm</h1>
+        <Fade left>
+          <p className="huloTitle">Welcome to Hulo Farm</p>
         </Fade>
       </ItemText>
-      <Button color="danger">Danger!</Button>         
+      <Button color="danger">Danger!</Button>
       <Footer>
-        <ListGroup horizontal="lg">
-          <ListGroupItem style ={{backgroundColor: '#ae9376', borderWidth: 0}}>
+        <List type="inline">
+          <ListInlineItem className="hello">
+            {" "}
             The Hulo Agri & Leisure Farm remains to be a COVID-free safe place.
-            All staff are fully vaccinated.
-          </ListGroupItem>
-          <ListGroupItem style = {{backgroundColor: '#ae9376', borderWidth: 0}}>
+            All staff are fully vaccinated.{" "}
+          </ListInlineItem>
+          <ListInlineItem className="hello2">
+            {" "}
             2020 Hulo Farm, All right resrved.
-          </ListGroupItem>
-        </ListGroup>
+          </ListInlineItem>
+        </List>
       </Footer>
     </Wrap>
   );
@@ -37,7 +38,11 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
-`
+  body{
+    @import url('https://fonts.googleapis.com/css?family=Averia+Serif+Libre');
+    font-family: 'Averia Serif Libre', serif;
+  }
+`;
 
 const Wrap = styled.div`
   width: 100vw;
@@ -58,6 +63,9 @@ const ItemText = styled.div`
     font-size: 3em;
     padding 25vh 0;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
+    .huloTitle{
+        font-size: 3em;
 `;
 
 const Footer = styled.div`
@@ -68,14 +76,14 @@ const Footer = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  display:flex;
+  display: flex;
 
-  .ListGroup{
-    background-color: black;
+  .hello {
+    color: #fff;
+    float: left;
   }
-
-
-
+  .hello2 {
+  }
 `;
 
 const FooterText = styled.div`
@@ -84,14 +92,14 @@ const FooterText = styled.div`
   font-size: 10px;
   color: #FFFFF;
 
-.righttext{
-  margin-left: 8rem;
-  float: left;
-  width: 40%;
-}
-.lefttext{
-  margin-right: 8rem;
-  width: 60%;
-  float: right;
-}
+  .righttext {
+    margin-left: 8rem;
+    float: left;
+    width: 40%;
+  }
+  .lefttext {
+    margin-right: 8rem;
+    width: 60%;
+    float: right;
+  }
 `;

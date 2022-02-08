@@ -7,10 +7,7 @@ function Header() {
   const [burgerStatus, setBurgerStatus] = useState(false);
   return (
     <Nav>
-      <Logo
-        src="/images/Hulofarmlogo.png"
-        alt="Hulo Farm Logo"
-      />
+      <Logo src="/images/Hulofarmlogo.png" alt="Hulo Farm Logo" />
       <CustomMenu onClick={() => setBurgerStatus(true)} />
 
       <BurgerNav show={burgerStatus}>
@@ -42,7 +39,6 @@ function Header() {
 
 export default Header;
 
-
 const Nav = styled.div`
   min-height: 60px;
   position: fixed;
@@ -56,21 +52,20 @@ const Nav = styled.div`
   z-index: 1;
 `;
 const Logo = styled.img`
-    width:80px;
-    background: transparent;
-    border-radius: 50%;
-    margin-right: 80%;
-    margin-left: 20px;
-    padding-top:0px;
-    margin-top: 10px;
-    background-color: rgb(300, 300, 300);
-   
+  width: 80px;
+  background: transparent;
+  border-radius: 50%;
+  margin-right: 80%;
+  margin-left: 20px;
+  padding-top: 0px;
+  margin-top: 10px;
+  background-color: rgb(300, 300, 300);
 `;
 
 const CustomMenu = styled(MenuIcon)`
   cursor: pointer;
   transform: scale(2.8);
-  color: #AE9376; //black for now but original color is #AE9376
+  color: #ae9376; //black for now but original color is #AE9376
   display: block;
   width: 400px;
   min-width: 400px;

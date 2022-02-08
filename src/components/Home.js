@@ -1,17 +1,12 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 function Home() {
-    return (
-        <Container>
-
-
-        </Container>
-    )
+  return <Container></Container>;
 }
 
-export default Home
+export default Home;
 
 const Container = styled.div`
-    height: 100vh;
-`
+  height: 100vh;
+`;

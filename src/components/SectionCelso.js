@@ -1,27 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import Fade from 'react-reveal/Fade';
-import {createGlobalStyle} from "styled-components";
+import Fade from "react-reveal/Fade";
+import { createGlobalStyle } from "styled-components";
 
 function SectionCelso() {
   return (
     <Wrap>
       <ItemText>
-      <Fade left>
-        <h1>Celso Hall</h1>
+        <Fade left>
+          <p className="celso">Celso Hall</p>
         </Fade>
       </ItemText>
-      <Footer>
-        <FooterText>
-          <h1 className="lefttext">
-            The Hulo Agri & Leisure Farm remains to be a COVID-free safe place.
-            All staff are fully vaccinated.
-          </h1>
-          <h1 className="righttext">
-            2020 Hulo Farm, All right resrved.
-          </h1>
-        </FooterText>
-      </Footer>
     </Wrap>
   );
 }
@@ -33,7 +22,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
-`
+`;
 
 const Wrap = styled.div`
   width: 100vw;
@@ -53,6 +42,13 @@ const ItemText = styled.div`
     font-size: 3em;
     padding 25vh 0;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
+    .celso{
+        font-size: 3em;
+        @import url('https://fonts.googleapis.com/css?family=Averia+Serif+Libre');
+        font-family: 'Averia Serif Libre', serif;
+        /* font-family: 'Averia Serif Libre', serif; that is how to add.*/
+    }
 `;
 
 const Footer = styled.div`
@@ -63,9 +59,7 @@ const Footer = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  display:flex;
-
-
+  display: flex;
 `;
 
 const FooterText = styled.div`
@@ -74,14 +68,14 @@ const FooterText = styled.div`
   font-size: 10px;
   color: #FFFFF;
 
-.righttext{
-  margin-left: 8rem;
-  float: left;
-  width: 40%;
-}
-.lefttext{
-  margin-right: 8rem;
-  width: 60%;
-  float: right;
-}
+  .righttext {
+    margin-left: 8rem;
+    float: left;
+    width: 40%;
+  }
+  .lefttext {
+    margin-right: 8rem;
+    width: 60%;
+    float: right;
+  }
 `;
