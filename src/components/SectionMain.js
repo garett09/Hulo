@@ -14,19 +14,6 @@ function SectionMain() {
         </Fade>
       </ItemText>
       <Button color="danger">Danger!</Button>
-      <Footer>
-        <List type="inline">
-          <ListInlineItem className="hello">
-            {" "}
-            The Hulo Agri & Leisure Farm remains to be a COVID-free safe place.
-            All staff are fully vaccinated.{" "}
-          </ListInlineItem>
-          <ListInlineItem className="hello2">
-            {" "}
-            2020 Hulo Farm, All right resrved.
-          </ListInlineItem>
-        </List>
-      </Footer>
     </Wrap>
   );
 }
@@ -66,40 +53,8 @@ const ItemText = styled.div`
 
     .huloTitle{
         font-size: 3em;
+        }
 `;
 
-const Footer = styled.div`
-  margin-top: 1rem;
-  padding: 1.3rem;
-  background-color: #ae9376;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
 
-  .hello {
-    color: #fff;
-    float: left;
-  }
-  .hello2 {
-  }
-`;
 
-const FooterText = styled.div`
-  display: flex;
-  width: 100%;
-  font-size: 10px;
-  color: #FFFFF;
-
-  .righttext {
-    margin-left: 8rem;
-    float: left;
-    width: 40%;
-  }
-  .lefttext {
-    margin-right: 8rem;
-    width: 60%;
-    float: right;
-  }
-`;
