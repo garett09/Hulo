@@ -12,9 +12,7 @@ function App() {
     <div className="App">
       <GlobalStyles />
       <Header />
-      <SectionMain />
       <SectionCelso />
-      <SectionFooter />
       
     </div>
   );

@@ -1,81 +1,49 @@
 import React from "react";
-import styled from "styled-components";
-import Fade from "react-reveal/Fade";
-import { createGlobalStyle } from "styled-components";
+//import styled from "styled-components";
+import { styled } from "@mui/material/styles";
+import { Box, Grid, Typography } from "@material-ui/core";
+import { makeStyles } from '@material-ui/styles';
+import "@fontsource/averia-serif-libre";
+import CssBaseline from "@mui/material/CssBaseline";
+
+const useStyles = makeStyles((theme) => ({
+  background: {
+    minHeight: "100vh",
+    backgroundImage: `url(${process.env.PUBLIC_URL + "/images/CelsoHall.jpg"})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat"
+  },
+}));
 
 function SectionCelso() {
+  const classes = useStyles();
   return (
-    <Wrap>
-      <ItemText>
-        <Fade left>
-          <p className="celso">Celso Hall</p>
-        </Fade>
-      </ItemText>
-    </Wrap>
+    <div className={classes.background}>
+      <CssBaseline />
+    <Grid
+      container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Grid item xs={3}>
+        <Typography
+          variant="h1"
+          component="div"
+          gutterBottom
+          alignItems="center"
+          fontFamily="Averia Serif Libre"
+          color= "#CEBCA3"
+        >
+          Celso Hall
+        </Typography>
+      </Grid>
+    </Grid>
+    </div>
   );
 }
 
 export default SectionCelso;
-
-export const GlobalStyles = createGlobalStyle`
-  *{
-    margin: 0;
-    padding: 0;
-  }
-`;
-
-const Wrap = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url("/images/CelsoHall.JPG");
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; // vertical alignment
-  align-items: center; // horizontal alignment
-`;
-const ItemText = styled.div`
-    text-align: center;
-    color: #CEBCA3;
-    font-size: 3em;
-    padding 25vh 0;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-
-    .celso{
-        font-size: 3em;
-        @import url('https://fonts.googleapis.com/css?family=Averia+Serif+Libre');
-        font-family: 'Averia Serif Libre', serif;
-        /* font-family: 'Averia Serif Libre', serif; that is how to add.*/
-    }
-`;
-
-const Footer = styled.div`
-  margin-top: 1rem;
-  padding: 1.3rem;
-  background-color: #ae9376;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-`;
-
-const FooterText = styled.div`
-  display: flex;
-  width: 100%;
-  font-size: 10px;
-  color: #FFFFF;
-
-  .righttext {
-    margin-left: 8rem;
-    float: left;
-    width: 40%;
-  }
-  .lefttext {
-    margin-right: 8rem;
-    width: 60%;
-    float: right;
-  }
-`;

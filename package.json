@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/runtime": "7.0.0-beta.55",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@fontsource/averia-serif-libre": "^4.5.1",
+    "@material-ui/core": "^5.0.0-beta.5",
+    "@material-ui/styles": "^4.11.4",
     "@mui/icons-material": "^5.3.1",
     "@mui/material": "^5.4.1",
     "@testing-library/jest-dom": "^5.16.1",

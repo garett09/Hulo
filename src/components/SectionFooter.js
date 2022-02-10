@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {ListGroup, ListGroupItem } from 'reactstrap';
+import { BottomNavigation } from '@mui/material';
 
 function SectionFooter() {
   return (
@@ -10,6 +11,7 @@ function SectionFooter() {
         The Hulo Agri & Leisure Farm remains to be a COVID-free safe place.
         All staff are fully vaccinated.
       </ListGroupItem>
+      
       <ListGroupItem>
         2020 Hulo Farm, All right resrved.
       </ListGroupItem>
