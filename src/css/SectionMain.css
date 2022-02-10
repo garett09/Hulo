@@ -1,0 +1,6 @@
+.background1 {
+    background-image: url("../../public/images/HuloIntro.JPG");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

@@ -1,104 +1,93 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import Switch from "@mui/material/Switch";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormGroup from "@mui/material/FormGroup";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import '../css/Header.css'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function Header() {
-  const [burgerStatus, setBurgerStatus] = useState(false);
-  return (
-    <Nav>
-      <Logo src="/images/Hulofarmlogo.png" alt="Hulo Farm Logo" />
-      <CustomMenu onClick={() => setBurgerStatus(true)} />
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-      <BurgerNav show={burgerStatus}>
-        <CloseWrapper>
-          <CustomClose onClick={() => setBurgerStatus(false)} />
-        </CloseWrapper>
-        <li>
-          <a href="#"> Home</a>
-        </li>
-        <li>
-          <a href="#"> About Us</a>
-        </li>
-        <li>
-          <a href="#"> Accomodation</a>
-        </li>
-        <li>
-          <a href="#"> Event Hall</a>
-        </li>
-        <li>
-          <a href="#"> Resort Rules</a>
-        </li>
-        <li>
-          <a href="#"> FAQs</a>
-        </li>
-      </BurgerNav>
-    </Nav>
+  const handleChange = (event) => {
+    setAuth(event.target.checked);
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar sx={{ bgcolor: "transparent", boxShadow: 0 }}>
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2, transform: 'scale(1.8)' }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <img
+              src={process.env.PUBLIC_URL + "/images/Hulofarmlogo.png"}
+              alt="Hulo Logo"
+              className="logo"
+            />
+          </Typography>
+          {auth && (
+            <div>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+                sx={{transform: 'scale(1.8)' }}
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+              </Menu>
+            </div>
+          )}
+        </Toolbar>
+        <IconButton>
+        </IconButton>
+      </AppBar>
+    </Box>
   );
 }
-
 export default Header;
-
-const Nav = styled.div`
-  min-height: 60px;
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justfy-content: space-between;
-  padding: 0 20px;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-`;
-const Logo = styled.img`
-  width: 80px;
-  background: transparent;
-  border-radius: 50%;
-  margin-right: 80%;
-  margin-left: 20px;
-  padding-top: 0px;
-  margin-top: 10px;
-  background-color: rgb(300, 300, 300);
-`;
-
-const CustomMenu = styled(MenuIcon)`
-  cursor: pointer;
-  transform: scale(2.8);
-  color: #ae9376; //black for now but original color is #AE9376
-  display: block;
-  width: 400px;
-  min-width: 400px;
-`;
-const BurgerNav = styled.div`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  background: white;
-  width: 200px;
-  z-index: 16;
-  list-style: none;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  text-align: start;
-  transform: ${(props) => (props.show ? "translateX(0)" : "translateX(100%)")};
-
-  li {
-    padding: 15px 0;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-    a {
-      font-weight: 600;
-    }
-  }
-`;
-
-const CustomClose = styled(CloseIcon)`
-  cursor: pointer;
-`;
-
-const CloseWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;

@@ -1,105 +1,70 @@
-import React from "react";
-import styled from "styled-components";
-import Fade from "react-reveal/Fade";
-import { createGlobalStyle } from "styled-components";
-import { Button, ListInlineItem, List } from "reactstrap";
-import { width } from "@mui/system";
+import React, { useEffect, useState } from "react";
+import "@fontsource/averia-serif-libre";
+import { IconButton, Grid, Typography, Collapse } from "@mui/material";
+import "../css/SectionMain.css";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { keyframes } from '@mui/system';
+
+const bounce = keyframes`
+  from, 20%, 53%, 80%, to {
+    transform: translate3d(0,0,0);
+  }
+
+  40%, 43% {
+    transform: translate3d(0, -30px, 0);
+  }
+
+  70% {
+    transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    transform: translate3d(0,-4px,0);
+  }
+`
 
 function SectionMain() {
+  const [checked, setChecked] = useState(false);
+  useEffect(() => {
+    setChecked(true);
+  }, []);
   return (
-    <Wrap>
-      <ItemText>
-        <Fade left>
-          <p className="huloTitle">Welcome to Hulo Farm</p>
-        </Fade>
-      </ItemText>
-      <Button color="danger">Danger!</Button>
-      <Footer>
-        <List type="inline">
-          <ListInlineItem className="hello">
-            {" "}
-            The Hulo Agri & Leisure Farm remains to be a COVID-free safe place.
-            All staff are fully vaccinated.{" "}
-          </ListInlineItem>
-          <ListInlineItem className="hello2">
-            {" "}
-            2020 Hulo Farm, All right resrved.
-          </ListInlineItem>
-        </List>
-      </Footer>
-    </Wrap>
+    <div className="background1">
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        style={{ minHeight: "100vh" }}
+      >
+        <Grid item sm={6}>
+          <Collapse
+            in={checked}
+            {...(checked ? { timeout: 1000 } : {})}
+            collapsedHeight={50}
+          >
+            <Typography
+              variant="h1"
+              component="div"
+              gutterBottom
+              alignItems="center"
+              fontFamily="Averia Serif Libre"
+              color="#CEBCA3"
+            >
+              Welcome to Hulo Farm
+            </Typography>
+            <IconButton>
+              <ExpandMoreIcon
+                sx={{animation: `${bounce} 2s infinite ease`,
+                color: "black",
+                fontSize: "3rem"}}
+              />
+            </IconButton>
+          </Collapse>
+        </Grid>
+      </Grid>
+    </div>
   );
 }
-
 export default SectionMain;
-
-export const GlobalStyles = createGlobalStyle`
-  *{
-    margin: 0;
-    padding: 0;
-  }
-  body{
-    @import url('https://fonts.googleapis.com/css?family=Averia+Serif+Libre');
-    font-family: 'Averia Serif Libre', serif;
-  }
-`;
-
-const Wrap = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url("/images/HuloIntro.JPG");
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; // vertical alignment
-  align-items: center; // horizontal alignment
-  position: relative;
-`;
-const ItemText = styled.div`
-    text-align: center;
-    color: #CEBCA3;
-    font-size: 3em;
-    padding 25vh 0;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-
-    .huloTitle{
-        font-size: 3em;
-`;
-
-const Footer = styled.div`
-  margin-top: 1rem;
-  padding: 1.3rem;
-  background-color: #ae9376;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-
-  .hello {
-    color: #fff;
-    float: left;
-  }
-  .hello2 {
-  }
-`;
-
-const FooterText = styled.div`
-  display: flex;
-  width: 100%;
-  font-size: 10px;
-  color: #FFFFF;
-
-  .righttext {
-    margin-left: 8rem;
-    float: left;
-    width: 40%;
-  }
-  .lefttext {
-    margin-right: 8rem;
-    width: 60%;
-    float: right;
-  }
-`;

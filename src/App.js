@@ -9,10 +9,9 @@ import { GlobalStyles } from "./components/SectionMain";
 function App() {
   return (
     <div className="App">
-      <GlobalStyles />
+      <Header />
       <SectionMain />
       <SectionCelso />
-      <Header />
     </div>
   );
 }
