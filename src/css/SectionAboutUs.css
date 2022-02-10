@@ -1,0 +1,8 @@
+.background2 {
+    background-image: url("../../public/images/Rules\ Page.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow-y: hidden ! important;
+    overflow-x: hidden ! important;
+}

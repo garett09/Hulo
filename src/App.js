@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import SectionMain from "./components/SectionMain";
 import SectionCelso from "./components/SectionCelso";
+import SectionAboutUs from "./components/SectionAboutUs";
 import { GlobalStyles } from "./components/SectionMain";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Header />
       <SectionMain />
       <SectionCelso />
+      <SectionAboutUs />
     </div>
   );
 }
