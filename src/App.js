@@ -6,14 +6,17 @@ import SectionMain from "./components/SectionMain";
 import SectionCelso from "./components/SectionCelso";
 import SectionAboutUs from "./components/SectionAboutUs";
 import { GlobalStyles } from "./components/SectionMain";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <div className="App">
       <Header />
+      
       <SectionMain />
       <SectionCelso />
       <SectionAboutUs />
+      <Footer />
     </div>
   );
 }

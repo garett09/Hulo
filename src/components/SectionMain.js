@@ -8,15 +8,14 @@ import Button from "@mui/material/Button";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-
-
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/Inbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+
 
 const bounce = keyframes`
   from, 20%, 53%, 80%, to {
@@ -92,10 +91,10 @@ function SectionMain() {
             <Grid item xs={8}>
               <Box
                 sx={{
-                  width: "60%",
-                  maxWidth: 60,
+                  width: "100%",
+                  maxWidth: 55,
                   bgcolor: "white",
-                  ml: 20,
+                  ml: 30,
                   boxShadow: 0,
                 }}
                 className="icons"
@@ -105,14 +104,21 @@ function SectionMain() {
                     <ListItem disablePadding>
                       <ListItemButton>
                         <ListItemIcon>
-                          <InboxIcon />
+                        <InstagramIcon />
                         </ListItemIcon>
                       </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
                       <ListItemButton>
                         <ListItemIcon>
-                          <DraftsIcon />
+                        <FacebookIcon />
+                        </ListItemIcon>
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon>
+                        <MailOutlineIcon />
                         </ListItemIcon>
                       </ListItemButton>
                     </ListItem>
@@ -120,8 +126,8 @@ function SectionMain() {
                 </nav>
               </Box>
             </Grid>
-            <Grid item xs={8}>
-            <Button  variant="contained">Book Now</Button>
+            <Grid item xs={8} >
+            <Button variant="contained">Book Now</Button>
             </Grid>
           </Grid>
         </Box>
