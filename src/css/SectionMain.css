@@ -1,6 +1,12 @@
+
 .background1 {
     background-image: url("../../public/images/HuloIntro.JPG");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    scroll-snap-align: start;
+}
+.itemsbuttons{
+        position:absolute;
+        bottom: 5%;
 }

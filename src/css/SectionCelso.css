@@ -1,6 +1,9 @@
+
 .background {
     background-image: url("../../public/images/CelsoHall.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    scroll-snap-align: start;
+    
 }

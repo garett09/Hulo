@@ -25,4 +25,7 @@
   .App-link {
     color: rgb(112, 76, 182);
   }
-  
+body{
+  scroll-snap-type: y mandatory;
+  overflow: scroll;
+}
