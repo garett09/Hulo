@@ -5,17 +5,16 @@ import "../css/SectionMain.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { keyframes } from "@mui/system";
 import Button from "@mui/material/Button";
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import InstagramIcon from '@mui/icons-material/Instagram';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 const bounce = keyframes`
   from, 20%, 53%, 80%, to {
@@ -34,12 +33,7 @@ const bounce = keyframes`
     transform: translate3d(0,-4px,0);
   }
 `;
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
+
 
 function SectionMain() {
   const [checked, setChecked] = useState(false);
@@ -55,8 +49,7 @@ function SectionMain() {
         alignItems="center"
         justifyContent="center"
         style={{ minHeight: "100vh" }}
-      >    
-
+      >
         <Grid item sm={6}>
           <Collapse
             in={checked}
@@ -82,13 +75,13 @@ function SectionMain() {
                 }}
               />
             </IconButton>
-          </Collapse>      
-        </Grid>     
-      </Grid>   
+          </Collapse>
+        </Grid>
+      </Grid>
       <Grid container rowSpacing={25} position="absolute">
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={30} columns={16}>
-            <Grid item xs={8}>
+      <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={3}>
+        <Grid item xs="auto" md="3">
               <Box
                 sx={{
                   width: "100%",
@@ -104,36 +97,36 @@ function SectionMain() {
                     <ListItem disablePadding>
                       <ListItemButton>
                         <ListItemIcon>
-                        <InstagramIcon />
+                          <InstagramIcon />
                         </ListItemIcon>
                       </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
                       <ListItemButton>
                         <ListItemIcon>
-                        <FacebookIcon />
+                          <FacebookIcon />
                         </ListItemIcon>
                       </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
                       <ListItemButton>
                         <ListItemIcon>
-                        <MailOutlineIcon />
+                          <MailOutlineIcon />
                         </ListItemIcon>
                       </ListItemButton>
                     </ListItem>
                   </List>
                 </nav>
               </Box>
-            </Grid>
-            <Grid item xs={8} >
-            <Button variant="contained">Book Now</Button>
-            </Grid>
-          </Grid>
-        </Box>
+        </Grid>
+        <Grid item xs={6} md="5">
+        </Grid>
+        <Grid item xs>
+        <Button variant="contained">Book Now</Button>
+        </Grid>
       </Grid>
-
- 
+      </Box>
+      </Grid>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import SectionCelso from "./components/SectionCelso";
 import SectionAboutUs from "./components/SectionAboutUs";
 import { GlobalStyles } from "./components/SectionMain";
 import Footer from "./components/Footer";
+import CasaAurelia from "./components/CasaAurelia";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <SectionMain />
       <SectionCelso />
       <SectionAboutUs />
+      <CasaAurelia />
       <Footer />
     </div>
   );
