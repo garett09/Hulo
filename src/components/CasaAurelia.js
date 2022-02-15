@@ -25,14 +25,16 @@ function CasaAurelia() {
       justifyContent="center"
       style={{ minHeight: "100vh" }}
     >
-      <Grid container spacing={2} columns={16}>
-        <Grid item sm={7} sx={{ minHeight: "100vh", minWidth: "96.6vh" }}>
+      <Grid container spacing={4} columns={16}>
+        <Box className="background3" sx={{display: "flex"}}>
+        <Grid item xs= {20} sx={{ minHeight: "100vh" }}>
           <img
             src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
             alt="test"
             className="background3"
           />
         </Grid>
+        </Box>
         <Grid item xs={7}>
           <Grid
             container

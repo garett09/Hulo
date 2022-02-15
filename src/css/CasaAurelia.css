@@ -1,8 +1,5 @@
-.background3{
-    background-color: aliceblue;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    overflow-y: hidden ! important;
-    overflow-x: hidden ! important;
+.background3 img{
+    width: 100%;
+    padding-top: 100px;
+
 }
