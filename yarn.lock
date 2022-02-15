@@ -1238,6 +1238,16 @@
   resolved "https://registry.yarnpkg.com/@fontsource/averia-serif-libre/-/averia-serif-libre-4.5.1.tgz#b6fa9811d5fb55650aa698f69419791690055c05"
   integrity sha512-PJXPd1zPNYawuWVvqlkKUUIivBsVWf4fneossoOn9iuUc2glYBQkCAdAhrV6bTzVdPx/WJhIrYX84Yzj1mxAWg==
 
+"@fontsource/fugaz-one@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/fugaz-one/-/fugaz-one-4.5.1.tgz#2c2d6c8729acde4438b3d21f783774d73fa0ab43"
+  integrity sha512-5xcJ1uOXtz42/tINlF/CaadtH3pqDp24UMpgyT70Sd8EWf+3Q1S3/YtNaMJ/QnVhbQ3bagqHkfZbBJOIlsmBAw==
+
+"@fontsource/laila@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/laila/-/laila-4.5.1.tgz#2869976fbb34bd8158a148e1e16ba563a95d51cb"
+  integrity sha512-PFgyrm7FVb+JormhEw8n9gqIUamDPC+RqGGlr/ElfVJGRbLLhlVZKFUBQ9skqs5mhG0I820ytuPbIYYSqBA/lA==
+
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.3"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.9.3.tgz#f2564c744b387775b436418491f15fce6601f63e"

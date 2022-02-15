@@ -34,7 +34,6 @@ const bounce = keyframes`
   }
 `;
 
-
 function SectionMain() {
   const [checked, setChecked] = useState(false);
   useEffect(() => {
@@ -79,9 +78,9 @@ function SectionMain() {
         </Grid>
       </Grid>
       <Grid container rowSpacing={25} position="absolute">
-      <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={3}>
-        <Grid item xs="auto" md="3">
+        <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={3}>
+            <Grid item xs="auto" md="3">
               <Box
                 sx={{
                   width: "100%",
@@ -118,14 +117,13 @@ function SectionMain() {
                   </List>
                 </nav>
               </Box>
-        </Grid>
-        <Grid item xs={6} md="5">
-        </Grid>
-        <Grid item xs>
-        <Button variant="contained">Book Now</Button>
-        </Grid>
-      </Grid>
-      </Box>
+            </Grid>
+            <Grid item xs={6} md="5"></Grid>
+            <Grid item xs>
+              <Button variant="contained">Book Now</Button>
+            </Grid>
+          </Grid>
+        </Box>
       </Grid>
     </div>
   );

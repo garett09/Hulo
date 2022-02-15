@@ -4,12 +4,17 @@ import "@fontsource/averia-serif-libre";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 
-
 function Footer() {
   return (
     <Grid container rowSpacing={1}>
       <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2} columns={16} rowSpacing ={1} backgroundColor="#AE9376">
+        <Grid
+          container
+          spacing={2}
+          columns={16}
+          rowSpacing={1}
+          backgroundColor="#AE9376"
+        >
           <Grid item xs={8}>
             <Typography
               variant="p"
