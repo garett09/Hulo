@@ -9,6 +9,7 @@ import { GlobalStyles } from "./components/SectionMain";
 import Footer from "./components/Footer";
 import CasaAurelia from "./components/CasaAurelia";
 import CasaSalud from "./components/CasaSalud";
+import Casa from "./components/Casa";
 
 function App() {
   return (
@@ -18,8 +19,8 @@ function App() {
       <SectionMain />
       <SectionCelso />
       <SectionAboutUs />
-      <CasaAurelia />
       <CasaSalud />
+      <Casa />
       <Footer />
     </div>
   );
