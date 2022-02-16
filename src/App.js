@@ -8,6 +8,7 @@ import SectionAboutUs from "./components/SectionAboutUs";
 import { GlobalStyles } from "./components/SectionMain";
 import Footer from "./components/Footer";
 import CasaAurelia from "./components/CasaAurelia";
+import CasaSalud from "./components/CasaSalud";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <SectionCelso />
       <SectionAboutUs />
       <CasaAurelia />
+      <CasaSalud />
       <Footer />
     </div>
   );

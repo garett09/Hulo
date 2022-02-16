@@ -15,60 +15,80 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function CasaAurelia() {
+function CasaSalud() {
   return (
     <Grid
       container
-      spacing={0}
+      spacing={2}
+      columns={16}
       direction="column"
       alignItems="center"
       justifyContent="center"
       style={{ minHeight: "100vh" }}
     >
-      <Grid container spacing={4} columns={16}>
-        <Box className="background3" sx={{ display: "flex" }}>
-          <Grid item xs={20} sx={{ minHeight: "100vh" }}>
-            <img
-              src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
-              alt="test"
-              className="background3"
-            />
-          </Grid>
-        </Box>
-        <Grid item xs={7}>
-          <Grid
-            container
-            spacing={2}
-            direction="column"
-            sx={{ paddingTop: "50px" }}
-          >
-            <Grid item xs={15} sx={{ minHeight: "10vh" }}>
-              <Typography
-                variant="h3"
-                textAlign="left"
-                fontFamily="Laila"
-                color="Black"
-                fontWeight="1000"
-              >
-                CASA AURELIA
-              </Typography>
-              <Typography
-                variant="h5"
-                textAlign="left"
-                fontFamily="Averia Serif Libre"
-                color="Black"
-              >
-                Description of Villas Here
-              </Typography>
-            </Grid>
-            <Grid
-              item
-              sm={12}
-              sx={{ minHeight: "60vh", backgroundColor: "#A8A021" }}
-            >
-              <Grid container spacing={30}>
-                <Grid item xs="auto">
+      <Box
+        className="background4"
+        sx={{
+          display: "flex",
+          width: "95vw",
+          height: "50vh",
+          paddingTop: "10px",
+        }}
+      >
+        <img
+          src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
+          alt="test"
+        />
+      </Box>
+
+      <Box sx={{ flexGrow: 1, display: "flex" }}>
+        <Grid
+          container
+          spacing={2}
+          columns={16}
+          direction="column"
+          sx={{ width: "90vw", paddingTop: "10px" }}
+        >
+          <Grid item xs={1}>
+            <Box sx={{ flexGrow: 1, paddingTop: "15px" }}>
+              <Grid container spacing={2} columns={16}>
+                <Grid item xs={11}>
                   <Typography
+                    variant="h5"
+                    textAlign="left"
+                    fontFamily="Averia Serif Libre"
+                    color="Black"
+                  >
+                    Description of Villas Here
+                  </Typography>
+                </Grid>
+                <Grid item xs={5}>
+                  <Typography
+                    variant="h3"
+                    textAlign="left"
+                    fontFamily="Laila"
+                    color="Black"
+                    fontWeight="1000"
+                  >
+                    CASA AURELIA
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Box>
+          </Grid>
+
+          <Grid item xs={8}>
+            <Box sx={{ flexGrow: 1 }}>
+              <Grid container spacing={2} columns={16}>
+                <Grid
+                  item
+                  xs={11}
+                  sx={{ minHeight: "30vh", backgroundColor: "#A8A021" }}
+                >
+                  <Box sx={{ flexGrow: 1 }}>
+                    <Grid container spacing={3} columns={16}>
+                      <Grid item xs="auto"lg= {5}>
+                      <Typography
                     variant="h3"
                     textAlign="left"
                     fontFamily="Averia Serif Libre"
@@ -92,12 +112,11 @@ function CasaAurelia() {
                     <br></br>Wide Alfresco
                     <br></br>Dining Area
                     <br></br>Wide parking space
-                    <br></br>Dishwashing Set
-                  </Typography>
-                </Grid>
 
-                <Grid item xs={6}>
-                  <Typography
+                  </Typography>
+                      </Grid>
+                      <Grid item xs={8} lg={5}>
+                      <Typography
                     variant="h3"
                     textAlign="left"
                     fontFamily="Averia Serif Libre"
@@ -121,43 +140,39 @@ function CasaAurelia() {
                     <br></br>Dispenser
                     <br></br>Plates Utensils
                   </Typography>
+                      </Grid>
+                      <Grid item xs="auto" lg={5}>
+                      <Typography
+                    variant="h3"
+                    textAlign="left"
+                    fontFamily="Averia Serif Libre"
+                    color="Black"
+                  >
+                    Amenities:
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    textAlign="left"
+                    fontFamily="Averia Serif Libre"
+                    color="Black"
+                  >
+                    <br></br>Stove Basic
+                    <br></br>Cooking Ware
+                    <br></br>Rice Cooker
+                    <br></br>Microwave
+                    <br></br>Oven Toaster
+                    <br></br>Refrigerator
+                    <br></br>Water
+                    <br></br>Dispenser
+                    <br></br>Plates Utensils
+                  </Typography>
+                      </Grid>
+                    </Grid>
+                  </Box>
+                  
                 </Grid>
-              </Grid>
-              <Grid item xs={15}>
+                <Grid item xs={5}>
                 <Typography
-                  variant="h3"
-                  textAlign="center"
-                  fontFamily="Averia Serif Libre"
-                  color="Black"
-                >
-                  Add ons:
-                </Typography>
-                <Grid container spacing={30}>
-                  <Grid item xs="auto">
-                    <Typography
-                      variant="h5"
-                      textAlign="left"
-                      fontFamily="Averia Serif Libre"
-                      color="Black"
-                    >
-                      Inclusion:
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={4}>
-                    <Typography
-                      variant="h5"
-                      textAlign="left"
-                      fontFamily="Averia Serif Libre"
-                      color="Black"
-                    >
-                      Amenities:
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item xs={15} sx={{ minHeight: "20vh" }}>
-              <Typography
                 variant="h5"
                 textAlign="left"
                 fontFamily="Averia Serif Libre"
@@ -184,12 +199,14 @@ function CasaAurelia() {
                   <br></br>(Good for 15-30 pax)
                 </Typography>
               </Grid>
-            </Grid>
+                </Grid>
+              </Grid>
+            </Box>
           </Grid>
         </Grid>
-      </Grid>
+      </Box>
     </Grid>
   );
 }
 
-export default CasaAurelia;
+export default CasaSalud;
