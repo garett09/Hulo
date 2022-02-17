@@ -10,12 +10,14 @@ import Footer from "./components/Footer";
 import CasaAurelia from "./components/CasaAurelia";
 import CasaSalud from "./components/CasaSalud";
 import Casa from "./components/Casa";
+import CssBaseline from "@mui/material/CssBaseline";
 
 function App() {
   return (
     <div className="App">
+      <CssBaseline />
       <Header />
-      
+
       <SectionMain />
       <SectionCelso />
       <SectionAboutUs />

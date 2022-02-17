@@ -7,6 +7,7 @@ import Paper from "@mui/material/Paper";
 import "@fontsource/fugaz-one";
 import "@fontsource/laila";
 
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
