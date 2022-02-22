@@ -11,11 +11,13 @@ import CasaAurelia from "./components/CasaAurelia";
 import CasaSalud from "./components/CasaSalud";
 import Casa from "./components/Casa";
 import CssBaseline from "@mui/material/CssBaseline";
+import Customers from "./pages/Customers";
 
 function App() {
   return (
     <div className="App">
       <CssBaseline />
+      
       <Header />
 
       <SectionMain />
@@ -23,6 +25,7 @@ function App() {
       <SectionAboutUs />
       <CasaSalud />
       <Casa />
+      <Customers/>
       <Footer />
     </div>
   );
