@@ -1,12 +1,18 @@
 import React from "react";
-import styled from "styled-components";
+import SectionMain from "./SectionMain";
+import SectionCelso from "./SectionCelso";
+import SectionAboutUs from "./SectionAboutUs";
+import { BrowserRouter as Router, Routes, Route,Link } from "react-router-dom";
+
 
 function Home() {
-  return <Container></Container>;
+  return (
+<>
+    <SectionMain />
+    <SectionCelso />
+    <SectionAboutUs />
+    </>
+  );
 }
 
 export default Home;
-
-const Container = styled.div`
-  height: 100vh;
-`;

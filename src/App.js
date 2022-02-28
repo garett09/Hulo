@@ -11,19 +11,28 @@ import CasaAurelia from "./components/CasaAurelia";
 import CasaSalud from "./components/CasaSalud";
 import Casa from "./components/Casa";
 import CssBaseline from "@mui/material/CssBaseline";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
+
+
+
 
 function App() {
   return (
     <div className="App">
-      <CssBaseline />
+    
+    <Router>
+      <ScrollToTop />
       <Header />
-
-      <SectionMain />
-      <SectionCelso />
-      <SectionAboutUs />
-      <CasaSalud />
-      <Casa />
-      <Footer />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/" element={<SectionMain/>} />
+        <Route path="celsohall" element={<SectionCelso/>} />
+        <Route path="aboutus" element={<SectionAboutUs/>} />
+      </Routes>  
+      <Footer/>
+    </Router>
+  
     </div>
   );
 }
