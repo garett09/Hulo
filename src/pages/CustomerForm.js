@@ -1,21 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import { makeStyles } from "@material-ui/core";
-
-const useStyle = makeStyles((theme) => ({
-  root: {
-    "& .MuiTextField-root": {
-      width: "80%",
-      margin: theme.spacing(1),
-    },
-  },
-}));
+import { useForm, Form } from "../components/useForm";
 
 const initialFValues = {
   id: 0,
-  firstName: "",
-  lastName: "",
+  fullName: "",
   email: "",
   mobile: "",
   gender: "male",
@@ -27,26 +17,36 @@ const initialFValues = {
 };
 
 function CustomerForm() {
-  const [values, setValues] = useState(initialFValues);
-  const classes = useStyle();
+  const { values, setValues, handleInputChange } = useForm(initialFValues);
 
   return (
-    <form className={classes.root}>
+    <Form>
       <Grid container>
         <Grid item xs={6}>
           <TextField
             variant="outlined"
-            label="First name"
-            value={values.firstName}
+            label="Full name"
+            name="fullName"
+            value={values.fullName}
+            onChange={handleInputChange}
           ></TextField>
           <TextField
             variant="outlined"
             label="Email name"
+            name="email"
             value={values.email}
+            onChange={handleInputChange}
+          ></TextField>
+          <TextField
+            variant="outlined"
+            label="Phone number"
+            name="mobile"
+            value={values.mobile}
+            onChange={handleInputChange}
           ></TextField>
         </Grid>
       </Grid>
-    </form>
+    </Form>
   );
 }
 
