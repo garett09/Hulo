@@ -19,10 +19,10 @@ import Link from "@mui/material/Link";
 import "@fontsource/averia-serif-libre";
 
 const navigationLinks = [
-  { name: "Home", href: "" },
-  { name: "About Us", href: "" },
-  { name: "Accomodation", href: "" },
-  { name: "Event Hall", href: "" },
+  { name: "Home", href: "/" },
+  { name: "About Us", href: "/aboutus"},
+  { name: "Accomodation", href: "/accomodation" },
+  { name: "Event Hall", href: "/celsohall" },
   { name: "Resort Rules", href: "" },
   { name: "FAQs", href: "" },
 ];
