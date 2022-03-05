@@ -77,7 +77,7 @@ function SectionMain() {
           </Collapse>
         </Grid>
       </Grid>
-      <Grid container rowSpacing={25} position="absolute" >
+      <Grid container rowSpacing={25} position="absolute">
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={3}>
             <Grid item xs>
@@ -120,7 +120,17 @@ function SectionMain() {
             </Grid>
             <Grid item xs={6}></Grid>
             <Grid item xs>
-              <Button variant="contained">Book Now</Button>
+              <Button
+                style={{
+                  borderRadius: 35,
+                  backgroundColor: "#73c2fd",
+                  padding: "18px 36px",
+                  fontSize: "18px",
+                }}
+                variant="contained"
+              >
+                Book Now
+              </Button>
             </Grid>
           </Grid>
         </Box>

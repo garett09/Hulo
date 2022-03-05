@@ -22,10 +22,14 @@ const useStyle = makeStyles((theme) => ({
       width: "80%",
       margin: theme.spacing(1),
     },
+    typo: {
+      flexGrow: 1,
+      textAlign: "center"
+    }
   },
 }));
 
 export function Form(props) {
     const classes = useStyle();
-  return <form className={classes.root}>{props.children}</form>;
+  return <form className={classes.root} autoComplete="off">{props.children}</form>;
 }
