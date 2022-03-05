@@ -38,7 +38,24 @@ const initialFValues = {
 };
 
 function CustomerForm() {
-  const { values, setValues, handleInputChange } = useForm(initialFValues);
+  const validate = () => {
+    let temp = {};
+    temp.firstName = values.firstName ? "" : "First Name is required";
+    temp.lastName = values.lastName ? "" : "Last name is required";
+    temp.email = /.+@.+..+/.test(values.email) ? "" : "Email is not valid";
+    temp.mobile = values.mobile.length > 10 ? "" : "Mobile number is not valid";
+    temp.address = values.address ? "" : "Address is required";
+    temp.villaType =
+      values.villaType === "None" ? "This field is required" : "";
+    setErrors({
+      ...temp,
+    });
+
+    return Object.values(temp).every((x) => x === "");
+  };
+
+  const { values, setValues, handleInputChange, errors, setErrors } =
+    useForm(initialFValues);
 
   const useStyle = makeStyles((theme) => ({
     typo: {
@@ -53,8 +70,15 @@ function CustomerForm() {
   }));
   const classes = useStyle();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      window.alert("tite");
+    }
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Grid container>
         <Typography variant="h2" component="h2" className={classes.typo}>
           Customer Booking
@@ -80,12 +104,14 @@ function CustomerForm() {
             label="First Name"
             value={values.firstName}
             onChange={handleInputChange}
+            error={errors.firstName}
           />
           <Controls.Input
             name="lastName"
             label="Last Name"
             value={values.lastName}
             onChange={handleInputChange}
+            error={errors.lastName}
           />
           <Grid item xs={12}>
             <FormControl>
@@ -132,18 +158,21 @@ function CustomerForm() {
             label="Address"
             value={values.address}
             onChange={handleInputChange}
+            error={errors.address}
           />
           <Controls.Input
             name="email"
             label="email"
             value={values.email}
             onChange={handleInputChange}
+            error={errors.email}
           />
           <Controls.Input
             name="mobile"
             label="Mobile"
             value={values.mobile}
             onChange={handleInputChange}
+            error={errors.mobile}
           />
           <Grid item xs={12}>
             <FormLabel>Check-out date</FormLabel>
@@ -160,6 +189,7 @@ function CustomerForm() {
             value={values.villaType}
             onChange={handleInputChange}
             options={customerService.getVillaType()}
+            error={errors.villaType}
           />
         </Grid>
 
