@@ -4,9 +4,10 @@ import {
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import React from "react";
+import { FormHelperText } from "@mui/material";
 
 export default function DatePicker(props) {
-  const { name, label, value, onChange } = props;
+  const { name, label, value, onChange, error = null } = props;
 
   const convertToDefEventPara = (name, value) => ({
     target: {
@@ -16,7 +17,10 @@ export default function DatePicker(props) {
   });
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+    <MuiPickersUtilsProvider
+      utils={DateFnsUtils}
+      {...(error && { error: true })}
+    >
       <KeyboardDatePicker
         disableToolbar
         variant="dialog"
@@ -24,9 +28,10 @@ export default function DatePicker(props) {
         label={label}
         formate="MMM/dd/YYYY"
         value={value}
-        onChange={date=>onChange(convertToDefEventPara(name, date))}
+        onChange={(date) => onChange(convertToDefEventPara(name, date))}
         name={name}
       />
+      {error && <FormHelperText>{error}</FormHelperText>}
     </MuiPickersUtilsProvider>
   );
 }

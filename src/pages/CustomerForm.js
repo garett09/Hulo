@@ -38,24 +38,39 @@ const initialFValues = {
 };
 
 function CustomerForm() {
-  const validate = () => {
-    let temp = {};
-    temp.firstName = values.firstName ? "" : "First Name is required";
-    temp.lastName = values.lastName ? "" : "Last name is required";
-    temp.email = /.+@.+..+/.test(values.email) ? "" : "Email is not valid";
-    temp.mobile = values.mobile.length > 10 ? "" : "Mobile number is not valid";
-    temp.address = values.address ? "" : "Address is required";
-    temp.villaType =
-      values.villaType === "None" ? "This field is required" : "";
+  const validate = (fieldValues = values) => {
+    let temp = { ...errors };
+    if ("firstName" in fieldValues)
+      temp.firstName = fieldValues.firstName ? "" : "First Name is required";
+    if ("lastName" in fieldValues)
+      temp.lastName = fieldValues.lastName ? "" : "Last name is required";
+    if ("email" in fieldValues)
+      temp.email = /.+@.+..+/.test(fieldValues.email) ? "" : "Email is not valid";
+    if ("title" in fieldValues)
+      temp.title = fieldValues.title ? "" : "Title is required";
+    if ("mobile" in fieldValues)
+      temp.mobile =
+      fieldValues.mobile.length > 10 ? "" : "Mobile number is not valid";
+    if ("address" in fieldValues)
+      temp.address = fieldValues.address ? "" : "Address is required";
+    if ("checkinDate" in fieldValues)
+      temp.checkinDate = fieldValues.checkinDate ? "" : "Checkin date is required";
+    if ("checkoutDate" in fieldValues)
+      temp.checkoutDate = fieldValues.checkoutDate
+        ? ""
+        : "Checkout date is required";
+    if ("villaType" in fieldValues)
+      temp.villaType =
+      fieldValues.villaType === "None" ? "This field is required" : "";
     setErrors({
       ...temp,
     });
 
-    return Object.values(temp).every((x) => x === "");
+    if (fieldValues == values) return Object.values(temp).every((x) => x == "");
   };
 
-  const { values, setValues, handleInputChange, errors, setErrors } =
-    useForm(initialFValues);
+  const { values, setValues, handleInputChange, errors, setErrors, resetForm } =
+    useForm(initialFValues, true, validate);
 
   const useStyle = makeStyles((theme) => ({
     typo: {
@@ -73,7 +88,7 @@ function CustomerForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      window.alert("tite");
+      window.alert("Successfully sent to server");
     }
   };
 
@@ -97,6 +112,7 @@ function CustomerForm() {
               value={values.title}
               onChange={handleInputChange}
               options={titleService.getTitle()}
+              error={errors.title}
             />
           </Grid>
           <Controls.Input
@@ -150,6 +166,7 @@ function CustomerForm() {
             label="Check-in date"
             value={values.checkinDate}
             onChange={handleInputChange}
+            error={errors.checkinDate}
           />
         </Grid>
         <Grid item xs={6}>
@@ -181,6 +198,7 @@ function CustomerForm() {
               label="Check-out date"
               value={values.checkoutDate}
               onChange={handleInputChange}
+              error={errors.checkoutDate}
             />
           </Grid>
           <Controls.Select
@@ -207,6 +225,7 @@ function CustomerForm() {
         <Controls.Button
           text="reset"
           type="reset"
+          onClick={resetForm}
           style={{
             borderRadius: 35,
             backgroundColor: "#999999 ",

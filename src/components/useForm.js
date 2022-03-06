@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core";
 
-export function useForm(initialFValues) {
+export function useForm(initialFValues, validateOnChange = false, validate) {
   const [values, setValues] = useState(initialFValues);
   const [errors, setErrors] = useState({});
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setValues({ ...values, [name]: value });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
+    if (validateOnChange) validate({ [name]: value });
+  };
+
+  const resetForm = () => {
+    setValues(initialFValues);
+    setErrors({});
   };
 
   return {
@@ -16,6 +25,7 @@ export function useForm(initialFValues) {
     errors,
     setErrors,
     handleInputChange,
+    resetForm,
   };
 }
 
@@ -27,13 +37,17 @@ const useStyle = makeStyles((theme) => ({
     },
     typo: {
       flexGrow: 1,
-      textAlign: "center"
-    }
+      textAlign: "center",
+    },
   },
 }));
 
 export function Form(props) {
-    const classes = useStyle();
-    const {children,...other} = props;
-  return <form className={classes.root} autoComplete="off" {...other}>{props.children}</form>;
+  const classes = useStyle();
+  const { children, ...other } = props;
+  return (
+    <form className={classes.root} autoComplete="off" {...other}>
+      {props.children}
+    </form>
+  );
 }
