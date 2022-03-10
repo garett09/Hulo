@@ -15,7 +15,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function Casa() {
+function CasaBasyong() {
   return (
     <Grid
       container
@@ -56,7 +56,7 @@ function Casa() {
               paddingLeft: "30px",
             }}
           >
-            <Grid item xs="auto" lg={1} sx={{ minHeight: "12vh" }}>
+            <Grid item xs="auto" lg={3} sx={{ minHeight: "18vh" }}>
               <Typography
                 variant="h3"
                 textAlign="left"
@@ -64,7 +64,7 @@ function Casa() {
                 color="Black"
                 fontWeight="1000"
               >
-                CASA AURELIA
+                KUBO NI BASYONG
               </Typography>
               <Typography
                 variant="h5"
@@ -72,14 +72,15 @@ function Casa() {
                 fontFamily="Averia Serif Libre"
                 color="Black"
               >
-                Description of Villas Here
+                Experience comfortable farm camping in an A-frame design kubo
+                ideal for small groups looking for a budgeted quick getaway!
               </Typography>
             </Grid>
             <Grid
               item
               xs="auto"
               lg={1}
-              sx={{ minHeight: "50vh", backgroundColor: "#A8A021" }}
+              sx={{ minHeight: "31vh", backgroundColor: "#A8A021" }}
             >
               <Grid container spacing={3} columns={16}>
                 <Grid item xs="auto" lg={8}>
@@ -97,17 +98,10 @@ function Casa() {
                     fontFamily="Averia Serif Libre"
                     color="Black"
                   >
-                    Exclusive use of Pool <br></br>with 15 min Jacuzzi
-                    <br></br> 1 Detached Bathroom
-                    <br></br> 1 Airconditioned Common <br></br>Area
-                    <br></br>Kitchenette
-                    <br></br>Dining Area
-                    <br></br>Lounge Area
-                    <br></br>Outdoor Showers
-                    <br></br>Wide Alfresco
-                    <br></br>Dining Area
-                    <br></br>Wide parking space
-                    <br></br>Dishwashing Set
+                    <li>Airconditioned Room</li>
+                    <li>Balcony with Farm View </li>
+                    <li>Sofa Bed</li>
+                    <li>Tables and Chairs</li>
                   </Typography>
                 </Grid>
                 <Grid item xs="auto" lg={8}>
@@ -117,7 +111,7 @@ function Casa() {
                     fontFamily="Averia Serif Libre"
                     color="Black"
                   >
-                    Amenities:
+                    Guess Access:
                   </Typography>
                   <Typography
                     variant="body2"
@@ -125,39 +119,50 @@ function Casa() {
                     fontFamily="Averia Serif Libre"
                     color="Black"
                   >
-                    <br></br>Stove Basic
-                    <br></br>Cooking Ware
-                    <br></br>Rice Cooker
-                    <br></br>Microwave
-                    <br></br>Oven Toaster
-                    <br></br>Refrigerator
-                    <br></br>Water
-                    <br></br>Dispenser
-                    <br></br>Plates Utensils
+                    <li>
+                      Kitchen Area with Basic Cooking Ware (Electric Stove,
+                      <br></br>Pans, Rice Cooker)
+                    </li>
+                    <li>Common Bathrom</li>
+                    <li>Wide Parking Area</li>
                   </Typography>
                 </Grid>
                 <Grid item xs="auto" lg={16}>
                   <Typography
-                    variant="h5"
+                    variant="h3"
                     textAlign="center"
                     fontFamily="Averia Serif Libre"
                     color="Black"
                   >
-                    Amenities:
+                    Add Ons:
                   </Typography>
-                </Grid>
-                <Grid container spacing={1} columns={16}>
-                  <Grid item xs="auto" lg={8}>
-                    <Item>xs=8</Item>
+                  <Grid container spacing={2}>
+                    <Grid item xs={9} lg={20}>
+                      <Typography
+                        variant="body1"
+                        textAlign="Center"
+                        fontFamily="Averia Serif Libre"
+                        color="Black"
+                      >
+                        <li>Table Set-up: P500</li>
+                      </Typography>
+                    </Grid>
                   </Grid>
-                  <Grid item xs="auto" lg={7}>
-                    <Item>xs=8</Item>
+                  <Grid item xs={9} lg={12}>
+                    <Typography
+                      variant="h5"
+                      textAlign="left"
+                      fontFamily="Averia Serif Libre"
+                      color="Black"
+                    >
+                      STRICTLY FOR BOOKING AND RESERVATION ONLY!
+                    </Typography>
                   </Grid>
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs="auto" lg={2} sx={{ minHeight: "30vh" }}>
-            <Typography
+            <Grid item xs="auto" lg={1} sx={{ minHeight: "18vh" }}>
+              <Typography
                 variant="h5"
                 textAlign="left"
                 fontFamily="Averia Serif Libre"
@@ -166,24 +171,23 @@ function Casa() {
                 Daytour Soft Opening Rate:
               </Typography>
 
-                <Typography
-                  variant="h3"
-                  textAlign="left"
-                  fontFamily="Fugaz One"
-                  color="Black"
-                >
-                  P15,000
-                </Typography>
-                <Typography
-                  variant="h5"
-                  textAlign="Left"
-                  fontFamily="Averia Serif Libre"
-                  color="Black"
-                >
-                  Timeslot: 8am-5pm
-                  <br></br>(Good for 15-30 pax)
-                </Typography>
-
+              <Typography
+                variant="h3"
+                textAlign="left"
+                fontFamily="Fugaz One"
+                color="Black"
+              >
+                P2,700
+              </Typography>
+              <Typography
+                variant="h5"
+                textAlign="Left"
+                fontFamily="Averia Serif Libre"
+                color="Black"
+              >
+                Timeslot: 8am-5pm
+                <br></br>(Good for 2-4 pax)
+              </Typography>
             </Grid>
           </Grid>
         </Box>
@@ -192,4 +196,4 @@ function Casa() {
   );
 }
 
-export default Casa;
+export default CasaBasyong;

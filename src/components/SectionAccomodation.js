@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import "@fontsource/fugaz-one";
 import "@fontsource/laila";
+import Link from "@mui/material/Link";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -43,6 +44,7 @@ function SectionAccomodation() {
                 height: "50vh",
               }}
             >
+              <Link href="accomodation/casaaurelia" underline="hover">
               <Typography
                 variant="h4"
                 textAlign="center"
@@ -51,8 +53,9 @@ function SectionAccomodation() {
                 color="White"
                 sx={{ width: "50vw", height: "50vh", paddingTop: "230px" }}
               >
-                Description of Villas Here
+                CASA AURELIA
               </Typography>
+              </Link>
               <img
                 src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
                 alt="test"
@@ -68,16 +71,19 @@ function SectionAccomodation() {
                 height: "50vh",
               }}
             >
-              <Typography
-                variant="h4"
-                textAlign="center"
-                position="absolute"
-                fontFamily="Averia Serif Libre"
-                color="White"
-                sx={{ width: "50vw", height: "50vh", paddingTop: "230px" }}
-              >
-                Description of Villas Here
-              </Typography>
+              <Link href="accomodation/casabasyong" underline="hover">
+                <Typography
+                  variant="h4"
+                  textAlign="center"
+                  position="absolute"
+                  fontFamily="Averia Serif Libre"
+                  color="White"
+                  href="https://www.w3schools.com/tags/att_href.asp"
+                  sx={{ width: "50vw", height: "50vh", paddingTop: "230px" }}
+                >
+                  KUBO NI BASYONG
+                </Typography>
+              </Link>
               <img
                 src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
                 alt="test"
@@ -93,6 +99,7 @@ function SectionAccomodation() {
                 height: "50vh",
               }}
             >
+              <Link href="accomodation/casasalud" underline="hover">
               <Typography
                 variant="h4"
                 textAlign="center"
@@ -101,8 +108,9 @@ function SectionAccomodation() {
                 color="White"
                 sx={{ width: "50vw", height: "50vh", paddingTop: "230px" }}
               >
-                Description of Villas Here
+               CASA SALUD
               </Typography>
+              </Link>
               <img
                 src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
                 alt="test"
@@ -118,6 +126,7 @@ function SectionAccomodation() {
                 height: "50vh",
               }}
             >
+              <Link href="accomodation/casadeprimavera" underline="hover">
               <Typography
                 variant="h4"
                 textAlign="center"
@@ -126,8 +135,9 @@ function SectionAccomodation() {
                 color="White"
                 sx={{ width: "50vw", height: "50vh", paddingTop: "230px" }}
               >
-                Description of Villas Here
+                CAMINOS DE PRIMAVERA
               </Typography>
+              </Link>
               <img
                 src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
                 alt="test"

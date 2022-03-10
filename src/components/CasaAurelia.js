@@ -19,30 +19,44 @@ function CasaAurelia() {
   return (
     <Grid
       container
-      spacing={0}
-      direction="column"
-      alignItems="center"
+      spacing={2}
+      columns={16}
+      direction="row"
+      alignItems="flex-start"
       justifyContent="center"
       style={{ minHeight: "100vh" }}
     >
-      <Grid container spacing={4} columns={16}>
-        <Box className="background3" sx={{ display: "flex" }}>
-          <Grid item xs={20} sx={{ minHeight: "100vh" }}>
-            <img
-              src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
-              alt="test"
-              className="background3"
-            />
-          </Grid>
+      <Grid item xs="auto" lg={8}>
+        <Box
+          className="background3"
+          sx={{
+            display: "flex",
+            width: "50vw",
+            minheight: "90vh",
+            padding: "30px",
+          }}
+        >
+          <img
+            src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
+            alt="test"
+          />
         </Box>
-        <Grid item xs={7}>
+      </Grid>
+      <Grid item xs={8} lg={8}>
+        <Box sx={{ flexGrow: 1, display: "flex" }}>
           <Grid
             container
             spacing={2}
+            columns={16}
             direction="column"
-            sx={{ paddingTop: "50px" }}
+            sx={{
+              minwidth: "50vw",
+              minheight: "100vh",
+              paddingTop: "60px",
+              paddingLeft: "30px",
+            }}
           >
-            <Grid item xs={15} sx={{ minHeight: "10vh" }}>
+            <Grid item xs="auto" lg={3} sx={{ minHeight: "18vh" }}>
               <Typography
                 variant="h3"
                 textAlign="left"
@@ -58,16 +72,20 @@ function CasaAurelia() {
                 fontFamily="Averia Serif Libre"
                 color="Black"
               >
-                Description of Villas Here
+                Immerse yourself in nature while experiencing luxurious
+                accomodation! Spaciously designed for big groups featuring a
+                stunning farm view that will surely make you feel relaxed and
+                rejuvenated!
               </Typography>
             </Grid>
             <Grid
               item
-              sm={12}
-              sx={{ minHeight: "60vh", backgroundColor: "#A8A021" }}
+              xs="auto"
+              lg={1}
+              sx={{ minHeight: "54vh", backgroundColor: "#A8A021" }}
             >
-              <Grid container spacing={30}>
-                <Grid item xs="auto">
+              <Grid container spacing={3} columns={16}>
+                <Grid item xs="auto" lg={8}>
                   <Typography
                     variant="h3"
                     textAlign="left"
@@ -82,21 +100,23 @@ function CasaAurelia() {
                     fontFamily="Averia Serif Libre"
                     color="Black"
                   >
-                    Exclusive use of Pool <br></br>with 15 min Jacuzzi
-                    <br></br> 1 Detached Bathroom
-                    <br></br> 1 Airconditioned Common <br></br>Area
-                    <br></br>Kitchenette
-                    <br></br>Dining Area
-                    <br></br>Lounge Area
-                    <br></br>Outdoor Showers
-                    <br></br>Wide Alfresco
-                    <br></br>Dining Area
-                    <br></br>Wide parking space
-                    <br></br>Dishwashing Set
+                    <li>Exclusive use of Pool with 15 min Jacuzzi</li>
+                    <ul className="a">
+                      <li>1 Detached Bathroom</li>
+                      <li>1 Airconditioned Common Area</li>
+                      <ul>
+                        <li>Kitchenette</li>
+                        <li>Dining Area</li>
+                        <li>Lounge Area</li>
+                      </ul>
+                    </ul>
+                    <li>Outdoor Showers</li>
+                    <li>Wide Alfresco Dining Area</li>
+                    <li>Wide parking space</li>
+                    <li>Dishwashing Set</li>
                   </Typography>
                 </Grid>
-
-                <Grid item xs={6}>
+                <Grid item xs="auto" lg={8}>
                   <Typography
                     variant="h3"
                     textAlign="left"
@@ -111,52 +131,78 @@ function CasaAurelia() {
                     fontFamily="Averia Serif Libre"
                     color="Black"
                   >
-                    <br></br>Stove Basic
-                    <br></br>Cooking Ware
-                    <br></br>Rice Cooker
-                    <br></br>Microwave
-                    <br></br>Oven Toaster
-                    <br></br>Refrigerator
-                    <br></br>Water
-                    <br></br>Dispenser
-                    <br></br>Plates Utensils
+                    <li>Induction Stove</li>
+                    <li>Basic Cooking Ware</li>
+                    <li>Rice Cooker</li>
+                    <li>Microwave</li>
+                    <li>Oven Toaster</li>
+                    <li>Refrigerator</li>
+                    <li>Water Dispenser</li>
+                    <li>Plates</li>
+                    <li>Utensils</li>
                   </Typography>
                 </Grid>
-              </Grid>
-              <Grid item xs={15}>
-                <Typography
-                  variant="h3"
-                  textAlign="center"
-                  fontFamily="Averia Serif Libre"
-                  color="Black"
-                >
-                  Add ons:
-                </Typography>
-                <Grid container spacing={30}>
-                  <Grid item xs="auto">
-                    <Typography
-                      variant="h5"
-                      textAlign="left"
-                      fontFamily="Averia Serif Libre"
-                      color="Black"
-                    >
-                      Inclusion:
-                    </Typography>
+                <Grid item xs="auto" lg={16}>
+                  <Typography
+                    variant="h3"
+                    textAlign="center"
+                    fontFamily="Averia Serif Libre"
+                    color="Black"
+                  >
+                    Add Ons:
+                  </Typography>
+                  <Grid container spacing={2}>
+                    <Grid item xs={9} lg={8}>
+                      <Typography
+                        variant="body2"
+                        textAlign="left"
+                        fontFamily="Averia Serif Libre"
+                        color="Black"
+                      >
+                        <li>Room 2000php/room</li>
+                        <ul>
+                          <ul>
+                            <li>3 Airconditioned Bedroom</li>
+                            <ul>
+                              <li>Master's Bedroom (1 King Size Bed)</li>
+                              <li>Bedroom 2 (2 Double Bed))</li>
+                              <li>Bedroom 3 (2 Double Bed)</li>
+                            </ul>
+                          </ul>
+                        </ul>
+                      </Typography>
+                    </Grid>
+                    <Grid item xs="auto" lg={8}>
+                      <Typography
+                        variant="body2"
+                        textAlign="left"
+                        fontFamily="Averia Serif Libre"
+                        color="Black"
+                      >
+                        <li>3 Bathroom</li>
+                        <ul>
+                          <li>
+                            (1 per room w/ hot & cold shower) - <br></br>Extra
+                            Bed: P150/P300
+                          </li>
+                        </ul>
+                      </Typography>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={4}>
+                  <Grid item xs={9} lg={12}>
                     <Typography
                       variant="h5"
                       textAlign="left"
                       fontFamily="Averia Serif Libre"
                       color="Black"
                     >
-                      Amenities:
+                      STRICTLY FOR BOOKING AND RESERVATION ONLY!
                     </Typography>
                   </Grid>
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={15} sx={{ minHeight: "20vh" }}>
+            <Grid item xs="auto" lg={1} sx={{ minHeight: "18vh" }}>
               <Typography
                 variant="h5"
                 textAlign="left"
@@ -165,28 +211,27 @@ function CasaAurelia() {
               >
                 Daytour Soft Opening Rate:
               </Typography>
-              <Grid item xs={7}>
-                <Typography
-                  variant="h3"
-                  textAlign="center"
-                  fontFamily="Fugaz One"
-                  color="Black"
-                >
-                  P15,000
-                </Typography>
-                <Typography
-                  variant="h5"
-                  textAlign="center"
-                  fontFamily="Averia Serif Libre"
-                  color="Black"
-                >
-                  Timeslot: 8am-5pm
-                  <br></br>(Good for 15-30 pax)
-                </Typography>
-              </Grid>
+
+              <Typography
+                variant="h3"
+                textAlign="left"
+                fontFamily="Fugaz One"
+                color="Black"
+              >
+                P15,000
+              </Typography>
+              <Typography
+                variant="h5"
+                textAlign="Left"
+                fontFamily="Averia Serif Libre"
+                color="Black"
+              >
+                Timeslot: 8am-5pm
+                <br></br>(Good for 15-30 pax)
+              </Typography>
             </Grid>
           </Grid>
-        </Grid>
+        </Box>
       </Grid>
     </Grid>
   );

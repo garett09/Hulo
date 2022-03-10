@@ -15,7 +15,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function CasaSalud() {
+function CasaDePrimavera() {
   return (
     <Grid
       container
@@ -59,13 +59,12 @@ function CasaSalud() {
                     fontFamily="Averia Serif Libre"
                     color="Black"
                   >
-                    Boasting Capiz shell windows and wooden furniture, Casa
-                    Salud is a Filipino-inspired bungalow that will remind you
-                    of childhood trips to the province when visiting your
-                    grandparents. It has two air-conditioned bedrooms that can
-                    accommodate larger groups – it’s good for 10-30 guests for a
-                    day tour. However, only up to six guests can be accommodated
-                    for an overnight stay.
+                    Caminos de Primavera is a two-story modern “Bahay Kubo” ,
+                    ideal for a group of six. It is an air-conditioned bedroom
+                    with one queen size bed, and a Jacuzzi which still has a
+                    view of the rice field. The second-floor balcony is a
+                    hanging net where you can enjoy the riverfront, farm, and
+                    pool views. It’s one of the most unique spots at the farm!
                   </Typography>
                 </Grid>
                 <Grid item xs={5} lg={5}>
@@ -76,7 +75,7 @@ function CasaSalud() {
                     color="Black"
                     fontWeight="1000"
                   >
-                    CASA SALUD
+                    CAMINOS DE PRIMAVERA
                   </Typography>
                 </Grid>
               </Grid>
@@ -109,13 +108,20 @@ function CasaSalud() {
                           color="Black"
                         >
                           <li>Entire House</li>
-                          <li>2 Airconditioned Bedroom</li>
-                          <li>Master’s Bedroom and Bedroom 2</li>
-                          <li>1 Bathroom</li>
-                          <li>Kitchen Area with Basic Cooking Ware</li>
+                          <li>1 Airconditioned Bedroom</li>
+                          <li>
+                            2 Queen Size Bed, 1 Single Bed, 2 bathroom, 1 Bath
+                            Tub Exclusive Use of Pool
+                          </li>
                           <li>Dining Area</li>
-                          <li>Wide Alfresco Dining Area</li>
-                          <li>Wide Parking Area</li>
+                          <li>Bar Area</li>
+                          <li>Hanging Net</li>
+                          <li>1 Bathroom </li>
+                          <li>1 Outside Shower</li>
+                          <li>Cottage & Garden Area</li>
+                          <li>1 Front River</li>
+                          <li>Farm View</li>
+                          <li>Wide Parking Space </li>
                         </Typography>
                       </Grid>
                       <Grid item xs={8} lg={5}>
@@ -161,6 +167,14 @@ function CasaSalud() {
                         </Typography>
                       </Grid>
                       <Grid item xs={9} lg={12}>
+                      <Typography
+                          variant="body1"
+                          textAlign="left"
+                          fontFamily="Averia Serif Libre"
+                          color="Black"
+                        >
+                         *There will be a 3 to 5 mins trek going to Caminos
+                        </Typography>
                         <Typography
                           variant="h5"
                           textAlign="left"
@@ -189,7 +203,7 @@ function CasaSalud() {
                       fontFamily="Fugaz One"
                       color="Black"
                     >
-                      P10,500
+                      P18,000
                     </Typography>
                     <Typography
                       variant="h5"
@@ -211,4 +225,4 @@ function CasaSalud() {
   );
 }
 
-export default CasaSalud;
+export default CasaDePrimavera;
