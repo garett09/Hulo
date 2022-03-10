@@ -8,7 +8,7 @@ function Splash() {
 
   async function registerUser(event) {
     event.preventDefault();
-    const response = await fetch("http://localhost:4000/api/users/register", {
+    const response = await fetch("http://localhost:4000/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
