@@ -13,6 +13,7 @@ import CasaSalud from "./components/CasaSalud";
 import Casa from "./components/Casa";
 import CssBaseline from "@mui/material/CssBaseline";
 import Customers from "./pages/Customers";
+import Splash from "./pages/Splash";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -25,21 +26,15 @@ function App() {
     
     <Router>
       <ScrollToTop />
-      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/" element={<SectionMain/>} />
         <Route path="celsohall" element={<SectionCelso/>} />
         <Route path="aboutus" element={<SectionAboutUs/>} />
-      </Routes>       
-      <SectionAccomodation /> 
-
-    
-      <Footer/>
+        <Route path="splash" element={<Splash/>} />
+      </Routes>      
 
     </Router>
-  
-      <Customers/>
     </div>
   );
 }

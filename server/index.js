@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
+const cors=require('cors');
 
-app.get('/hello', (req,res) => {
-    res.send('hello world')
+app.use(cors());
+
+app.post('/api/register', (req,res) => {
+   console.log(req.body)
 })
 
 app.listen(4000, () => {
-    console.log('server is running on port 3000')
+    console.log('server is running on port 4000')
 })
