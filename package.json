@@ -1,4 +1,16 @@
 {
+  "name": "hulo",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://review.gerrithub.io/garett09/Hulo"
+  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.28.1",
@@ -15,5 +27,7 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "author": "",
+  "license": "ISC"
 }
