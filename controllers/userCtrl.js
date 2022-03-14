@@ -50,6 +50,7 @@ const userCtrl = {
         activation_token,
         process.env.ACTIVATION_TOKEN_SECRET
       );
+      console.log(user);
 
       const { firstName, lastName, email, password } = user;
 
