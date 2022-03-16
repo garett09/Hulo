@@ -146,6 +146,15 @@ const userCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
+  getUserInfo: async (req, res) => {
+    try {
+        const user = await Users.findById(req.user.id).select('-password')
+        console.log(user)
+        res.json(user)
+    } catch (err) {
+        return res.status(500).json({msg: err.message})
+    }
+},
 };
 
 function validateEmail(email) {

@@ -3,6 +3,8 @@ const userCtrl = require ('../controllers/userCtrl')
 const auth = require('../middleware/auth')
 
 
+router.get('/info', auth, userCtrl.getUserInfo)
+
 router.post('/register', userCtrl.register)
 
 router.post('/activation', userCtrl.activateEmail)
@@ -14,6 +16,8 @@ router.post('/refresh_token', userCtrl.getAccessToken)
 router.post('/forgot', userCtrl.forgotPassword)
 
 router.post('/reset', auth, userCtrl.resetPassword)
+
+
 
 
 module.exports = router
