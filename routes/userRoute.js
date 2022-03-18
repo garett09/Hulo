@@ -20,6 +20,8 @@ router.post('/reset', auth, userCtrl.resetPassword)
 
 router.get('/all_infor', auth, authAdmin, userCtrl.getUsersAllInfor)
 
+ router.get('/logout', userCtrl.logout)
+
 
 
 
