@@ -15,6 +15,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const bounce = keyframes`
   from, 20%, 53%, 80%, to {
@@ -40,6 +42,9 @@ function SectionMain() {
     setChecked(true);
   }, []);
   return (
+    <div>
+      <Header />
+ 
     <div className="background1">
       <Grid
         container
@@ -135,6 +140,8 @@ function SectionMain() {
           </Grid>
         </Box>
       </Grid>
+    </div>
+    <Footer />
     </div>
   );
 }

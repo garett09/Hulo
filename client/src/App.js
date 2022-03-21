@@ -17,34 +17,33 @@ import ScrollToTop from "./components/ScrollToTop";
 import CasaAurelia from "./components/CasaAurelia";
 import CasaBasyong from "./components/CasaBasyong";
 import CasaDePrimavera from "./components/CasaDePrimavera";
-
-
-
+import HeaderLogin from "./components/login/header/Header.js";
+import BodyLogin from "./components/login/body/Body.js";
 
 function App() {
   return (
     <div className="App">
-    
-    <Router>
-      <ScrollToTop />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/" element={<SectionMain/>} />
-        <Route path="/celsohall" element={<SectionCelso/>} />
-        <Route path="/aboutus" element={<SectionAboutUs/>} />
-        <Route path="accomodation" element={<SectionAccomodation />}/>
-          <Route path = "accomodation/casaaurelia" element={<CasaAurelia/>}/>
-          <Route path = "accomodation/casabasyong" element={<CasaBasyong/>}/>
-          <Route path = "accomodation/casasalud" element={<CasaSalud/>}/>
-          <Route path = "accomodation/casadeprimavera" element={<CasaDePrimavera/>}/>
-      </Routes>       
-       
+      <Router>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/" element={<SectionMain />} />
+          <Route path="/celsohall" element={<SectionCelso />} />
+          <Route path="/aboutus" element={<SectionAboutUs />} />
+          <Route path="accomodation" element={<SectionAccomodation />} />
+          <Route path="accomodation/casaaurelia" element={<CasaAurelia />} />
+          <Route path="accomodation/casabasyong" element={<CasaBasyong />} />
+          <Route path="accomodation/casasalud" element={<CasaSalud />} />
+          <Route
+            path="accomodation/casadeprimavera"
+            element={<CasaDePrimavera />}
+          />
+          <Route path="/headers" element={<HeaderLogin />} />
 
-    
-      <Footer/>
 
-    </Router>
+        </Routes>
+
+      </Router>
     </div>
   );
 }
