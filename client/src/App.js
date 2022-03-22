@@ -17,8 +17,10 @@ import ScrollToTop from "./components/ScrollToTop";
 import CasaAurelia from "./components/CasaAurelia";
 import CasaBasyong from "./components/CasaBasyong";
 import CasaDePrimavera from "./components/CasaDePrimavera";
-import HeaderLogin from "./components/login/header/Header.js";
+//login
 import BodyLogin from "./components/login/body/Body.js";
+import Login from "./components/login/body/auth/Login";
+
 
 function App() {
   return (
@@ -38,11 +40,11 @@ function App() {
             path="accomodation/casadeprimavera"
             element={<CasaDePrimavera />}
           />
-          <Route path="/headers" element={<HeaderLogin />} />
-
+          //login
+          <Route path = "/headers" className="Header" element={<BodyLogin />} />
+          <Route path = "/login" className="Header" element={<Login />} />
 
         </Routes>
-
       </Router>
     </div>
   );

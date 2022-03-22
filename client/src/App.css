@@ -1,28 +1,46 @@
 .App {
-    text-align: center;
-  }
-  
+  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  box-shadow: 0 0 20px #eee;
+  margin: 0 auto;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    height: 40vmin;
-    pointer-events: none;
+    animation: App-logo-float infinite 3s ease-in-out;
   }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-float infinite 3s ease-in-out;
-    }
-  }
-  
-  .App-header {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-  }
-  
-  .App-link {
-    color: rgb(112, 76, 182);
-  }
-  
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.App-link {
+  color: rgb(112, 76, 182);
+}
+
+/* ----------------- Header ------------------- */
+@import url("./components/login/header/Header.css");
