@@ -15,7 +15,8 @@ import Divider from "@mui/material/Divider";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import Link from "@mui/material/Link";
+import Links from "@mui/material/Link";
+import { Link } from 'react-router-dom';
 import "@fontsource/averia-serif-libre";
 
 const navigationLinks = [
@@ -92,8 +93,8 @@ function Header() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <Link to ="/login"><MenuItem onClick={handleClose}>Sign In</MenuItem></Link>
+                <Link to ="/login"><MenuItem onClick={handleClose}>Creat An Account</MenuItem></Link>
               </Menu>
             </div>
           )}
@@ -118,7 +119,7 @@ function Header() {
           <List>
             {navigationLinks.map((item) => (
               <ListItem key={item.name}>
-                <Link
+                <Links
                   color="textPrimary"
                   variant="button"
                   underline="none"
@@ -127,7 +128,7 @@ function Header() {
                   sx={{ marginRight: 10, color: "#B6926C", fontSize: "1.2rem" }}
                 >
                   {item.name}
-                </Link>
+                </Links>
               </ListItem>
             ))}
           </List>

@@ -6,7 +6,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Header() {
   return (
-    <header>
+    <header className="headerLogin">
       <div>
         <h1>
           <Link to="/">Hulo</Link>
