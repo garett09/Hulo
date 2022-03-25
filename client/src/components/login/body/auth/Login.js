@@ -7,6 +7,8 @@ import {
   showErrMsg,
   showSuccessMsg,
 } from "../../utils/notification/notification";
+import {dispatchLogin} from "../../../redux/actions/authActions.js"
+import {useDispatch} from 'react-redux'
 
 const initialState = {
   email: "",
@@ -17,8 +19,9 @@ const initialState = {
 
 function Login() {
   const [user, setUser] = useState(initialState);
-  //const dispatch = useDispatch()
-  const history = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
 
   const { email, password, err, success } = user;
 
@@ -33,6 +36,9 @@ function Login() {
       setUser({ ...user, err: "", success: res.data.msg });
 
       localStorage.setItem('firstLogin', true)
+
+      dispatch(dispatchLogin())
+      navigate.push("/")
 
     } catch (err) {
       err.response.data.msg &&

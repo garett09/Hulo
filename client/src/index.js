@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import DataProvider from './components/redux/store.js';
+import DataProvider from './components/redux/store';
+
 
 
 ReactDOM.render(
@@ -9,6 +10,6 @@ ReactDOM.render(
     <DataProvider>
         <App />
     </DataProvider>
-</React.StrictMode>
-, document.getElementById('root')
+</React.StrictMode>, 
+document.getElementById('root')
 );

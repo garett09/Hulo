@@ -1,6 +1,5 @@
 const ACTIONS = {
-    LOGIN: 'LOGIN',
-
+    LOGIN: 'LOGIN'
 }
 
 export default ACTIONS

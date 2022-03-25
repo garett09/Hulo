@@ -1,9 +1,7 @@
-import ACTIONS from './index'
-import axios from 'axios'
+import ACTIONS from "./index.js"
 
 export const dispatchLogin = () => {
     return {
         type: ACTIONS.LOGIN
     }
 }
-
