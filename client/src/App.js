@@ -20,6 +20,7 @@ import CasaDePrimavera from "./components/CasaDePrimavera";
 //login
 import BodyLogin from "./components/login/body/Body.js";
 import Login from "./components/login/body/auth/Login";
+import Register from "./components/login/body/auth/Register";
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
           //login
           <Route path = "/headers" className="Header" element={<BodyLogin />} />
           <Route path = "/login" className="Header" element={<Login />} />
+          <Route path = "/register" className = "Header" element ={<Register />}/>
 
         </Routes>
       </Router>

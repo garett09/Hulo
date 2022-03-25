@@ -53,7 +53,9 @@ function Login() {
         <h2>Login</h2>
         {err && showErrMsg(err)}
         {success && showSuccessMsg(success)}
+
         <form onSubmit={handleSubmit}>
+         
           <div>
             <label htmlFor="email">Email Address</label>
             <input
@@ -82,6 +84,9 @@ function Login() {
             <Link to="/forgot_password">Forgot your password?</Link>
           </div>
         </form>
+        <p>
+        New Customer? <Link to="/register">Register</Link>
+      </p>
       </div>
     </div>
   );

@@ -10,6 +10,11 @@
     font-size: 2rem;
     margin: 20px 0;
     letter-spacing: 1.5px;
+    display: flex;
+    font-weight: 700;
+}
+.login_page label{
+    display: flex;
 }
 
 .login_page input{
@@ -23,20 +28,22 @@
 .login_page .row{
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap-reverse;
+    flex-wrap: nowrap;
     align-items: flex-start;
 }
 .login_page .row a{
     color: crimson;
+    margin-left: 10px;
+
 }
 .login_page .row button{
-    width: 150px;
+    width: 130px;
     padding: 10px 0;
     color: white;
     background: black;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    margin-right: 10px;
+    margin-left: 11px;
 }
 .login_page p{
     margin: 10px 0;
