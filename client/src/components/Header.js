@@ -94,7 +94,7 @@ function Header() {
                 onClose={handleClose}
               >
                 <Link to ="/login"><MenuItem onClick={handleClose}>Sign In</MenuItem></Link>
-                <Link to ="/login"><MenuItem onClick={handleClose}>Creat An Account</MenuItem></Link>
+                <Link to ="/register"><MenuItem onClick={handleClose}>Creat An Account</MenuItem></Link>
               </Menu>
             </div>
           )}

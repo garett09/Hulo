@@ -21,6 +21,7 @@ import CasaDePrimavera from "./components/CasaDePrimavera";
 import BodyLogin from "./components/login/body/Body.js";
 import Login from "./components/login/body/auth/Login";
 import Register from "./components/login/body/auth/Register";
+import ActivationEmail from "./components/login/body/auth/ActivationEmail";
 
 
 function App() {
@@ -41,13 +42,17 @@ function App() {
             path="accomodation/casadeprimavera"
             element={<CasaDePrimavera />}
           />
+          
           //login
           <Route path = "/headers" className="Header" element={<BodyLogin />} />
-          <Route path = "/login" className="Header" element={<Login />} />
-          <Route path = "/register" className = "Header" element ={<Register />}/>
+          <Route path = "/login" className="Login" element={<Login />} />
+          <Route path = "/register" className = "Register" element ={<Register />}/>
+          <Route path = "/user/activate/:activation_token" className = "Header" element ={<ActivationEmail />}/>
 
         </Routes>
+        <Customers />
       </Router>
+      
     </div>
   );
 }
