@@ -4,39 +4,38 @@ const formsSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
-      required: [true, "First name is required"],
+      required: [true, "Please enter your First name"],
       trim: true,
     },
     lastName: {
       type: String,
-      required: [true, "Last name is required"],
+      required: [true, "Please enter your Last name"],
       trim: true,
     },
     email: {
       type: String,
-      required: [true, "Email is required"],
+      required: [true, "Please enter your email"],
       trim: true,
       unique: true,
     },
     mobileNumber: {
       type: String,
-      required: [true, "Password is required"],
+      required: [true, "Please enter your mobile number"],
     },
     gender: {
-      type: String,
-      required: [true, "Gender is required"],
+      type: String
     },
     checkInDate: {
-      type: Date,
+      type: String,
         required: [true, "Check in Date is required"],
     },
     checkOutDate: {
-        type: Date,
+        type: String,
           required: [true, "Check out Date is required"],
       },
     submittedBy : {
         type: String,
-        required: [true, "Check out Date is required"],
+        required: [true, "MAMA MO"],
     }
   },
   {

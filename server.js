@@ -1,6 +1,7 @@
 require("dotenv").config(); // Load environment variables from .env file
 const express = require("express");
 const mongoose = require("mongoose");
+const forms = require ("./routes/forms");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
@@ -17,6 +18,7 @@ app.use(
 
 //Routes
 app.use ('/user', require('./routes/userRoute'))
+app.use ('/api/v1', forms)
 app.use('/api', require('./routes/upload'))
 
 //Connect to mongoDb
