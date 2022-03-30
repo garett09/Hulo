@@ -42,7 +42,6 @@ function App() {
             path="accomodation/casadeprimavera"
             element={<CasaDePrimavera />}
           />
-          
           //login
           <Route path = "/headers" className="Header" element={<BodyLogin />} />
           <Route path = "/login" className="Login" element={<Login />} />
@@ -50,9 +49,7 @@ function App() {
           <Route path = "/user/activate/:activation_token" className = "Header" element ={<ActivationEmail />}/>
 
         </Routes>
-        <Customers />
       </Router>
-      
     </div>
   );
 }
