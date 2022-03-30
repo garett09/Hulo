@@ -8,7 +8,7 @@ const { CLIENT_URL } = process.env;
 const userCtrl = {
   register: async (req, res) => {
     try {
-      const { firstName, lastName, email, password } = req.body;
+      const { firstName, lastName, email, password,} = req.body;
       if (!firstName || !lastName || !email || !password) {
         return res.status(400).json({ msg: "Please fill all the fields" });
       }
@@ -31,6 +31,7 @@ const userCtrl = {
         lastName,
         email,
         password: passwordHash,
+       
       };
       const activation_token = createActivationToken(newUser);
       const url = `${CLIENT_URL}/user/activate/${activation_token} `;
