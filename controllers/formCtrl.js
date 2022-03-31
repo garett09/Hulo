@@ -1,17 +1,19 @@
 const Forms = require("../models/formsModel");
+const ErrorHandler = require("../utils/errorHandler");
+const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
-//Create new form => /api/v1/admin/product/new
-exports.newForm = async (req, res, next) => {
+//Create new form => /api/v1/admin/formsyarn /new
+exports.newForm = catchAsyncErrors(async (req, res, next) => {
   const form = await Forms.create(req.body);
 
   res.status(201).json({
-    status: true,
+    success: true,
     form,
   });
-};
+});
 
 //Get all forms => /api/v1/forms
-exports.getAllForms = async (req, res, next) => {
+exports.getAllForms = catchAsyncErrors(async (req, res, next) => {
   const forms = await Forms.find();
 
   res.status(200).json({
@@ -20,32 +22,26 @@ exports.getAllForms = async (req, res, next) => {
     forms,
     message: "All forms fetched successfully",
   });
-};
+});
 
-//Get single product details => /api/v1/product/:id
-exports.getSingleForm = async (req, res, next) => {
+//Get single form details => /api/v1/form/:id
+exports.getSingleForm = catchAsyncErrors(async (req, res, next) => {
   const form = await Forms.findById(req.params.id);
   if (!form) {
-    return res.status(404).json({
-      success: false,
-      message: "Form not found",
-    });
+    return next(new ErrorHandler("Form not Found", 404));
   }
   res.status(200).json({
     success: true,
     form,
   });
-};
+});
 
 //Update form => /api/v1/form/:id
-exports.updateForm = async (req, res, next) => {
+exports.updateForm = catchAsyncErrors(async (req, res, next) => {
   let form = await Forms.findById(req.params.id);
 
   if (!form) {
-    return res.status(404).json({
-      success: false,
-      message: "Form not found",
-    });
+    return next(new ErrorHandler("Form not Found", 404));
   }
 
   form = await Forms.findByIdAndUpdate(req.params.id, req.body, {
@@ -57,17 +53,14 @@ exports.updateForm = async (req, res, next) => {
     sucess: true,
     form,
   });
-};
+});
 
 //Delete form => /api/v1/admin/form/:id
 
-exports.deleteForm = async (req, res, next) => {
+exports.deleteForm = catchAsyncErrors(async (req, res, next) => {
   const form = await Forms.findById(req.params.id);
   if (!form) {
-    return res.status(404).json({
-      success: false,
-      message: "Form not found",
-    });
+    return next(new ErrorHandler("Form not Found", 404));
   }
   await form.remove();
 
@@ -76,4 +69,4 @@ exports.deleteForm = async (req, res, next) => {
     form,
     message: "Form deleted successfully",
   });
-};
+});

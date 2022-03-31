@@ -1,23 +1,17 @@
-require("dotenv").config();
 const mongoose = require("mongoose");
 
 //Connect to mongoDb
 const connectDatabase = async () => {
-  const URI = process.env.MONGODB_URL;
-  mongoose.connect(
-    URI,
-    {
+  mongoose
+    .connect(process.env.MONGODB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    },
-    (err) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("DB connected");
-      }
-    }
-  );
+    })
+    .then((con) => {
+      console.log(
+        `MongoDB Database connected with HOST: ${con.connection.host}`
+      );
+    });
 };
 
 module.exports = connectDatabase;
