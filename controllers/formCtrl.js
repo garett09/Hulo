@@ -37,7 +37,7 @@ exports.getSingleForm = async (req, res, next) => {
   });
 };
 
-//Update product => /api/v1/product/:id
+//Update form => /api/v1/form/:id
 exports.updateForm = async (req, res, next) => {
   let form = await Forms.findById(req.params.id);
 
@@ -56,5 +56,24 @@ exports.updateForm = async (req, res, next) => {
   res.status(200).json({
     sucess: true,
     form,
+  });
+};
+
+//Delete form => /api/v1/admin/form/:id
+
+exports.deleteForm = async (req, res, next) => {
+  const form = await Forms.findById(req.params.id);
+  if (!form) {
+    return res.status(404).json({
+      success: false,
+      message: "Form not found",
+    });
+  }
+  await form.remove();
+
+  res.status(200).json({
+    success: true,
+    form,
+    message: "Form deleted successfully",
   });
 };
