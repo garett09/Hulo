@@ -1,8 +1,9 @@
 const Users = require("../models/userModel");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
-const sendEmail = require("./sendMail");
+const sendEmail = require("../utils/sendEmail");
 const sendToken = require("../utils/jwtToken");
+const crypto = require("crypto");
 
 // Register a user => /api/v1/register
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -19,7 +20,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     },
   });
 
-  sendToken(user, 200,res)
+  sendToken(user, 200, res);
 });
 
 //Login User => /api/v1/login
@@ -46,8 +47,69 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   if (!isPasswordMatch) {
     return next(new ErrorHandler("Invalid email or password", 401)); //unauthenticateduser
   }
- 
-  sendToken(user, 200,res)
+
+  sendToken(user, 200, res);
+});
+
+//Forgot Password => /api/v1/password/forgot
+exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
+  const user = await Users.findOne({ email: req.body.email });
+
+  if (!user) {
+    return next(new ErrorHandler("No user with that email", 404));
+  }
+
+  // GET RESET TOKEN
+  const resetToken = user.getResetPasswordToken();
+  await user.save({ validateBeforeSave: false });
+
+  //Create reset password URL
+
+  const resetURL = `${req.protocol}://${req.get(
+    "host"
+  )}/api/v1/password/reset/${resetToken}`;
+
+  const message = `
+  <div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
+  <h2 style="text-align: center; text-transform: uppercase;color: teal;">Hulo Leisure Farm</h2>
+  <p>Did you forgot your password?
+      Just click the button below to reset your password.
+  </p>
+  
+  <a href=${resetURL} style="background: crimson; text-decoration: none; color: white; padding: 10px 20px; margin: 10px 0; display: inline-block;">Forgot password</a>
+  <p>If the button doesn't work for any reason, you can also click on the link below:</p>
+
+  <div>${resetURL}</div>
+  </div>
+`;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: "Hulo - Password recovery",
+      message,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: `eMail sent to ${user.email}`,
+    });
+  } catch (error) {
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save({ validateBeforeSave: false });
+    return next(new ErrorHandler(error.message, 500));
+  }
+});
+
+//Reset Password => /api/v1/password/reset/:token
+exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
+  // Hash URL Token
+  const resetPasswordToken = crypto
+    .createHash("sha256")
+    .update(req.params.token)
+    .digest("hex");
 });
 
 //Logout User => /api/v1/logout
@@ -62,5 +124,4 @@ exports.logoutUser = catchAsyncErrors(async (req, res, next) => {
     success: true,
     message: "User logged out successfully",
   });
-
-})
+});
