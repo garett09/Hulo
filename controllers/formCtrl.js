@@ -4,6 +4,9 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
 //Create new form => /api/v1/admin/formsyarn /new
 exports.newForm = catchAsyncErrors(async (req, res, next) => {
+
+  req.body.user =req.user.id
+
   const form = await Forms.create(req.body);
 
   res.status(201).json({

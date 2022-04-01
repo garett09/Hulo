@@ -23,20 +23,31 @@ const formsSchema = new mongoose.Schema(
       required: [true, "Please enter your mobile number"],
     },
     gender: {
-      type: String
+      type: String,
     },
     checkInDate: {
-      type: String,
-        required: [true, "Check in Date is required"],
+      type: Date,
+      required: [true, "Check in Date is required"],
     },
     checkOutDate: {
-        type: String,
-          required: [true, "Check out Date is required"],
-      },
-    submittedBy : {
-        type: String,
-        required: [true, "MAMA MO"],
-    }
+      type: Date,
+      required: [true, "Check out Date is required"],
+    },
+    submittedBy: {
+      type: String,
+      required: [true, "MAMA MO"],
+    },
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: "user",
+      required: true,
+    },
+  },
+  {
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
   },
   {
     timestamps: true,
