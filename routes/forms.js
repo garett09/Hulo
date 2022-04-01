@@ -9,7 +9,9 @@ const {
   deleteForm,
 } = require("../controllers/formCtrl");
 
-router.route("/forms").get(getAllForms);
+const {isAuthenticatedUser} = require('../middleware/auth');
+
+router.route("/forms").get(isAuthenticatedUser, getAllForms);
 
 router.route("/forms/:id").get(getSingleForm);
 

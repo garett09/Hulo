@@ -1,21 +1,18 @@
-const jwt = require('jsonwebtoken')
+const Users = require("../models/userModel");
+const ErrorHandler = require("../utils/errorHandler");
+const catchAsyncErrors = require("./catchAsyncErrors");
+const jwt = require("jsonwebtoken");
 
+//checks if user is authenticated or not
+exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
+  const { token } = req.cookies;
 
-const auth = (req, res, next) => {
-    try {
-        const token = req.header("Authorization")
-        if(!token) return res.status(400).json({msg: "Invalid Authentication."})
+  if (!token) {
+    return next(new ErrorHandler("Please login to continue", 401));
+  }
 
-        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-            if(err) return res.status(400).json({msg: "Invalid Authentication."})
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  req.user = await Users.findById(decoded.id);
 
-            req.user = user
-            next()
-        })
-    } catch (err) {
-        return res.status(500).json({msg: err.message})
-    }
-}
-
-
-module.exports = auth
+  next();
+});
