@@ -110,6 +110,34 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
     .createHash("sha256")
     .update(req.params.token)
     .digest("hex");
+
+  const user = await Users.findOne({
+    resetPasswordToken,
+    resetPasswordExpire: { $gt: Date.now() },
+  });
+
+  if (!user) {
+    return next(
+      new ErrorHandler(
+        "Password reset token is invalid or has been expired",
+        400
+      )
+    );
+  }
+
+  if (req.body.password !== req.body.confirmPassword) {
+    return next(new ErrorHandler("Passwords do not match", 400));
+  }
+
+  //Setup new password
+  user.password = req.body.password;
+
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpire = undefined;
+
+  await user.save();
+
+  sendToken(user, 200, res)
 });
 
 //Logout User => /api/v1/logout
