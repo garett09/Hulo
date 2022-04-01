@@ -11,12 +11,12 @@ const {
 
 const {isAuthenticatedUser} = require('../middleware/auth');
 
-router.route("/forms").get(isAuthenticatedUser, getAllForms);
+router.route("/forms").get(getAllForms);
 
 router.route("/forms/:id").get(getSingleForm);
 
-router.route("/admin/forms/new").post(newForm);
+router.route("/admin/forms/new").post(isAuthenticatedUser,newForm);
 
-router.route("/admin/forms/:id").put(updateForm).delete(deleteForm);
+router.route("/admin/forms/:id").put(isAuthenticatedUser, updateForm).delete(isAuthenticatedUser,deleteForm);
 
 module.exports = router;
