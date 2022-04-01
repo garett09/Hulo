@@ -9,14 +9,19 @@ const {
   deleteForm,
 } = require("../controllers/formCtrl");
 
-const {isAuthenticatedUser} = require('../middleware/auth');
+const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 
-router.route("/forms").get(getAllForms);
+router.route("/forms").get(isAuthenticatedUser, getAllForms);
 
 router.route("/forms/:id").get(getSingleForm);
 
-router.route("/admin/forms/new").post(isAuthenticatedUser,newForm);
+router
+  .route("/admin/forms/new")
+  .post(isAuthenticatedUser, authorizeRoles("admin"), newForm);
 
-router.route("/admin/forms/:id").put(isAuthenticatedUser, updateForm).delete(isAuthenticatedUser,deleteForm);
+router
+  .route("/admin/forms/:id")
+  .put(isAuthenticatedUser, authorizeRoles("admin"), updateForm)
+  .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteForm);
 
 module.exports = router;
