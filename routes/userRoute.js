@@ -1,31 +1,13 @@
-const router = require("express").Router();
-const userCtrl = require("../controllers/userCtrl");
+const express = require('express')
+const router = express.Router();
 const auth = require("../middleware/auth");
 const authAdmin = require("../middleware/authAdmin");
 
-router.get("/info", auth, userCtrl.getUserInfo);
+const {registerUser} = require ('../controllers/userCtrl')
 
-router.post("/register", userCtrl.register);
-
-router.post("/activation", userCtrl.activateEmail);
-
-router.post("/login", userCtrl.login);
-
-router.post("/refresh_token", userCtrl.getAccessToken);
-
-router.post("/forgot", userCtrl.forgotPassword);
-
-router.post("/reset", auth, userCtrl.resetPassword);
-
-router.get("/all_infor", auth, authAdmin, userCtrl.getUsersAllInfor);
-
-router.get("/logout", userCtrl.logout);
-
-router.patch('/update', auth, userCtrl.updateUser);
-
-router.patch('/update_role/:id', auth, authAdmin, userCtrl.updateUsersRole);
-
-router.delete('/delete/:id', auth, authAdmin, userCtrl.deleteUser);
-
+router.route('/register').post(registerUser)
 
 module.exports = router;
+
+
+

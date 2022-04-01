@@ -1,6 +1,7 @@
 require("dotenv").config(); // Load environment variables from .env file
 const express = require("express");
 const forms = require("./routes/forms");
+const auth = require("./routes/userRoute");
 const cors = require("cors");
 const errorMiddleware = require("./middleware/errors");
 const cookieParser = require("cookie-parser");
@@ -34,7 +35,8 @@ process.on("uncaughtException", (err) => {
 //connect to our database
 connectDatabase();
 //Routes
-app.use("/user", require("./routes/userRoute"));
+
+app.use("/api/v1", auth);
 app.use("/api/v1", forms);
 app.use("/api", require("./routes/upload"));
 
