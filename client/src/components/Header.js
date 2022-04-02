@@ -93,8 +93,8 @@ function Header() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <Link to ="/login"><MenuItem onClick={handleClose}>Sign In</MenuItem></Link>
-                <Link to ="/register"><MenuItem onClick={handleClose}>Creat An Account</MenuItem></Link>
+               <MenuItem onClick={handleClose}>Sign In</MenuItem>
+               <MenuItem onClick={handleClose}>Creat An Account</MenuItem>
               </Menu>
             </div>
           )}
