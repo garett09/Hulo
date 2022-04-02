@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Header from "./components/Header";
+
 import Home from "./components/Home";
 import SectionMain from "./components/SectionMain";
 import SectionCelso from "./components/SectionCelso";
@@ -18,10 +18,7 @@ import CasaAurelia from "./components/CasaAurelia";
 import CasaBasyong from "./components/CasaBasyong";
 import CasaDePrimavera from "./components/CasaDePrimavera";
 //login
-import BodyLogin from "./components/login/body/Body.js";
-import Login from "./components/login/body/auth/Login";
-import Register from "./components/login/body/auth/Register";
-import ActivationEmail from "./components/login/body/auth/ActivationEmail";
+
 
 
 function App() {
@@ -42,11 +39,6 @@ function App() {
             path="accomodation/casadeprimavera"
             element={<CasaDePrimavera />}
           />
-          //login
-          <Route path = "/headers" className="Header" element={<BodyLogin />} />
-          <Route path = "/login" className="Login" element={<Login />} />
-          <Route path = "/register" className = "Register" element ={<Register />}/>
-          <Route path = "/user/activate/:activation_token" className = "Header" element ={<ActivationEmail />}/>
 
         </Routes>
       </Router>

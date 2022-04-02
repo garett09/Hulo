@@ -6,6 +6,7 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import "@fontsource/fugaz-one";
 import "@fontsource/laila";
+import Header from "./Header";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -17,6 +18,9 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function CasaDePrimavera() {
   return (
+    <div>
+      <Header/>
+    
     <Grid
       container
       spacing={2}
@@ -222,6 +226,7 @@ function CasaDePrimavera() {
         </Grid>
       </Box>
     </Grid>
+    </div>
   );
 }
 
