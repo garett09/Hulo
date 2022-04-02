@@ -1,5 +1,6 @@
 require("dotenv").config(); // Load environment variables from .env file
 const express = require("express");
+const villas = require("./routes/villas");
 const forms = require("./routes/forms");
 const auth = require("./routes/userRoute");
 const cors = require("cors");
@@ -7,7 +8,7 @@ const errorMiddleware = require("./middleware/errors");
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
 const connectDatabase = require("./config/database");
-const { connect } = require("./routes/forms");
+const { connect } = require("./routes/villas");
 
 const app = express();
 app.use(express.json());
@@ -37,6 +38,7 @@ connectDatabase();
 //Routes
 
 app.use("/api/v1", auth);
+app.use("/api/v1", villas);
 app.use("/api/v1", forms);
 app.use("/api", require("./routes/upload"));
 
