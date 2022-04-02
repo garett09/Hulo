@@ -1,19 +1,19 @@
-const Form = require("../models/formsModel");
+const Villa = require("../models/villaModel");
 const dotenv = require("dotenv");
 const connectDatabase = require("../config/database");
 
-const forms = require("../data/forms");
+const villas = require("../data/villas");
 
 dotenv.config({ path: "../.env" });
 
 connectDatabase();
 
-const seedForms = async () => {
+const seedVillas = async () => {
   try {
-    await Form.deleteMany();
+    await Villa.deleteMany();
     console.log("Products are deleted");
 
-    await Form.insertMany(forms);
+    await Villa.insertMany(villas);
     console.log("All products are added");
 
     process.exit();
@@ -22,4 +22,4 @@ const seedForms = async () => {
     process.exit();
   }
 };
-seedForms();
+seedVillas();

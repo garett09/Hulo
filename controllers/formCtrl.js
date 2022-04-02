@@ -1,75 +1,24 @@
+const Villa = require("../models/villaModel");
 const Forms = require("../models/formsModel");
-const ErrorHandler = require("../utils/errorHandler");
+
+const errorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
-//Create new form => /api/v1/admin/formsyarn /new
+//Create a new form => /api/v1/form/new
 exports.newForm = catchAsyncErrors(async (req, res, next) => {
+  const { contactInfo, bookingDetails, itemPrice, totalPrice } = req.body;
 
-  req.body.user =req.user.id
-
-  const form = await Forms.create(req.body);
-
-  res.status(201).json({
-    success: true,
-    form,
+  const form = await Forms.create({
+    contactInfo,
+    bookingDetails,
+    itemPrice,
+    totalPrice,
+    sentAt: Date.now(),
+    user: req.user._id,
   });
-});
-
-//Get all forms => /api/v1/forms
-exports.getAllForms = catchAsyncErrors(async (req, res, next) => {
-  const forms = await Forms.find();
-
-  res.status(200).json({
-    success: true,
-    count: forms.length,
-    forms,
-    message: "All forms fetched successfully",
-  });
-});
-
-//Get single form details => /api/v1/form/:id
-exports.getSingleForm = catchAsyncErrors(async (req, res, next) => {
-  const form = await Forms.findById(req.params.id);
-  if (!form) {
-    return next(new ErrorHandler("Form not Found", 404));
-  }
-  res.status(200).json({
-    success: true,
-    form,
-  });
-});
-
-//Update form => /api/v1/form/:id
-exports.updateForm = catchAsyncErrors(async (req, res, next) => {
-  let form = await Forms.findById(req.params.id);
-
-  if (!form) {
-    return next(new ErrorHandler("Form not Found", 404));
-  }
-
-  form = await Forms.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-    useFindandModify: false,
-  });
-  res.status(200).json({
-    sucess: true,
-    form,
-  });
-});
-
-//Delete form => /api/v1/admin/form/:id
-
-exports.deleteForm = catchAsyncErrors(async (req, res, next) => {
-  const form = await Forms.findById(req.params.id);
-  if (!form) {
-    return next(new ErrorHandler("Form not Found", 404));
-  }
-  await form.remove();
 
   res.status(200).json({
     success: true,
     form,
-    message: "Form deleted successfully",
   });
 });

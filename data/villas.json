@@ -1,0 +1,42 @@
+[
+  {
+    "villaName": "KUBO NI BASYONG",
+    "villaPrice": "2700",
+    "description": "Experience comfortable farm camping in an A-frame design kubo ideal for small groups looking for a budgeted quick getaway!",
+    "images": [
+      {
+        "public_id": "products/dsvbpny402gelwugv2le",
+        "url": "https://res.cloudinary.com/bookit/image/upload/v1608062030/products/dsvbpny402gelwugv2le.jpg"
+      }
+    ],
+    "extensions": [
+      {
+        "inclusion": "products/dsvbpny402gelwugv2le",
+        "ammenities": "https://res.cloudinary.com/bookit/image/upload/v1608062030/products/dsvbpny402gelwugv2le.jpg",
+        "addons": "hello im handsome",
+        "freebies": "wassup",
+        "guestAccess": "hello im handsomess"
+      }
+    ]
+  },
+  {
+    "villaName": "KUBO NI BASYONG",
+    "villaPrice": "2700",
+    "description": "Experience comfortable farm camping in an A-frame design kubo ideal for small groups looking for a budgeted quick getaway!",
+    "images": [
+      {
+        "public_id": "products/dsvbpny402gelwugv2le",
+        "url": "https://res.cloudinary.com/bookit/image/upload/v1608062030/products/dsvbpny402gelwugv2le.jpg"
+      }
+    ],
+    "extensions": [
+      {
+        "inclusion": "products/dsvbpny402gelwugv2le",
+        "ammenities": "https://res.cloudinary.com/bookit/image/upload/v1608062030/products/dsvbpny402gelwugv2le.jpg",
+        "addons": "hello im handsome",
+        "freebies": "wassup",
+        "guestAccess": "hello im handsomess"
+      }
+    ]
+  }
+]

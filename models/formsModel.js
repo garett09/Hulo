@@ -2,48 +2,88 @@ const mongoose = require("mongoose");
 
 const formsSchema = new mongoose.Schema(
   {
-    firstName: {
-      type: String,
-      required: [true, "Please enter your First name"],
-      trim: true,
+    contactInfo: [
+      {
+        firstName: {
+          type: String,
+          required: [true, "Please enter your First name"],
+          trim: true,
+        },
+        lastName: {
+          type: String,
+          required: [true, "Please enter your Last name"],
+          trim: true,
+        },
+        email: {
+          type: String,
+          required: [true, "Please enter your email"],
+          trim: true,
+          unique: true,
+        },
+        mobileNumber: {
+          type: String,
+          required: [true, "Please enter your mobile number"],
+        },
+        gender: {
+          type: String,
+        },
+      },
+    ],
+
+    bookingDetails: [
+      {
+        villaType: {
+          type: mongoose.Schema.Types.ObjectId,
+          required: true,
+          ref: "Villa",
+        },
+        villaName: {
+          type: String,
+          required: [true, "Please enter villa name"],
+        },
+        price: {
+          type: Number,
+          required: [true, "Please enter villa price"],
+        },
+
+        checkInDate: {
+          type: Date,
+          required: [true, "Check in Date is required"],
+        },
+        checkOutDate: {
+          type: Date,
+          required: [true, "Check out Date is required"],
+        },
+        attachments: {
+          type: Array,
+          required: [true, "Please attach form/s"],
+        },
+      },
+    ],
+    itemPrice: {
+      type: Number,
+      required: true,
+      default: 0.0,
     },
-    lastName: {
-      type: String,
-      required: [true, "Please enter your Last name"],
-      trim: true,
+    totalPrice: {
+      type: Number,
+      required: true,
+      default: 0.0,
     },
-    email: {
-      type: String,
-      required: [true, "Please enter your email"],
-      trim: true,
-      unique: true,
-    },
-    mobileNumber: {
-      type: String,
-      required: [true, "Please enter your mobile number"],
-    },
-    gender: {
-      type: String,
-    },
-    checkInDate: {
+    sentAt: {
       type: Date,
-      required: [true, "Check in Date is required"],
     },
-    checkOutDate: {
-      type: Date,
-      required: [true, "Check out Date is required"],
-    },
-    submittedBy: {
+    bookingStatus: {
       type: String,
-      required: [true, "MAMA MO"],
+      required: true,
+      default: "Processing",
     },
     user: {
-      type: mongoose.Schema.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "user",
       required: true,
     },
-  },
-  {
+
     createdAt: {
       type: Date,
       default: Date.now,

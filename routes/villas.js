@@ -1,0 +1,27 @@
+const express = require("express");
+const router = express.Router();
+
+const {
+  getAllVillas,
+  newVilla,
+  getSingleVilla,
+  updateVilla,
+  deleteVilla,
+} = require("../controllers/villaCtrl");
+
+const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
+
+router.route("/villas").get(isAuthenticatedUser, getAllVillas);
+
+router.route("/villas/:id").get(getSingleVilla);
+
+router
+  .route("/admin/villas/new")
+  .post(isAuthenticatedUser, authorizeRoles("admin"), newVilla);
+
+router
+  .route("/admin/villas/:id")
+  .put(isAuthenticatedUser, authorizeRoles("admin"), updateVilla)
+  .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteVilla);
+
+module.exports = router;
