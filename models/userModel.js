@@ -24,6 +24,13 @@ const userSchema = new mongoose.Schema(
       validate: [validator.isEmail, "Please enter a valid email"],
       unique: true,
     },
+    mobileNumber: {
+      type: Number,
+      required: [true, "Mobile Number is required"],
+      maxLength: [11, "Mobile Number must be less than 11 characters"],
+      value: "09123456789",
+      unique: true,
+    },
     password: {
       type: String,
       required: [true, "Password is required"],
