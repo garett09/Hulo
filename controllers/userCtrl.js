@@ -7,13 +7,14 @@ const crypto = require("crypto");
 
 // Register a user => /api/v1/register
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, password, mobileNumber } = req.body;
 
   const user = await Users.create({
     firstName,
     lastName,
     email,
     password,
+    mobileNumber,
     avatar: {
       public_id: "people/pngwing.com_qyfojj",
       url: "https://res.cloudinary.com/dziw9efzv/image/upload/v1647229197/samples/people/pngwing.com_qyfojj.png",

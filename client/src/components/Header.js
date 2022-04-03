@@ -122,7 +122,7 @@ function Header() {
                 <Link to="">
                   <MenuItem onClick={handleClose}>Order</MenuItem>
                 </Link>
-                <Link to="">
+                <Link to="/me">
                   <MenuItem onClick={handleClose}>Profile</MenuItem>
                 </Link>
                 <Link to="">

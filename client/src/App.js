@@ -21,6 +21,9 @@ import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import { loadUser } from './actions/userActions'
 import store from './store'
+import Profile from './components/user/Profile';
+import AdminRoute from './components/route/AdminRoute'
+
 
 
 
@@ -50,8 +53,10 @@ function App() {
 
             <Route path = "/login" className="Login" element={<Login />} />
             <Route path = "/register" className="Login" element={<Register />} />
+            <Route path = "/me" className="Login" element={<Profile />} />
 
-        </Routes>
+        </Routes> 
+        
       </Router>
     </div>
   );

@@ -20,9 +20,9 @@
     margin-bottom: 0;
     height: 3rem;
     width: 3rem;
-    -webkit-border-radius: 30%;
-    -moz-border-radius: 30%;
-    border-radius: 10%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
   }
   .avatar img {
     width: 50%;
@@ -37,5 +37,23 @@
   span{
       font-size: 10px;
   }
-
+  .avatar-profile {
+    height: 16rem;
+    width: 16rem;
+  }
+  
+  .user-info h4 {
+    font-weight: 800;
+    color: grey;
+    margin-top: 2rem;
+  }
+  
+  .user-info p {
+    font-size: 1.1rem;
+  }
+  
+  #edit_profile {
+    background-color: #fa9c23;
+    border-color: #fa9c23;
+  }
 
