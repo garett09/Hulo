@@ -14,7 +14,28 @@
     color: #AE9376;
     margin: 0 auto;
     width: '80%';
-
 }
+.avatar {
+    display: inline-block;
+    margin-bottom: 0;
+    height: 3rem;
+    width: 3rem;
+    -webkit-border-radius: 30%;
+    -moz-border-radius: 30%;
+    border-radius: 10%;
+  }
+  .avatar img {
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .rounded-circle {
+    border-radius: 50% !important;
+  }
+  span{
+      font-size: 10px;
+  }
 
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react'
 import "./App.css";
 
 import Home from "./components/Home";
@@ -17,11 +17,19 @@ import ScrollToTop from "./components/ScrollToTop";
 import CasaAurelia from "./components/CasaAurelia";
 import CasaBasyong from "./components/CasaBasyong";
 import CasaDePrimavera from "./components/CasaDePrimavera";
-//login
+import Login from "./components/user/Login";
+import Register from "./components/user/Register";
+import { loadUser } from './actions/userActions'
+import store from './store'
 
 
 
 function App() {
+  
+  useEffect(() => {
+    store.dispatch(loadUser())
+  }, [])
+
   return (
     <div className="App">
       <Router>
@@ -39,6 +47,9 @@ function App() {
             path="accomodation/casadeprimavera"
             element={<CasaDePrimavera />}
           />
+
+            <Route path = "/login" className="Login" element={<Login />} />
+            <Route path = "/register" className="Login" element={<Register />} />
 
         </Routes>
       </Router>

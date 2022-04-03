@@ -16,12 +16,16 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Links from "@mui/material/Link";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "@fontsource/averia-serif-libre";
+
+import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
+import { logout } from '../actions/userActions'
 
 const navigationLinks = [
   { name: "Home", href: "/" },
-  { name: "About Us", href: "/aboutus"},
+  { name: "About Us", href: "/aboutus" },
   { name: "Accomodation", href: "/accomodation" },
   { name: "Event Hall", href: "/celsohall" },
   { name: "Resort Rules", href: "" },
@@ -44,6 +48,15 @@ function Header() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const alert = useAlert();
+  const dispatch = useDispatch();
+
+  const { user, loading } = useSelector((state) => state.auth);
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    alert.success('Logged out successfully.')
+}
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -65,7 +78,7 @@ function Header() {
               className="logo"
             />
           </Typography>
-          {auth && (
+          {user ? (
             <div>
               <IconButton
                 size="large"
@@ -76,7 +89,15 @@ function Header() {
                 color="inherit"
                 sx={{ transform: "scale(1.8)" }}
               >
-                <AccountCircle />
+              <span>{user && user.firstName}</span>
+              <figure className="avatar avatar-nav">
+                <img
+                  src={user.avatar && user.avatar.url}
+                  alt={user && user.name}
+                  className="rounded-circle"
+                />
+                </figure>
+                
               </IconButton>
               <Menu
                 id="menu-appbar"
@@ -93,10 +114,28 @@ function Header() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-               <MenuItem onClick={handleClose}>Sign In</MenuItem>
-               <MenuItem onClick={handleClose}>Creat An Account</MenuItem>
+                {user && user.role === "admin" && (
+                  <Link to="/dashboard">
+                    <MenuItem onClick={handleClose}>Dashboard</MenuItem>
+                  </Link>
+                )}
+                <Link to="">
+                  <MenuItem onClick={handleClose}>Order</MenuItem>
+                </Link>
+                <Link to="">
+                  <MenuItem onClick={handleClose}>Profile</MenuItem>
+                </Link>
+                <Link to="">
+                  <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+                </Link>
               </Menu>
             </div>
+          ) : (
+            !loading && (
+              <Link to="/login">
+                <MenuItem onClick={handleClose}>Sign In</MenuItem>
+              </Link>
+            )
           )}
         </Toolbar>
         <SwipeableDrawer
