@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
 import Home from "./components/Home";
@@ -19,23 +19,19 @@ import CasaBasyong from "./components/CasaBasyong";
 import CasaDePrimavera from "./components/CasaDePrimavera";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
-import { loadUser } from './actions/userActions'
-import store from './store'
-import Profile from './components/user/Profile';
-import AdminRoute from './components/route/AdminRoute'
-
-
-
+import { loadUser } from "./actions/userActions";
+import store from "./store";
+import Profile from "./components/user/Profile";
+import AdminRoute from "./components/route/AdminRoute";
 
 function App() {
-  
   useEffect(() => {
-    store.dispatch(loadUser())
-  }, [])
+    store.dispatch(loadUser());
+  }, []);
 
   return (
-    <div className="App">
-      <Router>
+    <Router>
+      <div className="App">
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -50,15 +46,18 @@ function App() {
             path="accomodation/casadeprimavera"
             element={<CasaDePrimavera />}
           />
-
-            <Route path = "/login" className="Login" element={<Login />} />
-            <Route path = "/register" className="Login" element={<Register />} />
-            <Route path = "/me" className="Login" element={<Profile />} />
-
-        </Routes> 
-        
-      </Router>
-    </div>
+        </Routes>
+        <Routes>
+          <Route path="/login" className="Login" element={<Login />} />
+          <Route path="/register" className="Login" element={<Register />} />
+        </Routes>
+        <Routes>
+          <Route element={<AdminRoute />}>
+            <Route path="/me" element={<Profile />} />
+          </Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
