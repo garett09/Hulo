@@ -6,13 +6,15 @@ const auth = require("./routes/userRoute");
 const cors = require("cors");
 const errorMiddleware = require("./middleware/errors");
 const cookieParser = require("cookie-parser");
-
+const bodyparser = require("body-parser");
+const cloudinary = require("cloudinary");
 const fileUpload = require("express-fileupload");
 const connectDatabase = require("./config/database");
 const { connect } = require("./routes/villas");
 
 const app = express();
 app.use(express.json());
+app.use(bodyparser.urlencoded({extended: true}))
 app.use(cors());
 app.use(cookieParser());
 app.use(
@@ -20,7 +22,13 @@ app.use(
     useTempFiles: true,
   })
 );
+//setting up cloudinary config 
+cloudinary.config({
+  cloud_name : process.env.CLOUDINARY_CLOUD_NAME,
+  api_key :  process.env.CLOUDINARY_API_KEY,
+  api_secret:  process.env.CLOUDINARY_API_SECRET
 
+})
 // Handle uncaught exception
 process.on("uncaughtException", (err) => {
   if (process.env.NODE_ENV === "DEVELOPMENT") {

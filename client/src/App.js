@@ -22,7 +22,11 @@ import Register from "./components/user/Register";
 import { loadUser } from "./actions/userActions";
 import store from "./store";
 import Profile from "./components/user/Profile";
+import UpdateUser from "./components/user/UpdateUser";
 import AdminRoute from "./components/route/AdminRoute";
+import UpdatePassword from "./components/user/UpdatePassword";
+import ForgotPassword from "./components/user/ForgotPassword";
+import NewPassword from "./components/user/NewPassword";
 
 function App() {
   useEffect(() => {
@@ -49,11 +53,15 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/login" className="Login" element={<Login />} />
-          <Route path="/register" className="Login" element={<Register />} />
+          <Route path="/register" className="Register" element={<Register />} />
+          <Route path="/password/forgot"element={<ForgotPassword />} />
+          <Route path="/password/reset/:token"element={<NewPassword />} />
         </Routes>
         <Routes>
           <Route element={<AdminRoute />}>
             <Route path="/me" element={<Profile />} />
+            <Route path="/me/update" element={<UpdateUser />} />
+            <Route path="/password/update" element={<UpdatePassword />} />
           </Route>
         </Routes>
       </div>
