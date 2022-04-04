@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { MDBDataTable } from 'mdbreact'
+import dateformat from 'dateformat'
 
 
 import { useAlert } from 'react-alert'
@@ -12,7 +13,9 @@ const ListForm = () => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { loading, error, form } = useSelector(state => state.myForm);
+    const { loading, error, forms } = useSelector(state => state.myForm);
+
+    const changeDateFormat = (date) => dateformat(date, "fullDate")
 
     useEffect(() => {
         dispatch(myForm());
@@ -48,7 +51,7 @@ const ListForm = () => {
                 },
                 {
                     label: 'Booking Status',
-                    field: 'bookingstatus',
+                    field: 'bookingStatus',
                     width: 100
                 },
                 {
@@ -60,13 +63,13 @@ const ListForm = () => {
             rows: []
         }
 
-        form && form.forEach(form => {
+        forms && forms.forEach(form => {
             data.rows.push({
-                createdAt: form.createdAt,
+                createdAt: changeDateFormat(form.createdAt),
                 name: form.firstName + form.lastName,
                 villaName: form.villaName,
-                villaPrice: form.villaPrice,
-                status: form.bookingStatus && String(form.bookingStatus).includes('Processing')
+                villaPrice: form.totalPrice,
+                bookingStatus: form.bookingStatus && String(form.bookingStatus).includes('Approved')
                     ? <p style={{ color: 'green' }}>{form.bookingStatus}</p>
                     : <p style={{ color: 'red' }}>{form.bookingStatus}</p>,
                 actions:

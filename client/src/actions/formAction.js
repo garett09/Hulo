@@ -45,7 +45,7 @@ export const myForm = () => async (dispatch) => {
 
         dispatch({
             type: MY_FORM_SUCCESS,
-            payload: data.form
+            payload: data.forms
         })
 
     } catch (error) {
