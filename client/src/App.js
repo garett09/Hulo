@@ -23,11 +23,12 @@ import { loadUser } from "./actions/userActions";
 import store from "./store";
 import Profile from "./components/user/Profile";
 import UpdateUser from "./components/user/UpdateUser";
-import AdminRoute from "./components/route/AdminRoute";
+import AdminRoute from "./components/route/ProtectedRoutes";
 import UpdatePassword from "./components/user/UpdatePassword";
 import ForgotPassword from "./components/user/ForgotPassword";
 import NewPassword from "./components/user/NewPassword";
 import ListForm from "./components/form/ListForm";
+import ProtectedRoutes from "./components/route/ProtectedRoutes";
 
 function App() {
   useEffect(() => {
@@ -60,11 +61,11 @@ function App() {
           <Route path="/password/reset/:token"element={<NewPassword />} />
         </Routes>
         <Routes>
-          <Route element={<AdminRoute />}>
+          <Route element={<ProtectedRoutes />}>
             <Route path="/me" element={<Profile />} />
             <Route path="/me/update" element={<UpdateUser />} />
             <Route path="/password/update" element={<UpdatePassword />} />
-            <Route path="/form/me" element={<ListForm />} />
+            <Route path="/forms/me" element={<ListForm />} />
           </Route>
         </Routes>
       </div>
