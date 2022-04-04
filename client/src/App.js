@@ -50,6 +50,7 @@ function App() {
             path="accomodation/casadeprimavera"
             element={<CasaDePrimavera />}
           />
+          
         </Routes>
         <Routes>
           <Route path="/login" className="Login" element={<Login />} />

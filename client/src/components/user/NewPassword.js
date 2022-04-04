@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
+import "../user/user.css";
 
 
 import { useAlert } from 'react-alert'

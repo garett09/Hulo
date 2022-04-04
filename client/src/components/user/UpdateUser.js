@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
+import "../user/user.css";
 
 
 import { useAlert } from 'react-alert'
@@ -40,7 +41,7 @@ const UpdateProfile = ({ history }) => {
             alert.success('User updated successfully')
             dispatch(loadUser());
 
-            nav("/me");
+            nav("/");
 
             dispatch({
                 type: UPDATE_PROFILE_RESET
