@@ -27,6 +27,7 @@ import AdminRoute from "./components/route/AdminRoute";
 import UpdatePassword from "./components/user/UpdatePassword";
 import ForgotPassword from "./components/user/ForgotPassword";
 import NewPassword from "./components/user/NewPassword";
+import ListForm from "./components/form/ListForm";
 
 function App() {
   useEffect(() => {
@@ -63,6 +64,7 @@ function App() {
             <Route path="/me" element={<Profile />} />
             <Route path="/me/update" element={<UpdateUser />} />
             <Route path="/password/update" element={<UpdatePassword />} />
+            <Route path="/form/me" element={<ListForm />} />
           </Route>
         </Routes>
       </div>

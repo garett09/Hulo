@@ -35,7 +35,7 @@ export const newFormReducer = (state = {}, action ) => {
                 return state;
     }
 }
-export const myFormReducer = (state = { orders: [] }, action) => {
+export const myFormReducer = (state = { form: [] }, action) => {
     switch (action.type) {
 
         case MY_FORM_REQUEST:

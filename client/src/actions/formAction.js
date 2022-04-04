@@ -35,6 +35,7 @@ export const createForm = (form) => async (dispatch, getState) => {
         })
     }
 }
+// Get curretly logged in user orders
 export const myForm = () => async (dispatch) => {
     try {
 
@@ -44,7 +45,7 @@ export const myForm = () => async (dispatch) => {
 
         dispatch({
             type: MY_FORM_SUCCESS,
-            payload: data.FORM
+            payload: data.form
         })
 
     } catch (error) {
