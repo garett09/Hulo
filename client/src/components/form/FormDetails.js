@@ -20,8 +20,8 @@ const FormDetails = ({ match }) => {
 
   useEffect(() => {
     if (forms) {
-      setFirstName(forms.firstName);
-      setLastName(forms.lastName);
+      setFirstName(forms.formRequestor.firstName);
+      setLastName(forms.formRequestor.lastName);
     } else {
       dispatch(getFormDetails(requestId));
     }

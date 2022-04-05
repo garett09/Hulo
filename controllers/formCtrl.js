@@ -21,11 +21,14 @@ exports.newForm = catchAsyncErrors(async (req, res, next) => {
     description: villa.description
   }
 
+  const totalPrice = villa.villaPrice * duration;
+
   const form = await Forms.create({
     duration,
     villaDetails,
     formRequestor,
     checkInDate,
+    totalPrice,
     checkOutDate,
     attachments,
     sentAt: Date.now(),
