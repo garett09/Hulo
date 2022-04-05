@@ -68,7 +68,7 @@ export const getFormDetails = (id) => async (dispatch) => {
 
         dispatch({
             type: FORM_DETAILS_SUCCESS,
-            payload: data
+            payload: data.forms
         })
 
     } catch (error) {

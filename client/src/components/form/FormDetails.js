@@ -11,7 +11,7 @@ const FormDetails = ({ match }) => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const {error, forms } = useSelector(state => state.getFormDetails)
+    const {error, forms } = useSelector(state => state.formDetails)
     const { firstName, lastName, email, mobileNumber, villaName, villaPrice, checkInDate, checkOutDate, bookingStatus, createdAt } = forms
 
     useEffect(() => {
