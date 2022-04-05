@@ -44,8 +44,8 @@ const ListForm = () => {
           width: 100,
         },
         {
-          label: "Villa Price",
-          field: "villaPrice",
+          label: "Total Price",
+          field: "totalPrice",
           width: 100,
         },
         {
@@ -68,7 +68,7 @@ const ListForm = () => {
           createdAt: changeDateFormat(form.createdAt),
           name: form.formRequestor.firstName + " " + form.formRequestor.lastName,
           villaName: form.villaDetails.villaName,
-          villaPrice: form.totalPrice,
+          totalPrice: form.totalPrice,
           bookingStatus:
             form.bookingStatus &&
             String(form.bookingStatus).includes("Approved") ? (
