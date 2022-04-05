@@ -42,7 +42,7 @@ const FormDetails = ({ match }) => {
             <b>Phone:</b> {firstName}
           </p>
           <p>
-            <b>email:</b> {forms.lastName}
+            <b>email:</b> {lastName}
           </p>
           
         </div>
