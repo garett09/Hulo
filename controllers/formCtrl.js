@@ -6,26 +6,28 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
 //Create a new form => /api/v1/form/new
 exports.newForm = catchAsyncErrors(async (req, res, next) => {
-  const { duration } = req.body;
-  let firstName = req.user.firstName;
-  let lastName = req.user.lastName;
-  let email = req.user.email;
-  let villa = await Villa.findById(req.body.villaType);
+  const { checkInDate, checkOutDate, attachments,  duration } = req.body;
 
-  const villaName = villa.villaName;
-  const villaPrice = villa.villaPrice;
-  const description = villa.description;
-  const totalPrice = villaPrice * duration;
+  const formRequestor = {
+    firstName: req.user.firstName,
+    lastName: req.user.lastName,
+    email: req.user.email,
+  };
+
+  let villa = await Villa.findById(req.body.villaType);
+  const villaDetails = {
+    villaName: villa.villaName,
+    villaPrice: villa.villaPrice,
+    description: villa.description
+  }
 
   const form = await Forms.create({
-    firstName,
-    lastName,
-    email,
     duration,
-    villaName,
-    villaPrice,
-    description,
-    totalPrice,
+    villaDetails,
+    formRequestor,
+    checkInDate,
+    checkOutDate,
+    attachments,
     sentAt: Date.now(),
     user: req.user._id,
   });

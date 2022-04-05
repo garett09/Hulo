@@ -7,46 +7,47 @@ const formsSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    firstName: {
-      type: String,
-      required: true,
+    formRequestor: {
+      firstName: {
+        type: String,
+        required: true,
+      },
+      lastName: {
+        type: String,
+        required: true,
+      },
+      email: {
+        type: String,
+        required: true,
+      },
     },
-    lastName: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-    },
-    villaName: {
-      type: String,
-      required: [true, "Please enter villa name"],
-    },
-    villaPrice: {
-      type: Number,
-      required: [true, "Please enter villa price"],
-    },
-    description: {
-      type: String,
-      required: [true, "Please enter villa price"],
-    },
+    villaDetails: {
+      villaName: {
+        type: String,
+        required: [true, "Please enter villa name"],
+      },
+      villaPrice: {
+        type: Number,
+        required: [true, "Please enter villa price"],
+      },
+      description: {
+        type: String,
+        required: [true, "Please enter villa price"],
+      },
 
-    checkInDate: {
-      type: Date,
-
+      checkInDate: {
+        type: Date,
+      },
+      checkOutDate: {
+        type: Date,
+      },
+      attachments: {
+        type: Array,
     },
-    checkOutDate: {
-      type: Date,
-
-    },
-    attachments: {
-      type: Array,
-
-    },
+  },
     duration: {
       type: Number,
-      required: true
+      required: true,
     },
     totalPrice: {
       type: Number,
