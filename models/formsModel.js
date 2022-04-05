@@ -34,17 +34,19 @@ const formsSchema = new mongoose.Schema(
         type: String,
         required: [true, "Please enter villa price"],
       },
-
-      checkInDate: {
-        type: Date,
-      },
-      checkOutDate: {
-        type: Date,
-      },
-      attachments: {
-        type: Array,
     },
-  },
+
+    checkInDate: {
+      type: Date,
+      required: true,
+    },
+    checkOutDate: {
+      type: Date,
+      required: true,
+    },
+    attachments: {
+      type: Array,
+    },
     duration: {
       type: Number,
       required: true,
