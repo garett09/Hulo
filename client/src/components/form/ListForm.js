@@ -12,6 +12,7 @@ const ListForm = () => {
   const dispatch = useDispatch();
 
   const { loading, error, forms } = useSelector((state) => state.myForm);
+  const { formRequestor, villaDetails, user, bookingStatus, totalPrice, createdAt } = forms
 
   const changeDateFormat = (date) => dateformat(date, "fullDate");
 
@@ -67,7 +68,7 @@ const ListForm = () => {
         const reqLink = form._id;
         data.rows.push({
           createdAt: changeDateFormat(form.createdAt),
-          name: form.firstName + form.lastName,
+          name: formRequestor && formRequestor.firstName ,
           villaName: form.villaName,
           villaPrice: form.totalPrice,
           bookingStatus:

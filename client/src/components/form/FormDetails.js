@@ -1,69 +1,54 @@
-import React, { Fragment, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Fragment, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { getFormDetails, clearErrors } from "../../actions/formAction";
 
-import { useAlert } from 'react-alert'
-import { useDispatch, useSelector } from 'react-redux'
-import { getFormDetails, clearErrors } from '../../actions/formAction'
 
 const FormDetails = ({ match }) => {
+  const alert = useAlert();
+  const dispatch = useDispatch();
 
-    const alert = useAlert();
-    const dispatch = useDispatch();
-    const requestId = match.params.id
+  const { requestId } = useParams();
 
-    const {error, form } = useSelector(state => state.formDetails)
-    
+  const { error, forms } = useSelector((state) => state.formDetails);
+  //const {  lastName, email, mobileNumber, villaName, villaPrice, checkInDate, checkOutDate, bookingStatus, createdAt } = forms
 
-    useEffect(() => {
-        dispatch(getFormDetails(requestId));
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
-        if (error) {
-            alert.error(error);
-            dispatch(clearErrors())
-        }
-    }, [dispatch, alert, error, requestId])
+  useEffect(() => {
+    if (forms) {
+      setFirstName(forms.firstName);
+      setLastName(forms.lastName);
+    } else {
+      dispatch(getFormDetails(requestId));
+    }
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
 
+  }, [dispatch, alert, error, requestId]);
 
+  return (
+    <Fragment>
+      <div className="row d-flex justify-content-between">
+        <div className="col-12 col-lg-8 mt-5 order-details">
+          <h4 className="mb-4">Shipping Info</h4>
 
-
-    return (
-
-        <Fragment>
-                    <div className="row d-flex justify-content-between">
-                        <div className="col-12 col-lg-8 mt-5 order-details">
-
-                            <h1 className="my-5">Form # {form._id}</h1>
-
-                            <h4 className="mb-4">Shipping Info</h4>
-                            <p><b>Name:</b> {form.firstName + form.lastName}</p>
-                            <p><b>Phone:</b> {form.mobileNumber}</p>
-                            <p><b>email:</b> {form.email}</p>
-                            <p><b>check in date:</b> {form.checkInDate}</p>
-                            <p><b>check out date:</b> {form.checkOutDate}</p>
-                            <p><b>created at:</b> {form.createdAt}</p>
-
-
-                            <p className="mb-4"><b>Villa Name:</b>{form.villaName}</p>
-                            <p><b>Villa Price:</b> ${form.villaPrice}</p>
-
-                            <hr />
-
-                            
-
-
-                            <h4 className="my-4">Booking Status:</h4>
-                            <p className={form.bookingStatus && String(form.bookingStatus).includes('Approved') ? "greenColor" : "redColor"} ><b>{form.bookingStatus}</b></p>
-
-
-                            <hr />
-
-                            <hr />
-                        </div>
-                    </div>
-                    </Fragment>
-
-    )
+          <p>
+            <b>Phone:</b> {firstName}
+          </p>
+          <p>
+            <b>email:</b> {forms.lastName}
+          </p>
+          
+        </div>
+      </div>
+    </Fragment>
+  );
 }
 
-export default FormDetails
+export default FormDetails;
