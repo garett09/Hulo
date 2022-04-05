@@ -62,7 +62,7 @@ function App() {
           <Route path="/password/reset/:token"element={<NewPassword />} />
         </Routes>
         <Routes>
-          <Route element={<ProtectedRoutes />}>
+          <Route element={<ProtectedRoutes isAdmin ={true}/>}>
             <Route path="/me" element={<Profile />} />
             <Route path="/me/update" element={<UpdateUser />} />
             <Route path="/password/update" element={<UpdatePassword />} />

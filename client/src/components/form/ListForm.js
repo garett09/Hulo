@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MDBDataTable } from "mdbreact";
 import dateformat from "dateformat";
@@ -12,12 +12,12 @@ const ListForm = () => {
   const dispatch = useDispatch();
 
   const { loading, error, forms } = useSelector((state) => state.myForm);
-
+  const [myForms, setMyForms] = useState([])
   const changeDateFormat = (date) => dateformat(date, "fullDate");
 
   useEffect(() => {
     dispatch(myForm());
-    dispatch(getFormDetails());
+
 
     if (error) {
       alert.error(error);
@@ -64,7 +64,6 @@ const ListForm = () => {
 
     forms &&
       forms.forEach((form) => {
-        const reqLink = form._id;
         data.rows.push({
           createdAt: changeDateFormat(form.createdAt),
           name: form.formRequestor.firstName + " " + form.formRequestor.lastName,
@@ -78,7 +77,7 @@ const ListForm = () => {
               <p style={{ color: "red" }}>{form.bookingStatus}</p>
             ),
           actions: (
-            <Link to={`/form/${reqLink}`} className="btn btn-primary">
+            <Link to={`/form/${form._id}`} className="btn btn-primary">
               <i className="fa fa-eye"></i>
             </Link>
           ),

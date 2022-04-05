@@ -1,19 +1,36 @@
-import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import React, { Fragment,useEffect } from 'react'
+import { Link,useNavigate } from 'react-router-dom'
+import { useSelector,useDispatch } from 'react-redux'
+import { useAlert } from 'react-alert'
+import { clearErrors } from '../../actions/formAction'
 
 
 const Profile = () => {
 
-    const { user, loading } = useSelector(state => state.auth)
+
+    const { user, error, loading } = useSelector(state => state.auth)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const alert = useAlert()
+
+    useEffect(() => {
+        if(error) {
+            navigate('/')
+            alert.error('cant find user profile')
+            dispatch(clearErrors())
+        }
+    }, [dispatch, navigate, alert, error])
+
 
     return (
         <Fragment>
+              {!loading && 
+              <>
                     <h2 className="mt-5 ml-5">My Profile</h2>
                     <div className="row justify-content-around mt-5 user-info">
                         <div className="col-12 col-md-3">
                             <figure className='avatar avatar-profile'>
-                                <img className="rounded-circle img-fluid" src={user.avatar.url} alt={user.name} />
+                                <img className="rounded-circle img-fluid" src={user.avatar?.url} alt={user.name} />
                             </figure>
                             <Link to="/me/update" id="edit_profile" className="btn btn-primary btn-block my-5">
                                 Edit Profile
@@ -41,6 +58,8 @@ const Profile = () => {
                             </Link>
                         </div>
                     </div>
+</>
+}
                 </Fragment>
             )}
 
