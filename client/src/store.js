@@ -4,7 +4,7 @@ import thunk from "redux-thunk"
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { authReducer,userReducer,forgotPasswordReducer } from "./reducers/userReducers";
-import { newFormReducer, myFormReducer } from "./reducers/formReducers";
+import { newFormReducer, myFormReducer, formDetailsReducer } from "./reducers/formReducers";
 
 
 const reducer = combineReducers({
@@ -12,7 +12,8 @@ const reducer = combineReducers({
     user:userReducer,
     forgotPassword:forgotPasswordReducer,
     newForm: newFormReducer,
-    myForm:myFormReducer
+    myForm:myFormReducer,
+    formDetails:formDetailsReducer
 
 })
 

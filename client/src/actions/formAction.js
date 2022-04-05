@@ -7,6 +7,9 @@ import {
     MY_FORM_REQUEST,
     MY_FORM_SUCCESS,
     MY_FORM_FAIL,
+    FORM_DETAILS_REQUEST,
+    FORM_DETAILS_SUCCESS,
+    FORM_DETAILS_FAIL,
     CLEAR_ERRORS,
 } from '../constants/formConstants'
 
@@ -55,6 +58,28 @@ export const myForm = () => async (dispatch) => {
         })
     }
 }
+// Get order details
+export const getFormDetails = (id) => async (dispatch) => {
+    try {
+
+        dispatch({ type: FORM_DETAILS_REQUEST });
+
+        const { data } = await axios.get(`/api/v1/form/${id}`)
+
+        dispatch({
+            type: FORM_DETAILS_SUCCESS,
+            payload: data.forms
+        })
+
+    } catch (error) {
+        dispatch({
+            type: FORM_DETAILS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+
 // Clear Errors
 export const clearErrors = () => async (dispatch) => {
     dispatch({

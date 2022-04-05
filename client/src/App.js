@@ -29,6 +29,7 @@ import ForgotPassword from "./components/user/ForgotPassword";
 import NewPassword from "./components/user/NewPassword";
 import ListForm from "./components/form/ListForm";
 import ProtectedRoutes from "./components/route/ProtectedRoutes";
+import FormDetails from "./components/form/FormDetails";
 
 function App() {
   useEffect(() => {
@@ -66,6 +67,7 @@ function App() {
             <Route path="/me/update" element={<UpdateUser />} />
             <Route path="/password/update" element={<UpdatePassword />} />
             <Route path="/forms/me" element={<ListForm />} />
+            <Route path="/form/:id" element={<FormDetails />} />
           </Route>
         </Routes>
       </div>
