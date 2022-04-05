@@ -18,7 +18,8 @@ exports.newForm = catchAsyncErrors(async (req, res, next) => {
   const villaDetails = {
     villaName: villa.villaName,
     villaPrice: villa.villaPrice,
-    description: villa.description
+    description: villa.description,
+
   }
 
   const totalPrice = villa.villaPrice * duration;
@@ -33,6 +34,7 @@ exports.newForm = catchAsyncErrors(async (req, res, next) => {
     attachments,
     sentAt: Date.now(),
     user: req.user._id,
+
   });
 
   res.status(200).json({
