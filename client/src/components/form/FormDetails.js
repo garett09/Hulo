@@ -31,7 +31,7 @@ const FormDetails = ({ match }) => {
   
 const {firstName, lastName, email} = formRequestor
 const {villaName, checkInDate, checkOutDate} = villaDetails
-//const {totalPrice, bookingStatus, createdAt} = others
+
 
 useEffect(() => {
   if(formDetails && formDetails._id !== id) {
@@ -39,7 +39,6 @@ useEffect(() => {
   } else if (formDetails) {
     setFormRequestor(formDetails.formRequestor)
     setVillaDetails(formDetails.villaDetails)
-    //setOthers(formDetails.others)
   }
 else {
     dispatch(getFormDetails(id));
