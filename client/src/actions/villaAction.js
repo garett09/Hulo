@@ -14,6 +14,7 @@ export const getVillaDetails = () => async (dispatch) => {
         })
 
         const { data } = await axios.get(`/api/v1/villas`)
+        
 
         dispatch({
             type: GET_VILLA_SUCCESS,

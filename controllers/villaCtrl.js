@@ -15,7 +15,7 @@ exports.newVilla = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-//Get all forms => /api/v1/forms
+//Get all forms => /api/v1/villas
 exports.getAllVillas = catchAsyncErrors(async (req, res, next) => {
   const villas = await Villas.find();
 

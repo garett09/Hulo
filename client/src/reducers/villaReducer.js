@@ -6,6 +6,7 @@ import {
 } from '../constants/villaConstants'
 
 export const getVillaReducer = (state = { villas: [] }, action) => {
+ 
     switch (action.type) {
         case GET_VILLA_REQUEST:
             return {
@@ -16,7 +17,7 @@ export const getVillaReducer = (state = { villas: [] }, action) => {
         case GET_VILLA_SUCCESS:
             return {
                 loading: false,
-                villas: action.payload.villa,
+                villas: action.payload.villas,
                 success: action.payload.success
             }
 

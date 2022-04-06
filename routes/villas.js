@@ -11,7 +11,7 @@ const {
 
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 
-router.route("/villas").get(isAuthenticatedUser, getAllVillas);
+router.route("/villas").get( getAllVillas);
 
 router.route("/villas/:id").get(getSingleVilla);
 
