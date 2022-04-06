@@ -14,7 +14,6 @@ import {
 } from '../constants/formConstants'
 
 export const createForm = (form) => async (dispatch, getState) => {
-    console.log(form)
     try {
 
         dispatch({ type: CREATE_FORM_REQUEST })
