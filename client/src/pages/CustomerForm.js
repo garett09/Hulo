@@ -25,6 +25,7 @@ import axios from "axios";
 
 const CustomerForm= () =>{
 
+
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     lastName: "",
@@ -33,6 +34,8 @@ const CustomerForm= () =>{
     villasPrice:"",
     description: "",
   });
+  const { firstName, lastName, email, villasName, villasPrice, description} =
+  userInfo;
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -75,9 +78,9 @@ const CustomerForm= () =>{
 
 }, [selectedField])
 
+
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(userInfo);
 
     setUserInfo({
       firstName: user.firstName,
@@ -86,18 +89,20 @@ const CustomerForm= () =>{
       villasName: selectedField,
       villasPrice: fields.price,
       description: fields.description,
+
     })
   
 
     const form = new FormData();
-    form.set("firstName", user.firstName);
-    form.set("lastName", user.lastName);
-    form.set("email", user.email);
-    form.set("villasName", selectedField);
+    form.set("firstName", firstName);
+    form.set("lastName", lastName);
+    form.set("email", email);
+    form.set("villasName", villasName);
     form.set("villasPrice", fields.price);
     form.set("description", fields.description);
 
-    dispatch(createForm(FormData));
+    dispatch(createForm(form));
+    console.log(userInfo)
   
     
 
