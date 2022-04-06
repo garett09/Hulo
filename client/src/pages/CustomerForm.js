@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Grid from "@mui/material/Grid";
-import { useForm, Form } from "../components/useForm";
 import { makeStyles } from "@material-ui/core";
-import Controls from "../components/controls/Controls";
-import * as customerService from "../services/customerService";
-import * as titleService from "../services/titleService";
+import { useAlert } from "react-alert";
 import {
   FormControl,
   FormLabel,
@@ -13,64 +9,44 @@ import {
   FormControlLabel,
   Typography,
   Box,
+  Grid,
+  Select,
+  MenuItem,
+  Input,
+  DatePicker,
+  Button,
 } from "@mui/material";
 
-const genderItems = [
-  { id: "male", title: "Male" },
-  { id: "female", title: "Female" },
-  { id: "others", title: "Others" },
-];
-
-const initialFValues = {
-  id: 0,
-  title: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  mobile: "",
-  gender: "male",
-  checkinDate: new Date(),
-  checkoutDate: new Date(),
-  address: "",
-  villaType: "None",
-  adult: "",
-  child: "",
-};
+import { createForm, clearErrors } from "../actions/formAction";
+import { getVillaDetails } from "../actions/villaAction";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 function CustomerForm() {
-  const validate = (fieldValues = values) => {
-    let temp = { ...errors };
-    if ("firstName" in fieldValues)
-      temp.firstName = fieldValues.firstName ? "" : "First Name is required";
-    if ("lastName" in fieldValues)
-      temp.lastName = fieldValues.lastName ? "" : "Last name is required";
-    if ("email" in fieldValues)
-      temp.email = /.+@.+..+/.test(fieldValues.email) ? "" : "Email is not valid";
-    if ("title" in fieldValues)
-      temp.title = fieldValues.title ? "" : "Title is required";
-    if ("mobile" in fieldValues)
-      temp.mobile =
-      fieldValues.mobile.length > 10 ? "" : "Mobile number is not valid";
-    if ("address" in fieldValues)
-      temp.address = fieldValues.address ? "" : "Address is required";
-    if ("checkinDate" in fieldValues)
-      temp.checkinDate = fieldValues.checkinDate ? "" : "Checkin date is required";
-    if ("checkoutDate" in fieldValues)
-      temp.checkoutDate = fieldValues.checkoutDate
-        ? ""
-        : "Checkout date is required";
-    if ("villaType" in fieldValues)
-      temp.villaType =
-      fieldValues.villaType === "None" ? "This field is required" : "";
-    setErrors({
-      ...temp,
-    });
+  const [userInfo, setUserInfo] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+  const [fields, setFields] = useState([{
+    villa: "",
+    villaName: "",
+  }]);
 
-    if (fieldValues == values) return Object.values(temp).every((x) => x == "");
+  const { getVilla, error } = useSelector((state) => state.getVilla);
+
+  const alert = useAlert();
+  const dispatch = useDispatch();
+  const nav = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+
+  const getVillaName = (villas, field) => {
+    const val = getVilla.find((getVilla) => getVilla.villaName === villas);
+
+    switch (field) {
+      case "courseName":
+        return val.villaName;
+      default:
+        return;
+    }
   };
-
-  const { values, setValues, handleInputChange, errors, setErrors, resetForm } =
-    useForm(initialFValues, true, validate);
 
   const useStyle = makeStyles((theme) => ({
     typo: {
@@ -83,135 +59,102 @@ function CustomerForm() {
       paddingLeft: "46px",
     },
   }));
-  const classes = useStyle();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      window.alert("Successfully sent to server");
+  useEffect(() => {
+    dispatch(getVillaDetails());
+
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors);
     }
+  }, [error, alert, dispatch]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    let toAdd = [], toDrop = []
+
+    const uniqueToAdd = [...new Map(toAdd.map(item => [item['courseCode'], item])).values()]
+    const uniqueToDrop = [...new Map(toDrop.map(item => [item['courseCode'], item])).values()]
+
+    setUserInfo({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      villa: fields.villa,
+    });
+  };
+ 
+
+  const onChange = (index, e) => {
+    e.preventDefault();
+
+    const values = [...fields];
+
+    values[index][e.target.name] = e.target.value;
+
+    if (values[index]["villaName"] !== "") {
+      values[index]["villa"] = getVillaName(values[index]["villaName"],"villaName");
+    } else {
+      values[index]["villaName"] = "";
+    }
+    setFields(values);
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Grid container>
-        <Typography variant="h2" component="h2" className={classes.typo}>
-          Customer Booking
-        </Typography>
-        <Grid item xs={12}>
-          <Typography variant="h5" component="h2" className={classes.typo1}>
-            Guest Information
+    <div>
+      <form onSubmit={submitHandler}>
+        <Grid>
+        <Grid container>
+          <Typography variant="h2" component="h2">
+            Customer Booking
           </Typography>
         </Grid>
-        <Grid item xs={6}>
-          <Grid item xs={4}>
-            <Controls.Select
-              name="title"
-              autoWidth={false}
-              label="Title"
-              value={values.title}
-              onChange={handleInputChange}
-              options={titleService.getTitle()}
-              error={errors.title}
-            />
-          </Grid>
-          <Controls.Input
-            name="firstName"
-            label="First Name"
-            value={values.firstName}
-            onChange={handleInputChange}
-            error={errors.firstName}
-          />
-          <Controls.Input
-            name="lastName"
-            label="Last Name"
-            value={values.lastName}
-            onChange={handleInputChange}
-            error={errors.lastName}
-          />
-          <Grid item xs={12}>
-            <FormControl>
-              <Controls.RadioGroup
-                row={true}
-                name="gender"
-                label="Gender"
-                value={values.gender}
-                onChange={handleInputChange}
-                items={genderItems}
-              >
-                <FormControlLabel
-                  value="male"
-                  control={<Radio />}
-                  label="Male"
-                />
-                <FormControlLabel
-                  value="female"
-                  control={<Radio />}
-                  label="Female"
-                />
-                <FormControlLabel
-                  value="others"
-                  control={<Radio />}
-                  label="Others"
-                />
-              </Controls.RadioGroup>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <FormLabel>Check-in date</FormLabel>
-          </Grid>
+        <Grid item xs={6}></Grid>
 
-          <Controls.DatePicker
-            name="checkinDate"
-            label="Check-in date"
-            value={values.checkinDate}
-            onChange={handleInputChange}
-            error={errors.checkinDate}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <Controls.Input
-            name="address"
-            label="Address"
-            value={values.address}
-            onChange={handleInputChange}
-            error={errors.address}
-          />
-          <Controls.Input
-            name="email"
-            label="email"
-            value={values.email}
-            onChange={handleInputChange}
-            error={errors.email}
-          />
-          <Controls.Input
-            name="mobile"
-            label="Mobile"
-            value={values.mobile}
-            onChange={handleInputChange}
-            error={errors.mobile}
-          />
-          <Grid item xs={12}>
-            <FormLabel>Check-out date</FormLabel>
-            <Controls.DatePicker
-              name="checkoutDate"
-              label="Check-out date"
-              value={values.checkoutDate}
-              onChange={handleInputChange}
-              error={errors.checkoutDate}
-            />
-          </Grid>
-          <Controls.Select
-            name="villaType"
-            label="Villa"
-            value={values.villaType}
-            onChange={handleInputChange}
-            options={customerService.getVillaType()}
-            error={errors.villaType}
-          />
-        </Grid>
+        <Input
+          type="text"
+          name="firstName"
+          label="first Name"
+          value={user && user.firstName}
+        />
+        <Input
+          type="text"
+          name="lastName"
+          label="Last Name"
+          value={user && user.lastName}
+        />
 
-        <Controls.Button
+        <Input
+          type="text"
+          name="email"
+          label="email"
+          value={user && user.email}
+        />
+
+        {fields.map((val, idx) => {
+          //set unique id per row
+          let villaName = `villaName-${idx}`
+
+          return (
+            <>
+              <Select
+                name="villaName"
+                id={villaName}
+                value={fields.villa}
+                onChange={e => onChange(idx, e)}
+               />
+              {getVilla &&
+                getVilla.map((villa) => (
+                  <MenuItem>
+                  <option value={villa.villaName}>{villa.villaName}</option></MenuItem>
+                ))} 
+              
+            </>
+          );
+        })}
+
+        <Button
           text="submit"
           type="submit"
           style={{
@@ -222,19 +165,9 @@ function CustomerForm() {
             fontSize: "12px",
           }}
         />
-        <Controls.Button
-          text="reset"
-          type="reset"
-          onClick={resetForm}
-          style={{
-            borderRadius: 35,
-            backgroundColor: "#999999 ",
-            padding: "12px 24px",
-            fontSize: "12px",
-          }}
-        />
-      </Grid>
-    </Form>
+        </Grid>
+      </form>
+    </div>
   );
 }
 

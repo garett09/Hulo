@@ -2,7 +2,7 @@ const Villas = require("../models/villaModel");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
-//Create new form => /api/v1/admin/formsyarn /new
+//Create new form => /api/v1/admin/forms/new
 exports.newVilla = catchAsyncErrors(async (req, res, next) => {
 
   req.body.user =req.user.id

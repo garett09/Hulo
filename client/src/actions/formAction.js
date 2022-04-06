@@ -28,7 +28,7 @@ export const createForm = (form) => async (dispatch, getState) => {
 
         dispatch({
             type: CREATE_FORM_SUCCESS,
-            payload: data
+            payload: data.form
         })
 
     } catch (error) {

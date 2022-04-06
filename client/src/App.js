@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 import CasaSalud from "./components/CasaSalud";
 import Casa from "./components/CasaAurelia";
 import CssBaseline from "@mui/material/CssBaseline";
-import Customers from "./pages/Customers";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import CasaAurelia from "./components/CasaAurelia";
@@ -30,6 +30,7 @@ import NewPassword from "./components/user/NewPassword";
 import ListForm from "./components/form/ListForm";
 import ProtectedRoutes from "./components/route/ProtectedRoutes";
 import FormDetails from "./components/form/FormDetails";
+import CustomerForm from "./pages/CustomerForm";
 
 function App() {
   useEffect(() => {
@@ -68,6 +69,7 @@ function App() {
             <Route path="/password/update" element={<UpdatePassword />} />
             <Route path="/forms/me" element={<ListForm />} />
             <Route path="/form/:id" element={<FormDetails />} />
+            <Route path="/form/new" element={<CustomerForm />} />
           </Route>
         </Routes>
       </div>

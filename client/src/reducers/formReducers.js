@@ -22,7 +22,7 @@ export const newFormReducer = (state = {}, action ) => {
         case CREATE_FORM_SUCCESS:
             return{
                 loading:false,
-                forms: action.payload
+                form: action.payload
             }
         case CREATE_FORM_FAIL:
             return{

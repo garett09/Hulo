@@ -16,6 +16,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import Header from "./Header";
+import { Link } from "react-router-dom";
 
 
 const bounce = keyframes`
@@ -125,7 +126,7 @@ function SectionMain() {
             </Grid>
             <Grid item xs={6}></Grid>
             <Grid item xs>
-              <Button
+              <Link to = "/form/new"><Button
                 style={{
                   borderRadius: 35,
                   backgroundColor: "#73c2fd",
@@ -135,7 +136,7 @@ function SectionMain() {
                 variant="contained"
               >
                 Book Now
-              </Button>
+              </Button></Link>
             </Grid>
           </Grid>
         </Box>
