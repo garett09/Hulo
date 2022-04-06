@@ -14,6 +14,7 @@ import {
 } from '../constants/formConstants'
 
 export const createForm = (form) => async (dispatch, getState) => {
+    console.log(form)
     try {
 
         dispatch({ type: CREATE_FORM_REQUEST })
@@ -28,7 +29,7 @@ export const createForm = (form) => async (dispatch, getState) => {
 
         dispatch({
             type: CREATE_FORM_SUCCESS,
-            payload: data
+            payload: data.form
         })
 
     } catch (error) {
@@ -40,6 +41,7 @@ export const createForm = (form) => async (dispatch, getState) => {
 }
 // Get curretly logged in user orders
 export const myForm = () => async (dispatch) => {
+
     try {
 
         dispatch({ type: MY_FORM_REQUEST });
@@ -60,6 +62,7 @@ export const myForm = () => async (dispatch) => {
 }
 // Get order details
 export const getFormDetails = (id) => async (dispatch) => {
+   
     try {
 
         dispatch({ type: FORM_DETAILS_REQUEST });

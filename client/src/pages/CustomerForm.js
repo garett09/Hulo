@@ -23,39 +23,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function CustomerForm() {
-  const [userInfo, setUserInfo] = useState({});
-  const [submitted, setSubmitted] = useState(false);
+const CustomerForm= () =>{
+
+  const [userInfo, setUserInfo] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    villasName: "",
+    villasPrice:"",
+    description: "",
+  });
 
   const alert = useAlert();
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { user } = useSelector((state) => state.auth);
 
-  const getVillaName = (villas, field) => {
-    const val = villas.find((getVilla) => getVilla.villaName === villas);
 
-    switch (field) {
-      case "courseName":
-        return val.villaName;
-      default:
-        return;
-    }
-  };
-
-  const useStyle = makeStyles((theme) => ({
-    typo: {
-      flexGrow: 1,
-      textAlign: "center",
-    },
-    typo1: {
-      flexGrow: 1,
-      textAlign: "left",
-      paddingLeft: "46px",
-    },
-  }));
   const [villas, setVillasArr] = useState([]);
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -80,6 +65,7 @@ function CustomerForm() {
     description: "",
   });
 
+
   useEffect(() => {
     const values = villas.find(v => v.villaName === selectedField)
     setFields({
@@ -87,22 +73,44 @@ function CustomerForm() {
         description: values?.description
     })
 
-    console.log(fields)
 }, [selectedField])
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log(userInfo);
 
     setUserInfo({
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-    });
-  };
+      villasName: selectedField,
+      villasPrice: fields.price,
+      description: fields.description,
+    })
+  
+
+    const form = new FormData();
+    form.set("firstName", user.firstName);
+    form.set("lastName", user.lastName);
+    form.set("email", user.email);
+    form.set("villasName", selectedField);
+    form.set("villasPrice", fields.price);
+    form.set("description", fields.description);
+
+    dispatch(createForm(FormData));
+  
+    
+
+    };
+
+    const onChange = (e) => {
+      setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+      setSelectedField(e.target.value)
+  }
+
+
 
   return (
-    // loading ? <p>villas loaded</p> :
-    //     villasArr.map(villa => <p>{villa.villaName}</p>)
     <div>
       <form onSubmit={submitHandler}>
         <Grid>
@@ -118,12 +126,14 @@ function CustomerForm() {
             name="firstName"
             label="first Name"
             value={user && user.firstName}
+            onChange={onChange}
           />
           <Input
             type="text"
             name="lastName"
             label="Last Name"
             value={user && user.lastName}
+            onChange={onChange}
           />
 
           <Input
@@ -131,14 +141,13 @@ function CustomerForm() {
             name="email"
             label="email"
             value={user && user.email}
+            onChange={onChange}
           />
 
           <select
             name="selectedField"
             value={selectedField}
-            onChange={e => {
-              setSelectedField(e.target.value)
-          }}
+            onChange={onChange}
           >
             <option value="">-</option>
             {villas.map((villa) => (
@@ -156,11 +165,11 @@ function CustomerForm() {
               padding: "12px 24px",
               fontSize: "12px",
             }}
-          />
+          >SUBMIT</Button>
         </Grid>
       </form>
     </div>
   );
-}
+} 
 
 export default CustomerForm;

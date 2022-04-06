@@ -38,27 +38,27 @@ const formsSchema = new mongoose.Schema(
 
     checkInDate: {
       type: Date,
-      required: true,
+      
     },
     checkOutDate: {
       type: Date,
-      required: true,
+      
     },
     attachments: {
       type: Array,
     },
     duration: {
       type: Number,
-      required: true,
+      
     },
     totalPrice: {
       type: Number,
-      required: true,
+      
       default: 0.0,
     },
     bookingStatus: {
       type: String,
-      required: true,
+     
       default: "Processing",
     },
     sentAt: {
