@@ -13,7 +13,7 @@ export const getVillaDetails = () => async (dispatch) => {
             type: GET_VILLA_REQUEST
         })
 
-        const { data } = await axios.get(`/api/v1/forms`)
+        const { data } = await axios.get(`/api/v1/villas`)
 
         dispatch({
             type: GET_VILLA_SUCCESS,

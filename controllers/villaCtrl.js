@@ -21,7 +21,7 @@ exports.getAllVillas = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    count: forms.length,
+    count: villas.length,
     villas,
     message: "All Villas fetched successfully",
   });
