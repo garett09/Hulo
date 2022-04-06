@@ -31,6 +31,8 @@ import ListForm from "./components/form/ListForm";
 import ProtectedRoutes from "./components/route/ProtectedRoutes";
 import FormDetails from "./components/form/FormDetails";
 import CustomerForm from "./pages/CustomerForm";
+import Dashboard from "./components/admin/Dashboard";
+import VillasList from "./components/admin/VillasList";
 
 function App() {
   useEffect(() => {
@@ -70,6 +72,9 @@ function App() {
             <Route path="/forms/me" element={<ListForm />} />
             <Route path="/form/:id" element={<FormDetails />} />
             <Route path="/form/new" element={<CustomerForm />} />
+            <Route path="/dashboard" element={<Dashboard />} isAdmin ={true} />
+            <Route path="/admin/villas" element={<VillasList />} isAdmin ={true} />
+
           </Route>
         </Routes>
       </div>

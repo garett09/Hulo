@@ -15,7 +15,7 @@ exports.newVilla = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-//Get all forms => /api/v1/forms
+//Get all forms => /api/v1/villas
 exports.getAllVillas = catchAsyncErrors(async (req, res, next) => {
   const villas = await Villas.find();
 
@@ -71,5 +71,18 @@ exports.deleteVilla = catchAsyncErrors(async (req, res, next) => {
     success: true,
     form,
     message: "Form deleted successfully",
+  });
+});
+
+//Get all forms (Admin) => /api/v1/admin/villas
+exports.getAllAdminVillas = catchAsyncErrors(async (req, res, next) => {
+  const villasCount= await Villas.countDocuments();
+  const villas = await Villas.find();
+
+  res.status(200).json({
+    success: true,
+    villas,
+    villasCount,
+    message: "All Villas fetched successfully",
   });
 });

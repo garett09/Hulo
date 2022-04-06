@@ -9,12 +9,6 @@ require("dotenv").config();
 
 // Register a user => /api/v1/register
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-  const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
-    folder: "Hulo",
-    width: 150,
-    crop: "scale",
-  });
-
   const { firstName, lastName, email, password, mobileNumber } = req.body;
 
   const user = await Users.create({
@@ -24,8 +18,8 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     password,
     mobileNumber,
     avatar: {
-      public_id: result.public_id,
-      url: result.secure_url,
+      public_id: "people/pngwing.com_qyfojj",
+      url: "https://res.cloudinary.com/dziw9efzv/image/upload/v1647229197/samples/people/pngwing.com_qyfojj.png",
     },
   });
 

@@ -7,6 +7,7 @@ const {
   getSingleVilla,
   updateVilla,
   deleteVilla,
+  getAllAdminVillas,
 } = require("../controllers/villaCtrl");
 
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
@@ -23,5 +24,8 @@ router
   .route("/admin/villas/:id")
   .put(isAuthenticatedUser, authorizeRoles("admin"), updateVilla)
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteVilla);
+router
+  .route("admin/villas")
+  .get(getAllAdminVillas);
 
 module.exports = router;
