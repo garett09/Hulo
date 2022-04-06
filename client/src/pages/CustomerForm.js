@@ -26,8 +26,8 @@ function CustomerForm() {
   const [userInfo, setUserInfo] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [fields, setFields] = useState([{
-    villa: "",
-    villaName: "",
+    villa: '',
+    villaName: '',
   }]);
 
   const { getVilla, error } = useSelector((state) => state.getVilla);
@@ -139,16 +139,17 @@ function CustomerForm() {
           return (
             <>
               <Select
-                name="villaName"
+                label="Villa"
                 id={villaName}
                 value={fields.villa}
                 onChange={e => onChange(idx, e)}
-               />
-              {getVilla &&
+               >    
+               {getVilla &&
                 getVilla.map((villa) => (
-                  <MenuItem>
-                  <option value={villa.villaName}>{villa.villaName}</option></MenuItem>
+                  <MenuItem><option value={villa.villaName}>{villa.villaName}</option></MenuItem>
                 ))} 
+                </Select>
+          
               
             </>
           );

@@ -5,7 +5,7 @@ import {
     CLEAR_ERRORS
 } from '../constants/villaConstants'
 
-export const getVillaReducer = (state = { villa: [] }, action) => {
+export const getVillaReducer = (state = { villas: [] }, action) => {
     switch (action.type) {
         case GET_VILLA_REQUEST:
             return {
@@ -16,7 +16,7 @@ export const getVillaReducer = (state = { villa: [] }, action) => {
         case GET_VILLA_SUCCESS:
             return {
                 loading: false,
-                villa: action.payload.villa,
+                villas: action.payload.villa,
                 success: action.payload.success
             }
 
