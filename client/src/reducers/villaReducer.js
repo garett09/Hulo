@@ -12,20 +12,19 @@ import {
 } from "../constants/villaConstants";
 
 export const getVillaReducer = (state = { villas: [] }, action) => {
- 
-    switch (action.type) {
-        case GET_VILLA_REQUEST:
-            return {
-                ...state,
-                loading: true
-            }
+  switch (action.type) {
+    case GET_VILLA_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
 
-        case GET_VILLA_SUCCESS:
-            return {
-                loading: false,
-                villas: action.payload.villas,
-                success: action.payload.success
-            }
+    case GET_VILLA_SUCCESS:
+      return {
+        loading: false,
+        villas: action.payload.villa,
+        success: action.payload.success,
+      };
 
     case GET_VILLA_FAIL:
       return {
@@ -48,28 +47,21 @@ export const getVillaReducer = (state = { villas: [] }, action) => {
 export const getVillasReducer = (state = { villas: [] }, action) => {
   switch (action.type) {
     case ALL_VILLAS_REQUEST:
-    case ADMIN_VILLAS_REQUEST:
       return {
+        ...state,
         loading: true,
-        villas: [],
       };
 
     case ALL_VILLAS_SUCCESS:
       return {
         loading: false,
         villas: action.payload.villas,
-        villasCount: action.payload.villasCount,
         success: action.payload.success,
-      };
-    case ADMIN_VILLAS_SUCCESS:
-      return {
-        loading: false,
-        villas: action.payload,
       };
 
     case ALL_VILLAS_FAIL:
-    case ADMIN_VILLAS_FAIL:
       return {
+        ...state,
         loading: false,
         error: action.payload,
       };

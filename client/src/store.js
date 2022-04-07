@@ -4,7 +4,7 @@ import thunk from "redux-thunk"
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { authReducer,userReducer,forgotPasswordReducer } from "./reducers/userReducers";
-import { getVillaReducer } from "./reducers/villaReducer";
+import { getVillaReducer, getVillasReducer } from "./reducers/villaReducer";
 import { newFormReducer, myFormReducer, formDetailsReducer, } from "./reducers/formReducers";
 
 
@@ -15,7 +15,8 @@ const reducer = combineReducers({
     newForm: newFormReducer,
     myForm:myFormReducer,
     formDetails:formDetailsReducer,
-    getVilla:getVillaReducer
+    getVilla:getVillaReducer,
+    getAllVillas:getVillasReducer
 
 })
 

@@ -12,12 +12,11 @@ const ProductList = ({ history }) => {
   const alert = useAlert();
   const dispatch = useDispatch();
 
-  const { error, villas } = useSelector((state) => state.villas);
+  const { error, villas, loading } = useSelector((state) => state.villas);
   const changeDateFormat = (date) => dateformat(date, "fullDate");
 
   useEffect(() => {
     dispatch(getAdminVillas());
-    console.log(getAdminVillas)
 
     if (error) {
       alert.error(error);
@@ -50,7 +49,6 @@ const ProductList = ({ history }) => {
     villas &&
       villas.forEach((villa) => {
         data.rows.push({
-          id: villa._id,
           villaName: villa.villaName,
           totalPrice: villa.villaPrice,
           actions: (
@@ -73,24 +71,26 @@ const ProductList = ({ history }) => {
   };
   return (
     <Fragment>
-      <div className="row">
-        <div className="col-12 col-md-2">
-          <Sidebar />
-        </div>
+      {!loading && (
+        <div className="row">
+          <div className="col-12 col-md-2">
+            <Sidebar />
+          </div>
 
-        <div className="col-12 col-md-10">
-          <Fragment>
-            <h1 className="my-5">All Villas</h1>
-            <MDBDataTable
-              data={setVillas()}
-              className="px-3"
-              bordered
-              striped
-              hover
-            />
-          </Fragment>
+          <div className="col-12 col-md-10">
+            <Fragment>
+              <h1 className="my-5">All Villas</h1>
+              <MDBDataTable
+                data={setVillas()}
+                className="px-3"
+                bordered
+                striped
+                hover
+              />
+            </Fragment>
+          </div>
         </div>
-      </div>
+      )}
     </Fragment>
   );
 };

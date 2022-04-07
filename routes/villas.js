@@ -25,7 +25,7 @@ router
   .put(isAuthenticatedUser, authorizeRoles("admin"), updateVilla)
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteVilla);
 router
-  .route("admin/villas")
+  .route("/admin/villas")
   .get(getAllAdminVillas);
 
 module.exports = router;

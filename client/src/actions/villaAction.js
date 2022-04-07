@@ -38,19 +38,19 @@ export const getVillaDetails = () => async (dispatch) => {
 export const getAdminVillas = () => async (dispatch) => {
     try {
 
-        dispatch({ type: ADMIN_VILLAS_REQUEST })
+        dispatch({ type: ALL_VILLAS_REQUEST })
 
         const { data } = await axios.get(`/api/v1/admin/villas`)
-
+        
         dispatch({
-            type: ADMIN_VILLAS_SUCCESS,
+            type: ALL_VILLAS_SUCCESS,
             payload: data.villas
         })
 
     } catch (error) {
 
         dispatch({
-            type: ADMIN_VILLAS_FAIL,
+            type: ALL_VILLAS_FAIL,
             payload: error.response.data.message
         })
     }
