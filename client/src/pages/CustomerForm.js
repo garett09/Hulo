@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
 import { useAlert } from "react-alert";
-import { Typography, Grid, Input, Button } from "@mui/material";
+import { Typography, Grid, Input, Button, TextField, Box} from "@mui/material";
+import DateFnsUtils from "@date-io/date-fns";
+import {MuiPickersUtilsProvider,
+KeyboardTimePicker,
+KeyboardDatePicker,
+} from '@material-ui/pickers';
+
 
 import { createForm, clearErrors } from "../actions/formAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,8 +25,21 @@ const CustomerForm = () => {
     duration: 0,
     totalPrice: 0,
   });
-  const { firstName, lastName, email, villaName, villaPrice, description, duration, totalPrice  } =
-    userInfo;
+
+  const [checkInDate, setCheckInDate] = React.useState(new Date("2020-01-01T00:00:00"));
+
+
+
+  const {
+    firstName,
+    lastName,
+    email,
+    villaName,
+    villaPrice,
+    description,
+    duration,
+    totalPrice,
+  } = userInfo;
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -74,6 +93,8 @@ const CustomerForm = () => {
       totalPrice: villaPrice * duration,
     });
 
+    setCheckInDate(checkInDate);
+
     const form = new FormData();
     form.set("firstName", firstName);
     form.set("lastName", lastName);
@@ -83,7 +104,7 @@ const CustomerForm = () => {
     form.set("description", description);
     form.set("duration", duration);
     form.set("totalPrice", totalPrice);
-
+    form.set("checkInDate", checkInDate);
 
     dispatch(createForm(form));
     console.log(userInfo);
@@ -92,6 +113,8 @@ const CustomerForm = () => {
   const onChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
     setSelectedField(e.target.value);
+    setCheckInDate(e.target.value)
+
   };
 
   return (
@@ -128,11 +151,7 @@ const CustomerForm = () => {
             onChange={onChange}
           />
 
-          <select
-            name="villaName"
-            value={selectedField}
-            onChange={onChange}
-          >
+          <select name="villaName" value={selectedField} onChange={onChange}>
             <option value="">-</option>
             {villas.map((villa) => (
               <option value={villa._villaName}>{villa.villaName}</option>
@@ -151,6 +170,23 @@ const CustomerForm = () => {
             value={duration}
             onChange={onChange}
           />
+
+          <MuiPickersUtilsProvider utils = {DateFnsUtils}>
+            <KeyboardDatePicker 
+            disableToolbar
+            format = "dd/MM/yyyy"
+            id = "date-picker"
+            label = "Check In"
+            value={checkInDate}
+            onChange={onChange}
+            KeyboardButtonProps = {{
+              'aria-label': 'change date',
+
+            }}
+
+            />            
+            </MuiPickersUtilsProvider>
+
 
           <Button
             text="submit"

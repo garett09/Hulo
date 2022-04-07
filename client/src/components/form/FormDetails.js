@@ -23,16 +23,15 @@ const FormDetails = ({ match }) => {
   
   const [villaDetails, setVillaDetails] = useState({
     villaName: '',
-
-
   });
-
   
 const {firstName, lastName, email} = formRequestor
 const {villaName} = villaDetails
 const [checkInDate, setCheckInDate] = useState('')
 const [checkOutDate, setCheckOutDate] = useState('')
 const [totalPrice, setTotalPrice] = useState('')
+const [bookingStatus, setBookingStatus] = useState('')
+
 
 
 useEffect(() => {
@@ -44,6 +43,8 @@ useEffect(() => {
     setCheckInDate(formDetails.checkInDate)
     setCheckOutDate(formDetails.checkOutDate)
     setTotalPrice(formDetails.totalPrice)
+    setBookingStatus(formDetails.bookingStatus)
+
   }
 else {
     dispatch(getFormDetails(id));
@@ -88,8 +89,9 @@ else {
           <p>
             <b>Total Price:</b> {totalPrice}
           </p>
-
-
+          <p>
+            <b>booking status:</b> {bookingStatus}
+          </p>
         </div>
       </div>
       }
