@@ -4,7 +4,7 @@ import thunk from "redux-thunk"
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { authReducer,userReducer,forgotPasswordReducer } from "./reducers/userReducers";
-import { getVillaReducer } from "./reducers/villaReducer";
+import { getVillaReducer} from "./reducers/villaReducer";
 import { newFormReducer, myFormReducer, formDetailsReducer, } from "./reducers/formReducers";
 
 
