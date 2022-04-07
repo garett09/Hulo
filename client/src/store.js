@@ -16,8 +16,7 @@ const reducer = combineReducers({
     myForm:myFormReducer,
     formDetails:formDetailsReducer,
     getVilla:getVillaReducer,
-    getAllVillas:getVillasReducer
-
+    getAllVillas:getVillasReducer,
     allForms:allFormsReducer
 })
 
