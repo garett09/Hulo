@@ -12,19 +12,20 @@ import {
 } from "../constants/villaConstants";
 
 export const getVillaReducer = (state = { villas: [] }, action) => {
-  switch (action.type) {
-    case GET_VILLA_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
+ 
+    switch (action.type) {
+        case GET_VILLA_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
 
-    case GET_VILLA_SUCCESS:
-      return {
-        loading: false,
-        villas: action.payload.villa,
-        success: action.payload.success,
-      };
+        case GET_VILLA_SUCCESS:
+            return {
+                loading: false,
+                villas: action.payload.villas,
+                success: action.payload.success
+            }
 
     case GET_VILLA_FAIL:
       return {
