@@ -115,7 +115,7 @@ export const allFormsReducer = (state = { forms: [] }, action) => {
             console.log(action.payload)
             return {
                 loading: false,
-                forms: action.payload.orders,
+                forms: action.payload,
             }
 
         case ALL_FORM_FAIL:

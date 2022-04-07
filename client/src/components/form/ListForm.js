@@ -17,7 +17,6 @@ const ListForm = () => {
   useEffect(() => {
     dispatch(myForm());
 
-
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
