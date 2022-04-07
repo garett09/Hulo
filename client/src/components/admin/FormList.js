@@ -76,7 +76,7 @@ const FormList = () => {
                 <p style={{ color: "red" }}>{form.bookingStatus}</p>
               ),
             actions: (
-              <Link to={`/form/${form._id}`} className="btn btn-primary">
+              <Link to={`/admin/forms/${form._id}`} className="btn btn-primary">
                 <i className="fa fa-eye"></i>
               </Link>
             ),

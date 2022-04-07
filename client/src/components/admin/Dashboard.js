@@ -1,10 +1,18 @@
 import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { allForms, clearErrors } from "../../actions/formAction";
 
 import Sidebar from "./Sidebar";
 
 const Dashboard = () => {
-    
+  const { forms } = useSelector((state) => state.allForms);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(allForms());
+  }, [dispatch]);
+
   return (
     <Fragment>
       <div className="row">
@@ -54,7 +62,7 @@ const Dashboard = () => {
                   <div className="card-body">
                     <div className="text-center card-font-size">
                       Bookings
-                      <br /> <b>1000</b>
+                      <br /> <b>{forms && forms.length}</b>
                     </div>
                   </div>
                   <Link

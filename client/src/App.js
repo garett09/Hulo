@@ -33,7 +33,8 @@ import FormDetails from "./components/form/FormDetails";
 import CustomerForm from "./pages/CustomerForm";
 import Dashboard from "./components/admin/Dashboard";
 import VillasList from "./components/admin/VillasList";
-import FormList from "./components/admin/FormList"
+import FormList from "./components/admin/FormList";
+import ProcessForms from "./components/admin/ProcessForms";
 
 function App() {
   useEffect(() => {
@@ -76,6 +77,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} isAdmin ={true} />
             <Route path="/admin/villas" element={<VillasList />} isAdmin ={true} />
             <Route path="/admin/forms/all" element ={<FormList/>} isAdmin ={true} />
+            <Route path="/admin/forms/:id" element={<ProcessForms />} isAdmin ={true} />
 
           </Route>
         </Routes>

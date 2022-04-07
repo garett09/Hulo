@@ -8,6 +8,10 @@ import {
     ALL_FORM_REQUEST,
     ALL_FORM_SUCCESS,
     ALL_FORM_FAIL,
+    UPDATE_FORM_REQUEST,
+    UPDATE_FORM_SUCCESS,
+    UPDATE_FORM_FAIL,
+    UPDATE_FORM_RESET,
     FORM_DETAILS_REQUEST,
     FORM_DETAILS_SUCCESS,
     FORM_DETAILS_FAIL,
@@ -113,10 +117,14 @@ export const allFormsReducer = (state = { forms: [] }, action) => {
 
         case ALL_FORM_SUCCESS:
             console.log(action.payload)
+
             return {
                 loading: false,
                 forms: action.payload,
+                count: action.payload,
+                
             }
+            
 
         case ALL_FORM_FAIL:
             
@@ -135,3 +143,45 @@ export const allFormsReducer = (state = { forms: [] }, action) => {
     }
 }
 
+
+//Update and delete form
+export const formReducer = (state = {}, action) => {
+    switch (action.type) {
+
+        case UPDATE_FORM_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+
+        case UPDATE_FORM_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isUpdated: action.payload
+            }
+
+        case UPDATE_FORM_FAIL:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            }
+
+        case UPDATE_FORM_RESET:
+            return {
+                ...state,
+                isUpdated: false,
+                loading: false
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state
+    }
+}

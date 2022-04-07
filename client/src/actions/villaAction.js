@@ -44,7 +44,7 @@ export const getAdminVillas = () => async (dispatch) => {
         
         dispatch({
             type: ALL_VILLAS_SUCCESS,
-            payload: data.villas
+            payload: data.villas,
         })
 
     } catch (error) {

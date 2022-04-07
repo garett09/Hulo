@@ -107,6 +107,7 @@ exports.allForms = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
+    count: forms.length,
     totalAmount,
     forms,
   });

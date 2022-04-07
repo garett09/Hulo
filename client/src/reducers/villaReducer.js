@@ -57,6 +57,7 @@ export const getVillasReducer = (state = { villas: [] }, action) => {
         loading: false,
         villas: action.payload.villas,
         success: action.payload.success,
+        villasCount: action.payload.villasCount,
       };
 
     case ALL_VILLAS_FAIL:

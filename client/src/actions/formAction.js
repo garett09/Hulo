@@ -13,6 +13,10 @@ import {
     FORM_DETAILS_REQUEST,
     FORM_DETAILS_SUCCESS,
     FORM_DETAILS_FAIL,
+    UPDATE_FORM_REQUEST,
+    UPDATE_FORM_FAIL,
+    UPDATE_FORM_SUCCESS,
+    UPDATE_FORM_RESET,
     CLEAR_ERRORS,
 } from '../constants/formConstants'
 
@@ -100,6 +104,33 @@ export const allForms = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: ALL_FORM_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// update order
+export const updateForm = (id, formData) => async (dispatch) => {
+    try {
+
+        dispatch({ type: UPDATE_FORM_REQUEST })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const { data } = await axios.put(`/admin/forms/${id}`, formData, config)
+
+        dispatch({
+            type: UPDATE_FORM_SUCCESS,
+            payload: data.success
+        })
+
+    } catch (error) {
+        dispatch({
+            type: UPDATE_FORM_FAIL,
             payload: error.response.data.message
         })
     }
