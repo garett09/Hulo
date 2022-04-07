@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { authReducer,userReducer,forgotPasswordReducer } from "./reducers/userReducers";
 import { getVillaReducer, getVillasReducer } from "./reducers/villaReducer";
-import { newFormReducer, myFormReducer, formDetailsReducer, } from "./reducers/formReducers";
+import { newFormReducer, myFormReducer, formDetailsReducer, allFormsReducer } from "./reducers/formReducers";
 
 
 const reducer = combineReducers({
@@ -18,6 +18,7 @@ const reducer = combineReducers({
     getVilla:getVillaReducer,
     getAllVillas:getVillasReducer
 
+    allForms:allFormsReducer
 })
 
 

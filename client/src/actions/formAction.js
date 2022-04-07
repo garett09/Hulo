@@ -7,6 +7,9 @@ import {
     MY_FORM_REQUEST,
     MY_FORM_SUCCESS,
     MY_FORM_FAIL,
+    ALL_FORM_REQUEST,
+    ALL_FORM_SUCCESS,
+    ALL_FORM_FAIL,
     FORM_DETAILS_REQUEST,
     FORM_DETAILS_SUCCESS,
     FORM_DETAILS_FAIL,
@@ -76,6 +79,26 @@ export const getFormDetails = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: FORM_DETAILS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+// Get all Forms -admins only
+export const allForms = () => async (dispatch) => {
+    try {
+
+        dispatch({ type: ALL_FORM_REQUEST });
+
+        const { data } = await axios.get(`/api/v1/admin/forms/all`)
+
+        dispatch({
+            type: ALL_FORM_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: ALL_FORM_FAIL,
             payload: error.response.data.message
         })
     }

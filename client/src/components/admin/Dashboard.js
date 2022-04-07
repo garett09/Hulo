@@ -59,7 +59,7 @@ const Dashboard = () => {
                   </div>
                   <Link
                     className="card-footer text-white clearfix small z-1"
-                    to="/admin/forms"
+                    to="/admin/forms/all"
                   >
                     <span className="float-left">View Details</span>
                     <span className="float-right">

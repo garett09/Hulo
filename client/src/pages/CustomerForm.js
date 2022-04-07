@@ -1,47 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
 import { useAlert } from "react-alert";
-import {
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  Radio,
-  FormControlLabel,
-  Typography,
-  Box,
-  Grid,
-  Select,
-  MenuItem,
-  Input,
-  DatePicker,
-  Button,
-} from "@mui/material";
+import { Typography, Grid, Input, Button } from "@mui/material";
 
 import { createForm, clearErrors } from "../actions/formAction";
-import { getVillaDetails } from "../actions/villaAction";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const CustomerForm= () =>{
-
-
+const CustomerForm = () => {
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    villasName: "",
-    villasPrice:"",
+    villaName: "",
+    villaPrice: 0,
     description: "",
+    duration: 0,
+    totalPrice: 0,
   });
-  const { firstName, lastName, email, villasName, villasPrice, description} =
-  userInfo;
+  const { firstName, lastName, email, villaName, villaPrice, description, duration, totalPrice  } =
+    userInfo;
 
   const alert = useAlert();
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { user } = useSelector((state) => state.auth);
-
 
   const [villas, setVillasArr] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -68,16 +52,13 @@ const CustomerForm= () =>{
     description: "",
   });
 
-
   useEffect(() => {
-    const values = villas.find(v => v.villaName === selectedField)
+    const values = villas.find((v) => v.villaName === selectedField);
     setFields({
-        price: values?.villaPrice,
-        description: values?.description
-    })
-
-}, [selectedField])
-
+      price: values?.villaPrice,
+      description: values?.description,
+    });
+  }, [selectedField]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -86,34 +67,32 @@ const CustomerForm= () =>{
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      villasName: selectedField,
-      villasPrice: fields.price,
+      villaName: selectedField,
+      villaPrice: fields.price,
       description: fields.description,
-
-    })
-  
+      duration: duration,
+      totalPrice: villaPrice * duration,
+    });
 
     const form = new FormData();
     form.set("firstName", firstName);
     form.set("lastName", lastName);
     form.set("email", email);
-    form.set("villasName", villasName);
-    form.set("villasPrice", fields.price);
-    form.set("description", fields.description);
+    form.set("villasName", villaName);
+    form.set("villasPrice", villaPrice);
+    form.set("description", description);
+    form.set("duration", duration);
+    form.set("totalPrice", totalPrice);
+
 
     dispatch(createForm(form));
-    console.log(userInfo)
-  
-    
+    console.log(userInfo);
+  };
 
-    };
-
-    const onChange = (e) => {
-      setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-      setSelectedField(e.target.value)
-  }
-
-
+  const onChange = (e) => {
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+    setSelectedField(e.target.value);
+  };
 
   return (
     <div>
@@ -150,15 +129,28 @@ const CustomerForm= () =>{
           />
 
           <select
-            name="selectedField"
+            name="villaName"
             value={selectedField}
             onChange={onChange}
           >
             <option value="">-</option>
             {villas.map((villa) => (
-              <option value={villa.villaName}>{villa.villaName}</option>
+              <option value={villa._villaName}>{villa.villaName}</option>
             ))}
           </select>
+
+          <Input
+            type="text"
+            name="villaPrice"
+            value={fields.price}
+            onChange={onChange}
+          />
+          <Input
+            type="number"
+            name="duration"
+            value={duration}
+            onChange={onChange}
+          />
 
           <Button
             text="submit"
@@ -170,11 +162,13 @@ const CustomerForm= () =>{
               padding: "12px 24px",
               fontSize: "12px",
             }}
-          >SUBMIT</Button>
+          >
+            SUBMIT
+          </Button>
         </Grid>
       </form>
     </div>
   );
-} 
+};
 
 export default CustomerForm;

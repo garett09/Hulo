@@ -5,13 +5,16 @@ import {
     MY_FORM_REQUEST,
     MY_FORM_SUCCESS,
     MY_FORM_FAIL,
+    ALL_FORM_REQUEST,
+    ALL_FORM_SUCCESS,
+    ALL_FORM_FAIL,
     FORM_DETAILS_REQUEST,
     FORM_DETAILS_SUCCESS,
     FORM_DETAILS_FAIL,
     CLEAR_ERRORS,
 } from '../constants/formConstants'
 
-export const newFormReducer = (state = {}, action ) => {
+export const newFormReducer = (state = {form:[]}, action ) => {
     switch(action.type){
         
         case CREATE_FORM_REQUEST:
@@ -86,6 +89,35 @@ export const formDetailsReducer = (state = { formsDetails: {} }, action) => {
             }
 
         case FORM_DETAILS_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state;
+    }
+}
+export const allFormsReducer = (state = { form: [] }, action) => {
+    switch (action.type) {
+
+        case ALL_FORM_REQUEST:
+            return {
+                loading: true
+            }
+
+        case ALL_FORM_SUCCESS:
+            return {
+                loading: false,
+                form: action.payload.orders,
+            }
+
+        case ALL_FORM_FAIL:
             return {
                 loading: false,
                 error: action.payload
