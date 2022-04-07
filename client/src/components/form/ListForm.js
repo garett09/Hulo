@@ -5,14 +5,13 @@ import dateformat from "dateformat";
 
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { myForm, getFormDetails, clearErrors } from "../../actions/formAction";
+import { myForm, clearErrors } from "../../actions/formAction";
 
 const ListForm = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
 
   const { loading, error, forms } = useSelector((state) => state.myForm);
-  const [myForms, setMyForms] = useState([])
   const changeDateFormat = (date) => dateformat(date, "fullDate");
 
   useEffect(() => {

@@ -85,15 +85,16 @@ export const getFormDetails = (id) => async (dispatch) => {
 }
 // Get all Forms -admins only
 export const allForms = () => async (dispatch) => {
+    
     try {
-
         dispatch({ type: ALL_FORM_REQUEST });
 
         const { data } = await axios.get(`/api/v1/admin/forms/all`)
+        console.log(data)
 
         dispatch({
             type: ALL_FORM_SUCCESS,
-            payload: data
+            payload: data.forms
         })
 
     } catch (error) {

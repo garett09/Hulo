@@ -103,7 +103,7 @@ export const formDetailsReducer = (state = { formsDetails: {} }, action) => {
             return state;
     }
 }
-export const allFormsReducer = (state = { form: [] }, action) => {
+export const allFormsReducer = (state = { forms: [] }, action) => {
     switch (action.type) {
 
         case ALL_FORM_REQUEST:
@@ -112,12 +112,14 @@ export const allFormsReducer = (state = { form: [] }, action) => {
             }
 
         case ALL_FORM_SUCCESS:
+            console.log(action.payload)
             return {
                 loading: false,
-                form: action.payload.orders,
+                forms: action.payload.orders,
             }
 
         case ALL_FORM_FAIL:
+            
             return {
                 loading: false,
                 error: action.payload

@@ -2,24 +2,19 @@ import React, { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { MDBDataTable } from 'mdbreact'
 import dateformat from "dateformat";
-
-
-
 import Sidebar from './Sidebar'
-
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { allForms, clearErrors } from '../../actions/formAction'
-const changeDateFormat = (date) => dateformat(date, "fullDate");
 
-
-const FormList = ({ history }) => {
+const FormList = () => {
 
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { loading, error, form } = useSelector(state => state.allForms);
-
+    const { loading, error, forms } = useSelector(state => state.allForms);
+    const changeDateFormat = (date) => dateformat(date, "fullDate");
+    
     useEffect(() => {
         dispatch(allForms());
 
@@ -27,50 +22,47 @@ const FormList = ({ history }) => {
             alert.error(error);
             dispatch(clearErrors())
         }
-
-
-    }, [dispatch, alert, error, history])
-
-
+    }, [dispatch, alert, error]);
 
     const setForm = () => {
-        const data = {
-            columns: [
-              {
-                label: "Created At",
-                field: "createdAt",
-                width: 100,
-              },
-              {
-                label: "Name",
-                field: "name",
-                width: 100,
-              },
-              {
-                label: "Villa Name",
-                field: "villaName",
-                width: 100,
-              },
-              {
-                label: "Total Price",
-                field: "totalPrice",
-                width: 100,
-              },
-              {
-                label: "Booking Status",
-                field: "bookingStatus",
-                width: 100,
-              },
-              {
-                label: "Actions",
-                field: "actions",
-                width: 100,
-              },
-            ],
-            rows: [],
-          };
-        form &&
-        form.forEach((form) => {
+      const data = {
+        columns: [
+          {
+            label: "Created At",
+            field: "createdAt",
+            width: 100,
+          },
+          {
+            label: "Name",
+            field: "name",
+            width: 100,
+          },
+          {
+            label: "Villa Name",
+            field: "villaName",
+            width: 100,
+          },
+          {
+            label: "Total Price",
+            field: "totalPrice",
+            width: 100,
+          },
+          {
+            label: "Booking Status",
+            field: "bookingStatus",
+            width: 100,
+          },
+          {
+            label: "Actions",
+            field: "actions",
+            width: 100,
+          },
+        ],
+        rows: [],
+      };
+  
+      forms &&
+        forms.forEach((form) => {
           data.rows.push({
             createdAt: changeDateFormat(form.createdAt),
             name: form.formRequestor.firstName + " " + form.formRequestor.lastName,
@@ -90,36 +82,39 @@ const FormList = ({ history }) => {
             ),
           });
         });
-        return data;
-    }
-
-
+  
+      return data;
+    };
     return (
-        <Fragment>
+      <Fragment>
 
-            <div className="row">
-                <div className="col-12 col-md-2">
-                    <Sidebar />
-                </div>
+          <div className="row">
+              <div className="col-12 col-md-2">
+                  <Sidebar />
+              </div>
 
-                <div className="col-12 col-md-10">
-                    <Fragment>
-                        <h1 className="my-5">All Orders</h1>
+              <div className="col-12 col-md-10">
+                  <Fragment>
+                      <h1 className="my-5">All Orders</h1>
 
-                            <MDBDataTable
-                                data={setForm()}
-                                className="px-3"
-                                bordered
-                                striped
-                                hover
-                            />
+                          <MDBDataTable
+                              data={setForm()}
+                              className="px-3"
+                              bordered
+                              striped
+                              hover
+                          />
 
-                    </Fragment>
-                </div>
-            </div>
+                  </Fragment>
+              </div>
+          </div>
 
-        </Fragment>
-    )
+      </Fragment>
+  )
 }
+  
+
+  
+
 
 export default FormList
