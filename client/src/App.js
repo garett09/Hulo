@@ -33,6 +33,7 @@ import FormDetails from "./components/form/FormDetails";
 import CustomerForm from "./pages/CustomerForm";
 import Dashboard from "./components/admin/Dashboard";
 import VillasList from "./components/admin/VillasList";
+import FormList from "./components/admin/FormList"
 
 function App() {
   useEffect(() => {
@@ -74,6 +75,7 @@ function App() {
             <Route path="/form/new" element={<CustomerForm />} />
             <Route path="/dashboard" element={<Dashboard />} isAdmin ={true} />
             <Route path="/admin/villas" element={<VillasList />} isAdmin ={true} />
+            <Route path="/admin/forms/all" element ={<FormList/>} isAdmin ={true} />
 
           </Route>
         </Routes>

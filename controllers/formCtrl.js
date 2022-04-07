@@ -7,6 +7,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 //Create a new form => /api/v1/form/new
 exports.newForm = catchAsyncErrors(async (req, res, next) => {
   const { checkInDate, checkOutDate, attachments,  duration } = req.body;
+  
 
   const formRequestor = {
     firstName: req.user.firstName,
@@ -14,7 +15,9 @@ exports.newForm = catchAsyncErrors(async (req, res, next) => {
     email: req.user.email,
   };
 
-  let villa = await Villa.findById(req.body.villaType);
+  let villa = await Villa.findOne({ villaType: req.body.villaType });
+
+  if (!villa) { return next(new ErrorHandler('Cannot find villa type')) }
   const villaDetails = {
     villaName: villa.villaName,
     villaPrice: villa.villaPrice,
