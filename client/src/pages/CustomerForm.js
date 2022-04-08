@@ -2,12 +2,6 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
 import { useAlert } from "react-alert";
 import { Typography, Grid, Input, Button, TextField, Box} from "@mui/material";
-import DateFnsUtils from "@date-io/date-fns";
-import {MuiPickersUtilsProvider,
-KeyboardTimePicker,
-KeyboardDatePicker,
-} from '@material-ui/pickers';
-
 
 import { createForm, clearErrors } from "../actions/formAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,7 +20,7 @@ const CustomerForm = () => {
     totalPrice: 0,
   });
 
-  const [checkInDate, setCheckInDate] = React.useState(new Date("2020-01-01T00:00:00"));
+
 
 
 
@@ -93,7 +87,7 @@ const CustomerForm = () => {
       totalPrice: villaPrice * duration,
     });
 
-    setCheckInDate(checkInDate);
+
 
     const form = new FormData();
     form.set("firstName", firstName);
@@ -104,7 +98,7 @@ const CustomerForm = () => {
     form.set("description", description);
     form.set("duration", duration);
     form.set("totalPrice", totalPrice);
-    form.set("checkInDate", checkInDate);
+
 
     dispatch(createForm(form));
     console.log(userInfo);
@@ -113,7 +107,7 @@ const CustomerForm = () => {
   const onChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
     setSelectedField(e.target.value);
-    setCheckInDate(e.target.value)
+
 
   };
 
@@ -171,21 +165,6 @@ const CustomerForm = () => {
             onChange={onChange}
           />
 
-          <MuiPickersUtilsProvider utils = {DateFnsUtils}>
-            <KeyboardDatePicker 
-            disableToolbar
-            format = "dd/MM/yyyy"
-            id = "date-picker"
-            label = "Check In"
-            value={checkInDate}
-            onChange={onChange}
-            KeyboardButtonProps = {{
-              'aria-label': 'change date',
-
-            }}
-
-            />            
-            </MuiPickersUtilsProvider>
 
 
           <Button

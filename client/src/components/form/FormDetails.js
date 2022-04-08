@@ -15,7 +15,6 @@ const FormDetails = ({ match }) => {
   const { error, formDetails, success, loading } = useSelector(
     (state) => state.formDetails
   );
-  
 
   const [formRequestor, setFormRequestor] = useState({
     firstName: "",
@@ -30,9 +29,9 @@ const FormDetails = ({ match }) => {
   const { firstName, lastName, email } = formRequestor;
   const { villaName } = villaDetails;
   const [checkInDate, setCheckInDate] = useState("");
-  const [totalPrice, setTotalPrice] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
-const [bookingStatus, setBookingStatus] = useState('')
+  const [totalPrice, setTotalPrice] = useState("");
+  const [bookingStatus, setBookingStatus] = useState('')
 
   useEffect(() => {
     if (formDetails && formDetails._id !== id) {
@@ -43,23 +42,18 @@ const [bookingStatus, setBookingStatus] = useState('')
       setCheckInDate(formDetails.checkInDate);
       setCheckOutDate(formDetails.checkOutDate);
       setTotalPrice(formDetails.totalPrice);
+      setBookingStatus(formDetails.bookingStatus)
+      
     } else {
       dispatch(getFormDetails(id));
     }
 
-useEffect(() => {
-  if(formDetails && formDetails._id !== id) {
-    dispatch(getFormDetails(id));
-  } else if (formDetails) {
-    setFormRequestor(formDetails.formRequestor)
-    setVillaDetails(formDetails.villaDetails)
-    setCheckInDate(formDetails.checkInDate)
-    setCheckOutDate(formDetails.checkOutDate)
-    setTotalPrice(formDetails.totalPrice)
-  }
-else {
-    dispatch(getFormDetails(id));
-  }
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+      navigate("/forms/me");
+    }
+  }, [dispatch, alert, error, formDetails, id]);
 
   return (
     <Fragment>
@@ -86,10 +80,10 @@ else {
             <p>
               <b>Total Price:</b> {totalPrice}
             </p>
-          </div>
-          <p>
+            <p>
             <b>booking status:</b> {bookingStatus}
           </p>
+          </div>
         </div>
       )}
     </Fragment>

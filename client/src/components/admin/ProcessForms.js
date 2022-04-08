@@ -31,7 +31,8 @@ const ProcessForms = () => {
   const [villaDetails, setVillaDetails] = useState({
     villaName: "",
   });
-
+  const { firstName, lastName, email } = formRequestor;
+  const { villaName } = villaDetails;
   const [BookingStatus, setBookingStatus] = useState("");
   const [TotalPrice, setTotalPrice] = useState("");
 
@@ -64,8 +65,6 @@ const ProcessForms = () => {
     console.log(formData);
   };
 
-  const BookingDetails =
-    villaDetails && `${villaDetails.villaName}, ${villaDetails.villaPrice}`;
 
   return (
     <Fragment>
@@ -83,14 +82,15 @@ const ProcessForms = () => {
 
                   <h4 className="mb-4">Shipping Info</h4>
                   <p>
-                    <b>Name:</b> {formRequestor && formRequestor.firstName}
+                    <b>Name:</b> {firstName +" "+ lastName}
                   </p>
+                
                   <p className="mb-4">
-                    <b>Booking:</b>
-                    {BookingDetails}
+                    <b>Booking:</b>{villaName}
+                    
                   </p>
                   <p>
-                    <b>Amount:</b> ${TotalPrice}
+                    <b>Amount:</b> Pesos{TotalPrice}
                   </p>
 
                   <hr />
