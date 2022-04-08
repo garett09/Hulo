@@ -20,10 +20,6 @@ const CustomerForm = () => {
     totalPrice: 0,
   });
 
-
-
-
-
   const {
     firstName,
     lastName,
@@ -42,6 +38,8 @@ const CustomerForm = () => {
 
   const [villas, setVillasArr] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [checkInDate, setCheckInDate] = useState("");
+  const [checkOutDate, setCheckOutDate] = useState("")
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,6 +85,9 @@ const CustomerForm = () => {
       totalPrice: villaPrice * duration,
     });
 
+    setCheckInDate(checkInDate);
+    setCheckOutDate(checkOutDate);
+
 
 
     const form = new FormData();
@@ -96,8 +97,9 @@ const CustomerForm = () => {
     form.set("villasName", villaName);
     form.set("villasPrice", villaPrice);
     form.set("description", description);
-    form.set("duration", duration);
     form.set("totalPrice", totalPrice);
+    form.set("checkInDate", checkInDate);
+    form.set("checkOutDate", checkOutDate);
 
 
     dispatch(createForm(form));
@@ -107,8 +109,8 @@ const CustomerForm = () => {
   const onChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
     setSelectedField(e.target.value);
-
-
+    setCheckInDate(e.target.value)
+    
   };
 
   return (
@@ -165,6 +167,21 @@ const CustomerForm = () => {
             onChange={onChange}
           />
 
+          
+          <Input 
+          type="date"
+          value ={checkInDate}
+          onChange = {e => setCheckInDate(e.target.value)}
+          />
+
+
+          
+          <Input 
+          type="date"
+          value ={checkOutDate}
+          onChange = { e => setCheckOutDate(e.target.value)}
+          />
+          
 
 
           <Button
