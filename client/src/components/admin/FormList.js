@@ -9,7 +9,6 @@ import { deleteForm, allForms, clearErrors } from '../../actions/formAction'
 import { DELETE_FORM_RESET } from '../../constants/formConstants'
 
 const FormList = () => {
-
     const alert = useAlert();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -133,8 +132,4 @@ const FormList = () => {
     )
 }
 
-
-
-
-
-export default FormList
+export default FormList;
