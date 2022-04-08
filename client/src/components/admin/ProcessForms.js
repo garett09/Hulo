@@ -33,8 +33,7 @@ const ProcessForms = () => {
   });
   const { firstName, lastName, email } = formRequestor;
   const { villaName } = villaDetails;
-  const [BookingStatus, setBookingStatus] = useState("");
-  const [bookingStatus ,setbookingStatus] = useState("")
+  const [bookingStatus ,setBookingStatus] = useState("")
   const [TotalPrice, setTotalPrice] = useState("");
 
   useEffect(() => {
@@ -43,8 +42,6 @@ const ProcessForms = () => {
     } else if (formDetails) {
       setFormRequestor(formDetails.formRequestor);
       setVillaDetails(formDetails.villaDetails);
-      setTotalPrice(formDetails.totalPrice);
-      setbookingStatus(formDetails.bookingStatus);
       setTotalPrice(formDetails.totalPrice);
     }
     else {
@@ -61,14 +58,25 @@ const ProcessForms = () => {
     }
   }, [dispatch, id, alert, error, formDetails]);
 
-  const updateFormHandler = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.set("bookingStatus", bookingStatus);
 
-    dispatch(updateForm(id, formData));
-    console.log(formData);
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    setStatus(status)
+
+
+    const form = new FormData();
+    form.set("status", status);
+
+    dispatch(updateForm(id, form));
   };
+
+  const onChange = (e) => {
+
+    setBookingStatus(e.target.value)
+
+  };
+
 
 
   return (
@@ -85,6 +93,7 @@ const ProcessForms = () => {
                 <div className="col-12 col-lg-7 order-details">
 
                   <h4 className="mb-4">Shipping Info</h4>
+                  <p>{formDetails._id}</p>
                   <p>
                     <b>Name:</b> {firstName +" "+ lastName}
                    
@@ -105,13 +114,14 @@ const ProcessForms = () => {
 
                   <div className="col-12 col-lg-3 mt-5">
                     <h4 className="my-4">Status</h4>
+                    <p>{bookingStatus}</p>
 
                     <div className="form-group">
                       <select
                         className="form-control"
                         name="status"
-                        value={status}
-                        onChange={(e) => setBookingStatus(e.target.value)}
+                        value={bookingStatus}
+                        onChange={onChange}
                       >
                         <option value="Processing">Processing</option>
                         <option value="Approved">Approved</option>
@@ -121,7 +131,7 @@ const ProcessForms = () => {
 
                     <button
                       className="btn btn-primary btn-block"
-                      onClick={() => updateFormHandler(formDetails._id)}
+                      onClick={submitHandler}
                     >
                       Update Status
                     </button>

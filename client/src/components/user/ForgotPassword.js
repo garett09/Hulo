@@ -1,8 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import "../user/user.css";
-
-
-
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { forgotPassword, clearErrors } from '../../actions/userActions'
