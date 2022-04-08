@@ -184,8 +184,7 @@ export const formReducer = (state = {}, action) => {
                 error: action.payload,
                 loading: false
             }
-
-        case DELETE_FORM_RESET:    
+   
         case UPDATE_FORM_RESET:
             return {
                 ...state,
