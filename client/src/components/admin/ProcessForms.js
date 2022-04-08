@@ -81,6 +81,7 @@ const ProcessForms = () => {
               <div className="row d-flex justify-content-around">
                 <div className="col-12 col-lg-7 order-details">
                   <h4 className="mb-4">Shipping Info</h4>
+                  <p>{formDetails._id}</p>
                   <p>
                     <b>Name:</b> {firstName + " " + lastName}
                   </p>

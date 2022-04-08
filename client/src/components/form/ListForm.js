@@ -71,7 +71,7 @@ const ListForm = () => {
           totalPrice: form.totalPrice,
           bookingStatus:
             form.bookingStatus &&
-            String(form.bookingStatus).includes("Approved") ? (
+            String(form.bookingStatus).includes("Dates approved and paid") ? (
               <p style={{ color: "green" }}>{form.bookingStatus}</p>
             ) : (
               <p style={{ color: "red" }}>{form.bookingStatus}</p>
