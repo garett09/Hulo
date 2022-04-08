@@ -16,7 +16,9 @@ import {
     UPDATE_FORM_REQUEST,
     UPDATE_FORM_FAIL,
     UPDATE_FORM_SUCCESS,
-    UPDATE_FORM_RESET,
+    DELETE_FORM_REQUEST,
+    DELETE_FORM_FAIL,
+    DELETE_FORM_SUCCESS,
     CLEAR_ERRORS,
 } from '../constants/formConstants'
 
@@ -68,7 +70,7 @@ export const myForm = () => async (dispatch) => {
 }
 // Get order details
 export const getFormDetails = (id) => async (dispatch) => {
-   
+
     try {
 
         dispatch({ type: FORM_DETAILS_REQUEST });
@@ -89,7 +91,7 @@ export const getFormDetails = (id) => async (dispatch) => {
 }
 // Get all Forms -admins only
 export const allForms = () => async (dispatch) => {
-    
+
     try {
         dispatch({ type: ALL_FORM_REQUEST });
 
@@ -131,6 +133,27 @@ export const updateForm = (id, formData) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: UPDATE_FORM_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// update order
+export const deleteForm = (id) => async (dispatch) => {
+    try {
+
+        dispatch({ type: DELETE_FORM_REQUEST })
+
+        const { data } = await axios.delete(`/api/v1/admin/forms/${id}`)
+
+        dispatch({
+            type: DELETE_FORM_SUCCESS,
+            payload: data.success
+        })
+
+    } catch (error) {
+        dispatch({
+            type: DELETE_FORM_FAIL,
             payload: error.response.data.message
         })
     }

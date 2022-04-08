@@ -12,40 +12,44 @@ import {
     UPDATE_FORM_SUCCESS,
     UPDATE_FORM_FAIL,
     UPDATE_FORM_RESET,
+    DELETE_FORM_REQUEST,
+    DELETE_FORM_SUCCESS,
+    DELETE_FORM_FAIL,
+    DELETE_FORM_RESET,
     FORM_DETAILS_REQUEST,
     FORM_DETAILS_SUCCESS,
     FORM_DETAILS_FAIL,
     CLEAR_ERRORS,
 } from '../constants/formConstants'
 
-export const newFormReducer = (state = {form:[]}, action ) => {
-    switch(action.type){
-        
+export const newFormReducer = (state = { form: [] }, action) => {
+    switch (action.type) {
+
         case CREATE_FORM_REQUEST:
-            return{
+            return {
                 ...state,
-                loading:true
+                loading: true
             }
         case CREATE_FORM_SUCCESS:
-            return{
-                loading:false,
+            return {
+                loading: false,
                 form: action.payload,
-                success:action.payload
+                success: action.payload
 
             }
         case CREATE_FORM_FAIL:
             console.log(action.payload)
-            return{
-                loading:false,
-                error:action.payload
-            } 
-        case CLEAR_ERRORS:
-            return{
-                ...state,
-                error:null
+            return {
+                loading: false,
+                error: action.payload
             }
-            default:
-                return state;
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state;
     }
 }
 export const myFormReducer = (state = { forms: [] }, action) => {
@@ -91,7 +95,7 @@ export const formDetailsReducer = (state = { formsDetails: {} }, action) => {
                 forms: action.payload.forms,
                 success: action.payload.success,
                 formDetails: action.payload.form
-                
+
             }
 
         case FORM_DETAILS_FAIL:
@@ -124,12 +128,12 @@ export const allFormsReducer = (state = { forms: [] }, action) => {
                 loading: false,
                 forms: action.payload,
                 count: action.payload,
-                
+
             }
-            
+
 
         case ALL_FORM_FAIL:
-            
+
             return {
                 loading: false,
                 error: action.payload
@@ -149,24 +153,33 @@ export const allFormsReducer = (state = { forms: [] }, action) => {
 //Update and delete form
 export const formReducer = (state = {}, action) => {
     switch (action.type) {
-        
+
         case UPDATE_FORM_REQUEST:
+        case DELETE_FORM_REQUEST:
             return {
                 ...state,
                 loading: true
             }
 
         case UPDATE_FORM_SUCCESS:
-            console.log(action.payload)
             return {
-                
+
                 ...state,
                 loading: false,
                 isUpdated: action.payload,
                 form: action.payload
             }
 
+        case DELETE_FORM_SUCCESS:
+            return {
+
+                ...state,
+                loading: false,
+                isDeleted: action.payload
+            }
+
         case UPDATE_FORM_FAIL:
+        case DELETE_FORM_FAIL:
             return {
                 ...state,
                 error: action.payload,
@@ -177,6 +190,13 @@ export const formReducer = (state = {}, action) => {
             return {
                 ...state,
                 isUpdated: false,
+                loading: false
+            }
+
+        case DELETE_FORM_RESET:
+            return {
+                ...state,
+                isDeleted: false,
                 loading: false
             }
 

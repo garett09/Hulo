@@ -1,21 +1,23 @@
 import React, { Fragment, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { MDBDataTable } from 'mdbreact'
 import dateformat from "dateformat";
 import Sidebar from './Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { allForms, clearErrors } from '../../actions/formAction'
+import { deleteForm, allForms, clearErrors } from '../../actions/formAction'
+import { DELETE_FORM_RESET } from '../../constants/formConstants'
 
 const FormList = () => {
 
     const alert = useAlert();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const { loading, error, forms } = useSelector(state => state.allForms);
-    const { isDeleted } = useSelector((state) => state.form);
+    const { isDeleted, loading: deleteLoading } = useSelector((state) => state.form);
     const changeDateFormat = (date) => dateformat(date, "fullDate");
-    
+
     useEffect(() => {
         dispatch(allForms());
 
@@ -23,100 +25,116 @@ const FormList = () => {
             alert.error(error);
             dispatch(clearErrors())
         }
-    }, [dispatch, alert, error]);
+
+        if (isDeleted) {
+            alert.success('Form deleted')
+            navigate('/admin/forms/all')
+            dispatch({ type: DELETE_FORM_RESET })
+        }
+    }, [dispatch, alert, error, isDeleted, navigate]);
 
     const setForm = () => {
-      const data = {
-        columns: [
-          {
-            label: "Created At",
-            field: "createdAt",
-            width: 100,
-          },
-          {
-            label: "Name",
-            field: "name",
-            width: 100,
-          },
-          {
-            label: "Villa Name",
-            field: "villaName",
-            width: 100,
-          },
-          {
-            label: "Total Price",
-            field: "totalPrice",
-            width: 100,
-          },
-          {
-            label: "Booking Status",
-            field: "bookingStatus",
-            width: 100,
-          },
-          {
-            label: "Actions",
-            field: "actions",
-            width: 100,
-          },
-        ],
-        rows: [],
-      };
-  
-      forms &&
-        forms.forEach((form) => {
-          data.rows.push({
-            createdAt: changeDateFormat(form.createdAt),
-            name: form.formRequestor.firstName + " " + form.formRequestor.lastName,
-            villaName: form.villaDetails.villaName,
-            totalPrice: form.totalPrice,
-            bookingStatus:
-              form.bookingStatus &&
-              String(form.bookingStatus).includes("Dates approved and paid") ? (
-                <p style={{ color: "green" }}>{form.bookingStatus}</p>
-              ) : (
-                <p style={{ color: "red" }}>{form.bookingStatus}</p>
-                
-              ),
-            actions: (
-              <Link to={`/admin/forms/${form._id}`} className="btn btn-primary">
-                <i className="fa fa-eye"></i>
-              </Link>
-            ),
-          });
-        });
-  
-      return data;
+        const data = {
+            columns: [
+                {
+                    label: "Created At",
+                    field: "createdAt",
+                    width: 100,
+                },
+                {
+                    label: "Name",
+                    field: "name",
+                    width: 100,
+                },
+                {
+                    label: "Villa Name",
+                    field: "villaName",
+                    width: 100,
+                },
+                {
+                    label: "Total Price",
+                    field: "totalPrice",
+                    width: 100,
+                },
+                {
+                    label: "Booking Status",
+                    field: "bookingStatus",
+                    width: 100,
+                },
+                {
+                    label: "Actions",
+                    field: "actions",
+                    width: 100,
+                },
+            ],
+            rows: [],
+        };
+
+        forms &&
+            forms.forEach((form) => {
+                data.rows.push({
+                    createdAt: changeDateFormat(form.createdAt),
+                    name: form.formRequestor.firstName + " " + form.formRequestor.lastName,
+                    villaName: form.villaDetails.villaName,
+                    totalPrice: form.totalPrice,
+                    bookingStatus:
+                        form.bookingStatus &&
+                            String(form.bookingStatus).includes("Dates approved and paid") ? (
+                            <p style={{ color: "green" }}>{form.bookingStatus}</p>
+                        ) : (
+                            <p style={{ color: "red" }}>{form.bookingStatus}</p>
+
+                        ),
+                    actions: (
+                        <>
+                            <Link to={`/admin/forms/${form._id}`} className="btn btn-primary">
+                                <i className="fa fa-eye"></i>
+                            </Link>
+                            <button onClick={() => deleteHandler(form._id)} disabled={deleteLoading}>Delete</button>
+                        </>
+                    ),
+                });
+            });
+
+        return data;
     };
+
+    const deleteHandler = id => {
+        if (window.confirm('delete?')) {
+            dispatch(deleteForm(id))
+        }
+    }
     return (
-      <Fragment>
+        <Fragment>
+            <div className="row">
+                <div className="col-12 col-md-2">
+                    <Sidebar />
+                </div>
 
-          <div className="row">
-              <div className="col-12 col-md-2">
-                  <Sidebar />
-              </div>
+                <div className="col-12 col-md-10">
+                    <Fragment>
+                        <h1 className="my-5">All Orders</h1>
 
-              <div className="col-12 col-md-10">
-                  <Fragment>
-                      <h1 className="my-5">All Orders</h1>
+                        {!loading &&
+                            <MDBDataTable
+                                data={setForm()}
+                                className="px-3"
+                                bordered
+                                striped
+                                hover
+                            />
+                        }
 
-                          <MDBDataTable
-                              data={setForm()}
-                              className="px-3"
-                              bordered
-                              striped
-                              hover
-                          />
+                    </Fragment>
+                </div>
+            </div>
 
-                  </Fragment>
-              </div>
-          </div>
-
-      </Fragment>
-  )
+        </Fragment>
+    )
 }
-  
 
-  
+
+
 
 
 export default FormList
