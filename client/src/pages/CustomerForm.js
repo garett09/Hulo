@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
 const CustomerForm = () => {
   const [userInfo, setUserInfo] = useState({
     firstName: "",
@@ -16,8 +17,7 @@ const CustomerForm = () => {
     villaName: "",
     villaPrice: 0,
     description: "",
-    duration: 0,
-    totalPrice: 0,
+
   });
 
   const {
@@ -27,8 +27,6 @@ const CustomerForm = () => {
     villaName,
     villaPrice,
     description,
-    duration,
-    totalPrice,
   } = userInfo;
 
   const alert = useAlert();
@@ -36,6 +34,8 @@ const CustomerForm = () => {
   const nav = useNavigate();
   const { user } = useSelector((state) => state.auth);
 
+  const { error, success } = useSelector(state => state.newForm);
+  
   const [villas, setVillasArr] = useState([]);
   const [loading, setLoading] = useState(true);
   const [checkInDate, setCheckInDate] = useState("");
@@ -81,8 +81,6 @@ const CustomerForm = () => {
       villaName: selectedField,
       villaPrice: fields.price,
       description: fields.description,
-      duration: duration,
-      totalPrice: villaPrice * duration,
     });
 
     setCheckInDate(checkInDate);
@@ -97,7 +95,6 @@ const CustomerForm = () => {
     form.set("villasName", villaName);
     form.set("villasPrice", villaPrice);
     form.set("description", description);
-    form.set("totalPrice", totalPrice);
     form.set("checkInDate", checkInDate);
     form.set("checkOutDate", checkOutDate);
 
@@ -106,10 +103,23 @@ const CustomerForm = () => {
     console.log(userInfo);
   };
 
+useEffect(() => {
+
+    if (error) {
+        alert.error(error);
+        dispatch(clearErrors());
+    }
+
+    if (success) {
+        alert.success('Password updated successfully')
+       nav('/login')
+    }
+
+}, [dispatch, alert, error, success])
+
   const onChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
     setSelectedField(e.target.value);
-    setCheckInDate(e.target.value)
     
   };
 
@@ -151,7 +161,7 @@ const CustomerForm = () => {
             <option value="">-</option>
             {villas.map((villa) => (
               <option value={villa._villaName}>{villa.villaName}</option>
-            ))}
+            ))} 
           </select>
 
           <Input
@@ -160,18 +170,13 @@ const CustomerForm = () => {
             value={fields.price}
             onChange={onChange}
           />
-          <Input
-            type="number"
-            name="duration"
-            value={duration}
-            onChange={onChange}
-          />
 
           
           <Input 
           type="date"
           value ={checkInDate}
           onChange = {e => setCheckInDate(e.target.value)}
+          dateFormat = "yyyy/MM/dd"
           />
 
 
@@ -180,6 +185,7 @@ const CustomerForm = () => {
           type="date"
           value ={checkOutDate}
           onChange = { e => setCheckOutDate(e.target.value)}
+          dateFormat = "yyyy/MM/dd"
           />
           
 

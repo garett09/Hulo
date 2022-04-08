@@ -5,9 +5,11 @@ import "../user/user.css";
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetPassword, clearErrors } from '../../actions/userActions'
-import {useNavigate } from "react-router-dom";
+import {useNavigate, useParams } from "react-router-dom";
 
 const NewPassword = ({ history, match }) => {
+    
+    const { token } = useParams();
 
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
@@ -39,7 +41,7 @@ const NewPassword = ({ history, match }) => {
         formData.set('password', password);
         formData.set('confirmPassword', confirmPassword);
 
-        dispatch(resetPassword(match.params.token, formData))
+        dispatch(resetPassword(token, formData))
     }
 
     return (
