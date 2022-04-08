@@ -147,7 +147,7 @@ export const allFormsReducer = (state = { forms: [] }, action) => {
 //Update and delete form
 export const formReducer = (state = {}, action) => {
     switch (action.type) {
-
+        
         case UPDATE_FORM_REQUEST:
             return {
                 ...state,

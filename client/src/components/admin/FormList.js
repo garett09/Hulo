@@ -13,6 +13,7 @@ const FormList = () => {
     const dispatch = useDispatch();
 
     const { loading, error, forms } = useSelector(state => state.allForms);
+    const { isDeleted } = useSelector((state) => state.form);
     const changeDateFormat = (date) => dateformat(date, "fullDate");
     
     useEffect(() => {
@@ -70,10 +71,11 @@ const FormList = () => {
             totalPrice: form.totalPrice,
             bookingStatus:
               form.bookingStatus &&
-              String(form.bookingStatus).includes("Approved") ? (
+              String(form.bookingStatus).includes("Dates approved and paid") ? (
                 <p style={{ color: "green" }}>{form.bookingStatus}</p>
               ) : (
                 <p style={{ color: "red" }}>{form.bookingStatus}</p>
+                
               ),
             actions: (
               <Link to={`/admin/forms/${form._id}`} className="btn btn-primary">

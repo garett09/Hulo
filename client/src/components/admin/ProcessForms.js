@@ -13,11 +13,12 @@ import { UPDATE_FORM_RESET } from "../../constants/formConstants";
 
 const ProcessForms = () => {
   const [status, setStatus] = useState("");
+  const alert = useAlert()
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { error, formDetails, loading } = useSelector(
+  const { error, formDetails, loading, success } = useSelector(
     (state) => state.formDetails
   );
   const { isUpdated } = useSelector((state) => state.form);
@@ -55,16 +56,16 @@ const ProcessForms = () => {
     }
 
     if (isUpdated) {
-      alert.success("Form has been updated");
+      alert.success("fORM UPDATED");
+      navigate("/admin/forms/all");
       dispatch({ type: UPDATE_FORM_RESET });
     }
   }, [dispatch, id, alert, error, isUpdated, formDetails]);
 
   const updateFormHandler = (id) => {
-    const formData = new FormData();
-    formData.set("status", status);
 
-    dispatch(updateForm(id, formData));
+    dispatch(updateForm(id, { status: status})
+    );
   };
 
   return (
@@ -108,8 +109,9 @@ const ProcessForms = () => {
                         value={status}
                         onChange={(e) => setStatus(e.target.value)}
                       >
-                        <option value="Processing">Processing</option>
-                        <option value="Approved">Approved</option>
+                        <option value="Processing with Dates Approved">Processing with Dates Approved</option>
+                        <option value="Processing with Dates not Approved">Processing with Dates not Approved</option>
+                        <option value="Dates approved and paid">Dates approved and paid</option>
                         <option value="Denied">Denied</option>
                       </select>
                     </div>

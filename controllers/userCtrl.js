@@ -229,8 +229,6 @@ exports.sendConfEmail = catchAsyncErrors(async (req, res, next) => {
   }
 
 
-  //Create reset password URL
-
 
   const message = `
   <div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
@@ -256,8 +254,7 @@ exports.sendConfEmail = catchAsyncErrors(async (req, res, next) => {
       message: `eMail sent to ${user.email}`,
     });
   } catch (error) {
-    
-    await user.save({ validateBeforeSave: false });
+  
     return next(new ErrorHandler(error.message, 500));
   }
 });
