@@ -121,7 +121,7 @@ export const updateForm = (id, formData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.put(`/admin/forms/${id}`, formData, config)
+        const { data } = await axios.put(`/api/v1/admin/forms/${id}`, formData, config)
 
         dispatch({
             type: UPDATE_FORM_SUCCESS,

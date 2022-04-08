@@ -17,7 +17,7 @@ const ProcessForms = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { error, formDetails, success, loading } = useSelector(
+  const { error, formDetails, loading } = useSelector(
     (state) => state.formDetails
   );
   const { isUpdated } = useSelector((state) => state.form);
@@ -33,7 +33,9 @@ const ProcessForms = () => {
   });
   const { firstName, lastName, email } = formRequestor;
   const { villaName } = villaDetails;
-  const [bookingStatus ,setBookingStatus] = useState("")
+  const [bookingStatus, setBookingStatus] = useState("");
+  const [bookingTangina, setBookingTangina] = useState("");
+
   const [TotalPrice, setTotalPrice] = useState("");
 
   useEffect(() => {
@@ -43,8 +45,8 @@ const ProcessForms = () => {
       setFormRequestor(formDetails.formRequestor);
       setVillaDetails(formDetails.villaDetails);
       setTotalPrice(formDetails.totalPrice);
-    }
-    else {
+      setBookingTangina(formDetails.bookingStatus);
+    } else {
       dispatch(getFormDetails(id));
     }
     if (error) {
@@ -56,28 +58,14 @@ const ProcessForms = () => {
       alert.success("Form has been updated");
       dispatch({ type: UPDATE_FORM_RESET });
     }
-  }, [dispatch, id, alert, error, formDetails]);
+  }, [dispatch, id, alert, error, isUpdated, formDetails]);
 
+  const updateFormHandler = (id) => {
+    const formData = new FormData();
+    formData.set("status", status);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-
-    setStatus(status)
-
-
-    const form = new FormData();
-    form.set("status", status);
-
-    dispatch(updateForm(id, form));
+    dispatch(updateForm(id, formData));
   };
-
-  const onChange = (e) => {
-
-    setBookingStatus(e.target.value)
-
-  };
-
-
 
   return (
     <Fragment>
@@ -91,26 +79,24 @@ const ProcessForms = () => {
             {!loading && (
               <div className="row d-flex justify-content-around">
                 <div className="col-12 col-lg-7 order-details">
-
                   <h4 className="mb-4">Shipping Info</h4>
+                  <p>{formDetails._id}</p>
+                  <p>
+                    <b>Name:</b> {firstName + " " + lastName}
+                  </p>
 
-                  <p>
-                    <b>Name:</b> {firstName +" "+ lastName}
-                   
-                  </p>
-                
                   <p className="mb-4">
-                    <b>Booking:</b>{villaName}
-                    
+                    <b>Booking:</b>
+                    {villaName}
                   </p>
                   <p>
-                    <b>Amount:</b> Pesos{TotalPrice}
+                    <b>Amount:</b>{TotalPrice} Pesos
                   </p>
 
                   <hr />
 
                   <h4 className="my-4">Booking Status:</h4>
-                
+                  <p>{bookingTangina}</p>
 
                   <div className="col-12 col-lg-3 mt-5">
                     <h4 className="my-4">Status</h4>
@@ -120,8 +106,8 @@ const ProcessForms = () => {
                       <select
                         className="form-control"
                         name="status"
-                        value={bookingStatus}
-                        onChange={onChange}
+                        value={status}
+                        onChange={(e) => setStatus(e.target.value)}
                       >
                         <option value="Processing">Processing</option>
                         <option value="Approved">Approved</option>
@@ -131,7 +117,7 @@ const ProcessForms = () => {
 
                     <button
                       className="btn btn-primary btn-block"
-                      onClick={submitHandler}
+                      onClick={() => updateFormHandler(formDetails._id)}
                     >
                       Update Status
                     </button>
