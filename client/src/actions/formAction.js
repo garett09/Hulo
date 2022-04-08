@@ -18,6 +18,9 @@ import {
     UPDATE_FORM_SUCCESS,
     UPDATE_FORM_RESET,
     CLEAR_ERRORS,
+    DELETE_FORM_REQUEST,
+    DELETE_FORM_SUCCESS,
+    DELETE_FORM_FAIL,
 } from '../constants/formConstants'
 
 export const createForm = (form) => async (dispatch, getState) => {
@@ -131,6 +134,27 @@ export const updateForm = (id, formData) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: UPDATE_FORM_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// Delete order
+export const deleteForms = (id) => async (dispatch) => {
+    try {
+
+        dispatch({ type: DELETE_FORM_REQUEST })
+
+        const { data } = await axios.delete(`/api/v1/admin/forms/${id}`)
+
+        dispatch({
+            type: DELETE_FORM_SUCCESS,
+            payload: data.success
+        })
+
+    } catch (error) {
+        dispatch({
+            type: DELETE_FORM_FAIL,
             payload: error.response.data.message
         })
     }

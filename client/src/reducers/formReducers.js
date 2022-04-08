@@ -16,6 +16,10 @@ import {
     FORM_DETAILS_SUCCESS,
     FORM_DETAILS_FAIL,
     CLEAR_ERRORS,
+    DELETE_FORM_REQUEST,
+    DELETE_FORM_SUCCESS,
+    DELETE_FORM_FAIL,
+    DELETE_FORM_RESET
 } from '../constants/formConstants'
 
 export const newFormReducer = (state = {form:[]}, action ) => {
@@ -149,7 +153,7 @@ export const allFormsReducer = (state = { forms: [] }, action) => {
 //Update and delete form
 export const formReducer = (state = {}, action) => {
     switch (action.type) {
-        
+        case DELETE_FORM_REQUEST:
         case UPDATE_FORM_REQUEST:
             return {
                 ...state,
@@ -157,7 +161,6 @@ export const formReducer = (state = {}, action) => {
             }
 
         case UPDATE_FORM_SUCCESS:
-            console.log(action.payload)
             return {
                 
                 ...state,
@@ -166,6 +169,14 @@ export const formReducer = (state = {}, action) => {
                 form: action.payload
             }
 
+        case DELETE_FORM_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isDeleted: action.payload,
+                form: action.payload
+            }
+        case DELETE_FORM_FAIL:
         case UPDATE_FORM_FAIL:
             return {
                 ...state,
@@ -173,6 +184,7 @@ export const formReducer = (state = {}, action) => {
                 loading: false
             }
 
+        case DELETE_FORM_RESET:    
         case UPDATE_FORM_RESET:
             return {
                 ...state,
