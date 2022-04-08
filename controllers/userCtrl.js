@@ -219,6 +219,50 @@ exports.logoutUser = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+//Forgot Password => /api/v1/password/confirmation
+exports.sendConfEmail = catchAsyncErrors(async (req, res, next) => {
+  const user = await Users.findOne({ email: req.body.email });
+
+
+  if (!user) {
+    return next(new ErrorHandler("No user with that email", 404));
+  }
+
+
+  //Create reset password URL
+
+
+  const message = `
+  <div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
+  <h2 style="text-align: center; text-transform: uppercase;color: teal;">Hulo Leisure Farm</h2>
+  <p>You are one step closer to getting your booking with us!
+      Kindly attach the screenshot of your payment in the link below.
+  </p>
+  <a href="https://paypal.me/garett09?country.x=PH&locale.x=en_US"style="background: #3b7bbf; text-decoration: none; color: white; padding: 10px 20px; margin: 10px 0; display: inline-block;">Send your payment here</a>
+
+  <div></div>
+  </div>
+`;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: "Hulo - Confirmation",
+      message,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: `eMail sent to ${user.email}`,
+    });
+  } catch (error) {
+    
+    await user.save({ validateBeforeSave: false });
+    return next(new ErrorHandler(error.message, 500));
+  }
+});
+
+
 //Admin Routes
 
 // Get all users   =>   /api/v1/admin/users

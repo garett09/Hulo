@@ -14,7 +14,8 @@ const {
   allUsers,
   getUserDetails,
   updateUser,
-  deleteUser
+  deleteUser,
+  sendConfEmail
 } = require("../controllers/userCtrl");
 
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
@@ -24,6 +25,7 @@ router.route("/login").post(loginUser);
 router.route("/logout").get(logoutUser);
 
 router.route("/password/forgot").post(forgotPassword);
+router.route("/password/confirmation").post(sendConfEmail);
 router.route("/password/reset/:token").put(resetPassword);
 
 router.route("/me").get(isAuthenticatedUser, getUserProfile);
