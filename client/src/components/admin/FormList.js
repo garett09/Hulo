@@ -5,6 +5,7 @@ import dateformat from "dateformat";
 import Sidebar from './Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
+import {Button} from '@mui/material'
 import { deleteForm, allForms, clearErrors } from '../../actions/formAction'
 import { DELETE_FORM_RESET } from '../../constants/formConstants'
 
@@ -77,19 +78,20 @@ const FormList = () => {
                     villaName: form.villaDetails.villaName,
                     totalPrice: form.totalPrice,
                     bookingStatus:
-                        form.bookingStatus &&
-                            String(form.bookingStatus).includes("Dates approved and paid") ? (
-                            <p style={{ color: "green" }}>{form.bookingStatus}</p>
-                        ) : (
-                            <p style={{ color: "red" }}>{form.bookingStatus}</p>
-
-                        ),
+                    form.bookingStatus &&
+                    String(form.bookingStatus).includes("Dates approved and paid") ? (
+                      <p style={{ color: "green" }}>{form.bookingStatus}</p>
+                    ) : String(form.bookingStatus).includes("Processing") ? (
+                      <p style={{ color: "yellow" }}>{form.bookingStatus}</p>
+                    ) : (
+                      <p style={{ color: "red" }}>{form.bookingStatus}</p>
+                    ),
                     actions: (
                         <>
                             <Link to={`/admin/forms/${form._id}`} className="btn btn-primary">
                                 <i className="fa fa-eye"></i>
                             </Link>
-                            <button onClick={() => deleteHandler(form._id)} disabled={deleteLoading}>Delete</button>
+                            <Button className="btn btn-secondary" onClick={() => deleteHandler(form._id)} disabled={deleteLoading}><i className="fa fa-trash"></i></Button>
                         </>
                     ),
                 });
