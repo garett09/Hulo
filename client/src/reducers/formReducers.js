@@ -155,7 +155,9 @@ export const formReducer = (state = {}, action) => {
             }
 
         case UPDATE_FORM_SUCCESS:
+            console.log(action.payload)
             return {
+                
                 ...state,
                 loading: false,
                 isUpdated: action.payload

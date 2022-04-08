@@ -17,7 +17,7 @@ const ProcessForms = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { error, formDetails, success, loading } = useSelector(
+  const { error, forms, success, loading } = useSelector(
     (state) => state.formDetails
   );
   const { isUpdated } = useSelector((state) => state.form);
@@ -34,17 +34,21 @@ const ProcessForms = () => {
   const { firstName, lastName, email } = formRequestor;
   const { villaName } = villaDetails;
   const [BookingStatus, setBookingStatus] = useState("");
+  const [bookingStatus ,setbookingStatus] = useState("")
   const [TotalPrice, setTotalPrice] = useState("");
 
   useEffect(() => {
-    if (formDetails && formDetails._id !== id) {
+    if (forms && forms._id !== id) {
       dispatch(getFormDetails(id));
-    } else if (formDetails) {
-      setFormRequestor(formDetails.formRequestor);
-      setVillaDetails(formDetails.villaDetails);
-      setTotalPrice(formDetails.totalPrice);
-      setBookingStatus(formDetails.bookingStatus);
-      setTotalPrice(formDetails.totalPrice);
+    } else if (forms) {
+      setFormRequestor(forms.formRequestor);
+      setVillaDetails(forms.villaDetails);
+      setTotalPrice(forms.totalPrice);
+      setbookingStatus(forms.bookingStatus);
+      setTotalPrice(forms.totalPrice);
+    }
+    else {
+      dispatch(getFormDetails(id));
     }
     if (error) {
       alert.error(error);
@@ -55,11 +59,12 @@ const ProcessForms = () => {
       alert.success("Form has been updated");
       dispatch({ type: UPDATE_FORM_RESET });
     }
-  }, [dispatch, id, alert, error]);
+  }, [dispatch, id, alert, error, forms]);
+
   const updateFormHandler = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.set("bookingStatus", BookingStatus);
+    formData.set("bookingStatus", bookingStatus);
 
     dispatch(updateForm(id, formData));
     console.log(formData);
@@ -78,11 +83,11 @@ const ProcessForms = () => {
             {!loading && (
               <div className="row d-flex justify-content-around">
                 <div className="col-12 col-lg-7 order-details">
-                  <h2 className="my-5">Order # {formDetails._id}</h2>
 
                   <h4 className="mb-4">Shipping Info</h4>
                   <p>
                     <b>Name:</b> {firstName +" "+ lastName}
+                   
                   </p>
                 
                   <p className="mb-4">
@@ -96,16 +101,7 @@ const ProcessForms = () => {
                   <hr />
 
                   <h4 className="my-4">Booking Status:</h4>
-                  <p
-                    className={
-                      formDetails.formStatus &&
-                      String(formDetails.formStatus).includes("Approved")
-                        ? "greenColor"
-                        : "redColor"
-                    }
-                  >
-                    <b>{BookingStatus}</b>
-                  </p>
+                
 
                   <div className="col-12 col-lg-3 mt-5">
                     <h4 className="my-4">Status</h4>
@@ -125,7 +121,7 @@ const ProcessForms = () => {
 
                     <button
                       className="btn btn-primary btn-block"
-                      onClick={() => updateFormHandler(formDetails._id)}
+                      onClick={() => updateFormHandler(forms._id)}
                     >
                       Update Status
                     </button>
