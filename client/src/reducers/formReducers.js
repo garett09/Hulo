@@ -86,7 +86,7 @@ export const formDetailsReducer = (state = { formsDetails: {} }, action) => {
         case FORM_DETAILS_SUCCESS:
             return {
                 loading: false,
-                forms: action.payload,
+                forms: action.payload.forms,
                 success: action.payload.success,
                 formDetails: action.payload.form
                 

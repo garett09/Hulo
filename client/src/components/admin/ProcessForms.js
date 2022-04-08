@@ -17,7 +17,7 @@ const ProcessForms = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { error, forms, success, loading } = useSelector(
+  const { error, formDetails, success, loading } = useSelector(
     (state) => state.formDetails
   );
   const { isUpdated } = useSelector((state) => state.form);
@@ -38,14 +38,14 @@ const ProcessForms = () => {
   const [TotalPrice, setTotalPrice] = useState("");
 
   useEffect(() => {
-    if (forms && forms._id !== id) {
+    if (formDetails && formDetails._id !== id) {
       dispatch(getFormDetails(id));
-    } else if (forms) {
-      setFormRequestor(forms.formRequestor);
-      setVillaDetails(forms.villaDetails);
-      setTotalPrice(forms.totalPrice);
-      setbookingStatus(forms.bookingStatus);
-      setTotalPrice(forms.totalPrice);
+    } else if (formDetails) {
+      setFormRequestor(formDetails.formRequestor);
+      setVillaDetails(formDetails.villaDetails);
+      setTotalPrice(formDetails.totalPrice);
+      setbookingStatus(formDetails.bookingStatus);
+      setTotalPrice(formDetails.totalPrice);
     }
     else {
       dispatch(getFormDetails(id));
@@ -59,7 +59,7 @@ const ProcessForms = () => {
       alert.success("Form has been updated");
       dispatch({ type: UPDATE_FORM_RESET });
     }
-  }, [dispatch, id, alert, error, forms]);
+  }, [dispatch, id, alert, error, formDetails]);
 
   const updateFormHandler = (e) => {
     e.preventDefault();
@@ -121,7 +121,7 @@ const ProcessForms = () => {
 
                     <button
                       className="btn btn-primary btn-block"
-                      onClick={() => updateFormHandler(forms._id)}
+                      onClick={() => updateFormHandler(formDetails._id)}
                     >
                       Update Status
                     </button>
