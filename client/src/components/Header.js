@@ -27,9 +27,7 @@ const navigationLinks = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/aboutus" },
   { name: "Accomodation", href: "/accomodation" },
-  { name: "Event Hall", href: "/celsohall" },
-  { name: "Resort Rules", href: "" },
-  { name: "FAQs", href: "" },
+  { name: "Book Now", href: "/form/new" },
 ];
 
 function Header() {

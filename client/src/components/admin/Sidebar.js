@@ -23,6 +23,11 @@ const Sidebar = () => {
               <i className="fa fa-users"></i> Users
             </Link>
           </li>
+          <li>
+            <Link to="/">
+            <i class="fa fa-home" aria-hidden="true"></i> Main Menu
+            </Link>
+          </li>
         </ul>
       </nav>
     </div>

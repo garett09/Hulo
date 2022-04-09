@@ -98,7 +98,6 @@ const CustomerForm = () => {
     form.set("checkOutDate", checkOutDate);
 
     dispatch(createForm(form));
-    console.log(userInfo);
   };
 
   useEffect(() => {
@@ -108,7 +107,7 @@ const CustomerForm = () => {
     }
 
     if (success) {
-      alert.success("Form was sent successfully please wait for admin approval");
+      alert.success("Please check your email for confirmation");
       nav("/");
     }
   }, [dispatch, alert, error, success]);
@@ -122,7 +121,7 @@ const CustomerForm = () => {
     <div>
       <form onSubmit={submitHandler}>
         <Grid>
-          <Grid container justifyContent="center" >
+          <Grid container justifyContent="center">
             <Typography variant="h2" component="h2">
               Customer Booking
             </Typography>
@@ -130,7 +129,7 @@ const CustomerForm = () => {
 
           <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
             <TextField
-            InputLabelProps={{ shrink: true }}
+              InputLabelProps={{ shrink: true }}
               type="text"
               name="firstName"
               label="First Name"
@@ -151,7 +150,7 @@ const CustomerForm = () => {
           </Grid>
           <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
             <TextField
-            InputLabelProps={{ shrink: true }}
+              InputLabelProps={{ shrink: true }}
               type="text"
               name="email"
               label="Email"
@@ -160,64 +159,68 @@ const CustomerForm = () => {
             />
           </Grid>
           <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
-          <FormControl width={4}>
-            <select name="villaName" value={selectedField} onChange={onChange}>
-              <option value="">-</option>
-              {villas.map((villa) => (
-                <option value={villa._villaName}>{villa.villaName}</option>
-              ))}
-            </select>
-          </FormControl>
+            <FormControl width={4}>
+              <select
+                name="villaName"
+                value={selectedField}
+                onChange={onChange}
+              >
+                <option value="">-</option>
+                {villas.map((villa) => (
+                  <option value={villa._villaName}>{villa.villaName}</option>
+                ))}
+              </select>
+            </FormControl>
           </Grid>
 
           <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
-          <TextField
-          InputLabelProps={{ shrink: true }}
-            shrink
-            type="text"
-            name="villaPrice"
-            label="Villa Price"
-            value={fields.price}
-            onChange={onChange}
-          />
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              shrink
+              type="text"
+              name="villaPrice"
+              label="Villa Price"
+              value={fields.price}
+              onChange={onChange}
+            />
           </Grid>
 
           <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
-          <TextField
-          InputLabelProps={{ shrink: true }}
-            type="date"
-            label="Check In"
-            value={checkInDate}
-            onChange={(e) => setCheckInDate(e.target.value)}
-            dateFormat="yyyy/MM/dd"
-          />
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              type="date"
+              label="Check In"
+              value={checkInDate}
+              onChange={(e) => setCheckInDate(e.target.value)}
+              dateFormat="yyyy/MM/dd"
+            />
           </Grid>
 
           <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
-          <TextField
-          InputLabelProps={{ shrink: true }}
-            type="date"
-            label="Check Out"
-            value={checkOutDate}
-            onChange={(e) => setCheckOutDate(e.target.value)}
-            dateFormat="yyyy/MM/dd"
-          />
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              type="date"
+              label="Check Out"
+              value={checkOutDate}
+              onChange={(e) => setCheckOutDate(e.target.value)}
+              dateFormat="yyyy/MM/dd"
+            />
           </Grid>
 
           <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
-          <Button
-            text="submit"
-            type="submit"
-            style={{
-              marginLeft: "46px",
-              borderRadius: 35,
-              backgroundColor: "#73c2fd",
-              padding: "12px 24px",
-              fontSize: "12px",
-            }}
-          >
-            SUBMIT
-          </Button>
+            <Button
+              text="submit"
+              type="submit"
+              style={{
+                marginLeft: "46px",
+                borderRadius: 35,
+                backgroundColor: "#73c2fd",
+                padding: "12px 24px",
+                fontSize: "12px",
+              }}
+            >
+              SUBMIT
+            </Button>
           </Grid>
         </Grid>
       </form>

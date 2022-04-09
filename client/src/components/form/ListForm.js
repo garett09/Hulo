@@ -89,7 +89,7 @@ const ListForm = () => {
 
   return (
     <Fragment>
-      <h1 className="my-5">My Orders</h1>
+      <h1 className="my-5">My Bookings</h1>
 
       <MDBDataTable data={setForm()} className="px-3" bordered striped hover />
     </Fragment>

@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import "../../components/user/user.css";
 import Sidebar from "./Sidebar";
-
+import {Button} from "@mui/material"
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,9 +13,10 @@ import { UPDATE_USER_RESET } from "../../constants/userConstants";
 import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateAdminUser = () => {
-  const { user, error, isUpdated, loading } = useSelector(
+  const { user, error, loading } = useSelector(
     (state) => state.userDetails
   );
+  const {isUpdated } = useSelector(state => state.user)
 
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
@@ -128,12 +129,12 @@ const UpdateAdminUser = () => {
                     </select>
                   </div>
 
-                  <button
+                  <Button
                     type="submit"
                     className="btn update-btn btn-block mt-4 mb-3"
                   >
                     Update
-                  </button>
+                  </Button>
                 </form>
               )}
             </div>

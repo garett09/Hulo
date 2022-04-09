@@ -82,7 +82,7 @@ const FormList = () => {
                     String(form.bookingStatus).includes("Dates approved and paid") ? (
                       <p style={{ color: "green" }}>{form.bookingStatus}</p>
                     ) : String(form.bookingStatus).includes("Processing") ? (
-                      <p style={{ color: "yellow" }}>{form.bookingStatus}</p>
+                      <p style={{ color: "#DBA800" }}>{form.bookingStatus}</p>
                     ) : (
                       <p style={{ color: "red" }}>{form.bookingStatus}</p>
                     ),
@@ -114,7 +114,7 @@ const FormList = () => {
 
                 <div className="col-12 col-md-10">
                     <Fragment>
-                        <h1 className="my-5">All Orders</h1>
+                        <h1 className="my-5">All Bookings</h1>
 
                         {!loading &&
                             <MDBDataTable

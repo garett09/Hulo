@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@mui/material";
-import { allUsers, clearErrors } from "../../actions/userActions";
+import { allUsers, clearErrors, deleteUser } from "../../actions/userActions";
 import { DELETE_USER_RESET } from "../../constants/userConstants";
 
 const UsersList = () => {
@@ -15,7 +15,7 @@ const UsersList = () => {
   const navigate = useNavigate();
 
   const { loading, error, users } = useSelector((state) => state.allUsers);
-  //const { isDeleted, loading: deleteLoading } = useSelector((state) => state.user);
+  const { isDeleted, loading: deleteLoading } = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(allUsers());
@@ -24,18 +24,18 @@ const UsersList = () => {
       dispatch(clearErrors());
     }
 
-    // if (isDeleted) {
-    //     alert.success('Form deleted')
-    //     navigate('/admin/forms/all')
-    //     dispatch({ type: DELETE_FORM_RESET })
-    // }
-  }, [dispatch, alert, error, allUsers]);
+    if (isDeleted) {
+        alert.success('User deleted SUCCESSFULLY')
+        navigate('/admin/users')
+        dispatch({ type: DELETE_USER_RESET })
+    }
+  }, [dispatch, alert, error, allUsers, isDeleted, navigate]);
 
   const setUsers = () => {
     const data = {
       columns: [
         {
-          label: "User id",
+          label: "User ID",
           field: "id",
           width: 100,
         },
@@ -75,9 +75,7 @@ const UsersList = () => {
             <Link to={`/admin/user/${user._id}`} className="btn btn-primary py-1 px-2">
                 <i className="fa fa-pencil"></i>
             </Link>
-            {/* <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteUserHandler(user._id)}>
-                <i className="fa fa-trash"></i>
-            </button> */}
+            <Button className="btn btn-secondary" onClick={() => deleteHandler(user._id)} disabled={deleteLoading}><i className="fa fa-trash"></i></Button>
         </Fragment>
           ),
         });
@@ -85,6 +83,12 @@ const UsersList = () => {
 
     return data;
   };
+
+  const deleteHandler = id => {
+    if (window.confirm('delete?')) {
+        dispatch(deleteUser(id))
+    }
+}
 
   return (
     <Fragment>
