@@ -6,7 +6,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
 //Create a new form => /api/v1/form/new
 exports.newForm = catchAsyncErrors(async (req, res, next) => {
-  const { checkInDate, checkOutDate, attachments,  duration } = req.body;
+  const { checkInDate, checkOutDate, attachments, totalPrice } = req.body;
   
 
   const formRequestor = {
@@ -28,11 +28,10 @@ exports.newForm = catchAsyncErrors(async (req, res, next) => {
   //const totalPrice = villa.villaPrice * duration;
 
   const form = await Forms.create({
-    duration,
     villaDetails,
     formRequestor,
     checkInDate,
-    //totalPrice,
+    totalPrice,
     checkOutDate,
     attachments,
     sentAt: Date.now(),

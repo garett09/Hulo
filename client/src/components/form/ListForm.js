@@ -68,14 +68,16 @@ const ListForm = () => {
           createdAt: changeDateFormat(form.createdAt),
           name: form.formRequestor.firstName + " " + form.formRequestor.lastName,
           villaName: form.villaDetails.villaName,
-          totalPrice: form.totalPrice,
+          totalPrice: form.totalPrice.toLocaleString('en-US') + " ₱",
           bookingStatus:
-            form.bookingStatus &&
-            String(form.bookingStatus).includes("Dates approved and paid") ? (
-              <p style={{ color: "green" }}>{form.bookingStatus}</p>
-            ) : (
-              <p style={{ color: "red" }}>{form.bookingStatus}</p>
-            ),
+                    form.bookingStatus &&
+                    String(form.bookingStatus).includes("Dates approved and paid") ? (
+                      <p style={{ color: "green" }}>{form.bookingStatus}</p>
+                    ) : String(form.bookingStatus).includes("Processing") ? (
+                      <p style={{ color: "#DBA800" }}>{form.bookingStatus}</p>
+                    ) : (
+                      <p style={{ color: "red" }}>{form.bookingStatus}</p>
+                    ),
           actions: (
             <Link to={`/form/${form._id}`} className="btn btn-primary">
               <i className="fa fa-eye"></i>

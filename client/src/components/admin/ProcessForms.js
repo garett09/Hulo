@@ -80,9 +80,10 @@ const ProcessForms = () => {
             {!loading && (
               <div className="row d-flex justify-content-around">
                 <div className="col-12 col-lg-7 order-details">
-                  <h4 className="mb-4">Shipping Info</h4>
+                  <h4 className="mb-4">Booking Info</h4>
+                  <h3 className="mb-4">The booking ID is {id} </h3>
                   <p>
-                    <b>Name:</b> {firstName + " " + lastName}
+                    <b>Name: </b> {firstName + " " + lastName}
                   </p>
 
                   <p className="mb-4">
@@ -90,7 +91,7 @@ const ProcessForms = () => {
                     {villaName}
                   </p>
                   <p>
-                    <b>Amount:</b>{TotalPrice} Pesos
+                    <b>Amount: </b>{TotalPrice.toLocaleString('en-US') + " ₱"} Pesos
                   </p>
 
                   <hr />

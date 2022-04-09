@@ -1,11 +1,13 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-
+import dateformat from "dateformat";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { getFormDetails, clearErrors } from "../../actions/formAction";
 
+
 const FormDetails = ({ match }) => {
+  const changeDateFormat = (date) => dateformat(date, "fullDate");
   const alert = useAlert();
   const dispatch = useDispatch();
 
@@ -27,7 +29,7 @@ const FormDetails = ({ match }) => {
   });
 
   const { firstName, lastName, email } = formRequestor;
-  const { villaName } = villaDetails;
+  const { villaName, villaPrice } = villaDetails;
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
   const [totalPrice, setTotalPrice] = useState("");
@@ -55,12 +57,25 @@ const FormDetails = ({ match }) => {
     }
   }, [dispatch, alert, error, formDetails, id]);
 
+  const date1 = new Date(changeDateFormat(checkOutDate));
+  const date2 = new Date(changeDateFormat(checkInDate));
+
+  function getDifferenceInDays(date1, date2) {
+    const diffInMs = Math.abs(date2 - date1);
+    return diffInMs / (1000 * 60 * 60 * 24);
+  }
+
+  const totalDays = getDifferenceInDays(date1, date2);
+  const totalPricePerDay = totalPrice / totalDays;
+  const finalPrice = villaPrice * totalDays;
+
   return (
     <Fragment>
       {!loading && (
         <div className="row d-flex justify-content-between">
           <div className="col-12 col-lg-8 mt-5 order-details">
-            <h4 className="mb-4">Shipping Info</h4>
+            <h1 className="mb-4">Booking Info</h1>
+            <h3 className="mb-4">Your booking ID is {id} </h3>
 
             <p>
               <b>Name:</b> {firstName + lastName}
@@ -72,20 +87,32 @@ const FormDetails = ({ match }) => {
               <b>Villa Name:</b> {villaName}
             </p>
             <p>
-              <b>Check In Date:</b> {checkInDate}
+              <b>Check In Date:</b> {changeDateFormat(checkInDate)}
             </p>
             <p>
-              <b>Check Out Date:</b> {checkOutDate}
+              <b>Check Out Date:</b> {changeDateFormat(checkOutDate)}
             </p>
             <p>
-              <b>Total Price:</b> {totalPrice}
+              <b>Number of days:</b> {getDifferenceInDays(date2,date1)}
             </p>
             <p>
+              <b>Number of Nights:</b> {totalDays-1}
+            </p>
+            <hr></hr>
+            <h2>
+              <b>Total Price:</b> {finalPrice.toLocaleString('en-US')} ₱
+            </h2>
+            <h3>
             <b>booking status:</b> {bookingStatus}
-          </p>
+          </h3>
+
+          <h4>
+          <a href= "https://www.paypal.me/garett09?country.x=PH&locale.x=en_US" className="btn btn-primary" target="_blank"><i className="fa fa-money"> Pay here via PayPal</i> </a>
+          </h4>
           </div>
         </div>
       )}
+      <button className="btn btn-secondary" onClick={() =>navigate("/forms/me")}><i className="fa fa-arrow-left"> Go back</i> </button>
     </Fragment>
   );
 };

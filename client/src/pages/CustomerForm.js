@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
+import dateformat from "dateformat";
 import { useAlert } from "react-alert";
 import {
   Typography,
@@ -18,6 +19,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const CustomerForm = () => {
+  
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     lastName: "",
@@ -34,6 +36,7 @@ const CustomerForm = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { user } = useSelector((state) => state.auth);
+  const changeDateFormat = (date) => dateformat(date, "fullDate");
 
   const { error, success } = useSelector((state) => state.newForm);
 
@@ -41,6 +44,7 @@ const CustomerForm = () => {
   const [loading, setLoading] = useState(true);
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
+  let [totalPrice, setTotalPrice] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,6 +76,16 @@ const CustomerForm = () => {
     });
   }, [selectedField]);
 
+  const date1 = new Date(changeDateFormat(checkOutDate));
+  const date2 = new Date(changeDateFormat(checkInDate));
+
+  function getDifferenceInDays(date1, date2) {
+    const diffInMs = Math.abs(date2 - date1);
+    return diffInMs / (1000 * 60 * 60 * 24);
+  }
+
+  const totalDays = getDifferenceInDays(date1, date2);
+
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -86,6 +100,7 @@ const CustomerForm = () => {
 
     setCheckInDate(checkInDate);
     setCheckOutDate(checkOutDate);
+    setTotalPrice(totalPrice);
 
     const form = new FormData();
     form.set("firstName", firstName);
@@ -96,10 +111,18 @@ const CustomerForm = () => {
     form.set("description", description);
     form.set("checkInDate", checkInDate);
     form.set("checkOutDate", checkOutDate);
+    form.set("totalPrice", totalPrice);
 
     dispatch(createForm(form));
   };
 
+
+ const overAllPrice= fields.price
+ let finalPrice = overAllPrice * totalDays;
+  totalPrice = finalPrice;
+
+  console.log(totalDays)
+  
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -114,6 +137,9 @@ const CustomerForm = () => {
 
   const onChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+  
+    setCheckInDate(e.target.value);
+    setCheckOutDate(e.target.value);
     setSelectedField(e.target.value);
   };
 
@@ -180,7 +206,16 @@ const CustomerForm = () => {
               type="text"
               name="villaPrice"
               label="Villa Price"
-              value={fields.price}
+              value={fields.price.toLocaleString('en-US') + " ₱"}
+              onChange={onChange}
+            />
+             <TextField
+              InputLabelProps={{ shrink: true }}
+              shrink
+              type="text"
+              name="totalPrice"
+              label="Total Price"
+              value={finalPrice.toLocaleString('en-US') + " ₱"}
               onChange={onChange}
             />
           </Grid>

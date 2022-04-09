@@ -76,7 +76,7 @@ const FormList = () => {
                     createdAt: changeDateFormat(form.createdAt),
                     name: form.formRequestor.firstName + " " + form.formRequestor.lastName,
                     villaName: form.villaDetails.villaName,
-                    totalPrice: form.totalPrice,
+                    totalPrice: form.totalPrice.toLocaleString('en-US') + " ₱",
                     bookingStatus:
                     form.bookingStatus &&
                     String(form.bookingStatus).includes("Dates approved and paid") ? (
