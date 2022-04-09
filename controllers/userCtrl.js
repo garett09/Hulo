@@ -290,14 +290,7 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
 
 // Update user profile   =>   /api/v1/admin/user/:id
 exports.updateUser = catchAsyncErrors(async (req, res, next) => {
-  const newUserData = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    role: req.body.role,
-  };
-
-  const user = await Users.findByIdAndUpdate(req.params.id, newUserData, {
+  const user = await Users.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
     useFindAndModify: false,
@@ -305,6 +298,8 @@ exports.updateUser = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
+    user
+
   });
 });
 
