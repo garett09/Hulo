@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
 import { useAlert } from "react-alert";
-import { Typography, Grid, Input, Button, TextField, Box} from "@mui/material";
+import {
+  Typography,
+  Grid,
+  Input,
+  Button,
+  TextField,
+  Box,
+  FormControl,
+  InputLabel,
+} from "@mui/material";
 
 import { createForm, clearErrors } from "../actions/formAction";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
 
 const CustomerForm = () => {
   const [userInfo, setUserInfo] = useState({
@@ -17,29 +25,22 @@ const CustomerForm = () => {
     villaName: "",
     villaPrice: 0,
     description: "",
-
   });
 
-  const {
-    firstName,
-    lastName,
-    email,
-    villaName,
-    villaPrice,
-    description,
-  } = userInfo;
+  const { firstName, lastName, email, villaName, villaPrice, description } =
+    userInfo;
 
   const alert = useAlert();
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { user } = useSelector((state) => state.auth);
 
-  const { error, success } = useSelector(state => state.newForm);
-  
+  const { error, success } = useSelector((state) => state.newForm);
+
   const [villas, setVillasArr] = useState([]);
   const [loading, setLoading] = useState(true);
   const [checkInDate, setCheckInDate] = useState("");
-  const [checkOutDate, setCheckOutDate] = useState("")
+  const [checkOutDate, setCheckOutDate] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -86,8 +87,6 @@ const CustomerForm = () => {
     setCheckInDate(checkInDate);
     setCheckOutDate(checkOutDate);
 
-
-
     const form = new FormData();
     form.set("firstName", firstName);
     form.set("lastName", lastName);
@@ -98,98 +97,114 @@ const CustomerForm = () => {
     form.set("checkInDate", checkInDate);
     form.set("checkOutDate", checkOutDate);
 
-
     dispatch(createForm(form));
     console.log(userInfo);
   };
 
-useEffect(() => {
-
+  useEffect(() => {
     if (error) {
-        alert.error(error);
-        dispatch(clearErrors());
+      alert.error(error);
+      dispatch(clearErrors());
     }
 
     if (success) {
-        alert.success('Password updated successfully')
-       nav('/login')
+      alert.success("Form was sent successfully please wait for admin approval");
+      nav("/");
     }
-
-}, [dispatch, alert, error, success])
+  }, [dispatch, alert, error, success]);
 
   const onChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
     setSelectedField(e.target.value);
-    
   };
 
   return (
     <div>
       <form onSubmit={submitHandler}>
         <Grid>
-          <Grid container>
+          <Grid container justifyContent="center" >
             <Typography variant="h2" component="h2">
               Customer Booking
             </Typography>
           </Grid>
-          <Grid item xs={6}></Grid>
 
-          <Input
-            type="text"
-            name="firstName"
-            label="first Name"
-            value={user && user.firstName}
-            onChange={onChange}
-          />
-          <Input
-            type="text"
-            name="lastName"
-            label="Last Name"
-            value={user && user.lastName}
-            onChange={onChange}
-          />
+          <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
+            <TextField
+            InputLabelProps={{ shrink: true }}
+              type="text"
+              name="firstName"
+              label="First Name"
+              value={user && user.firstName}
+              onChange={onChange}
+            />
+          </Grid>
 
-          <Input
-            type="text"
-            name="email"
-            label="email"
-            value={user && user.email}
-            onChange={onChange}
-          />
+          <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              type="text"
+              name="lastName"
+              label="Last Name"
+              value={user && user.lastName}
+              onChange={onChange}
+            />
+          </Grid>
+          <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
+            <TextField
+            InputLabelProps={{ shrink: true }}
+              type="text"
+              name="email"
+              label="Email"
+              value={user && user.email}
+              onChange={onChange}
+            />
+          </Grid>
+          <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
+          <FormControl width={4}>
+            <select name="villaName" value={selectedField} onChange={onChange}>
+              <option value="">-</option>
+              {villas.map((villa) => (
+                <option value={villa._villaName}>{villa.villaName}</option>
+              ))}
+            </select>
+          </FormControl>
+          </Grid>
 
-          <select name="villaName" value={selectedField} onChange={onChange}>
-            <option value="">-</option>
-            {villas.map((villa) => (
-              <option value={villa._villaName}>{villa.villaName}</option>
-            ))} 
-          </select>
-
-          <Input
+          <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
+          <TextField
+          InputLabelProps={{ shrink: true }}
+            shrink
             type="text"
             name="villaPrice"
+            label="Villa Price"
             value={fields.price}
             onChange={onChange}
           />
+          </Grid>
 
-          
-          <Input 
-          type="date"
-          value ={checkInDate}
-          onChange = {e => setCheckInDate(e.target.value)}
-          dateFormat = "yyyy/MM/dd"
+          <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
+          <TextField
+          InputLabelProps={{ shrink: true }}
+            type="date"
+            label="Check In"
+            value={checkInDate}
+            onChange={(e) => setCheckInDate(e.target.value)}
+            dateFormat="yyyy/MM/dd"
           />
+          </Grid>
 
-
-          
-          <Input 
-          type="date"
-          value ={checkOutDate}
-          onChange = { e => setCheckOutDate(e.target.value)}
-          dateFormat = "yyyy/MM/dd"
+          <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
+          <TextField
+          InputLabelProps={{ shrink: true }}
+            type="date"
+            label="Check Out"
+            value={checkOutDate}
+            onChange={(e) => setCheckOutDate(e.target.value)}
+            dateFormat="yyyy/MM/dd"
           />
-          
+          </Grid>
 
-
+          <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
           <Button
             text="submit"
             type="submit"
@@ -203,6 +218,7 @@ useEffect(() => {
           >
             SUBMIT
           </Button>
+          </Grid>
         </Grid>
       </form>
     </div>

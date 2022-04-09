@@ -1,10 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import "../user/user.css";
-
-
-
 import { Link, useNavigate } from "react-router-dom";
-
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { register, clearErrors } from "../../actions/userActions";
