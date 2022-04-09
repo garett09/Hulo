@@ -35,6 +35,7 @@ import Dashboard from "./components/admin/Dashboard";
 import VillasList from "./components/admin/VillasList";
 import FormList from "./components/admin/FormList";
 import ProcessForms from "./components/admin/ProcessForms";
+import UsersList from "./components/admin/UsersList";
 
 function App() {
   useEffect(() => {
@@ -78,6 +79,8 @@ function App() {
             <Route path="/admin/villas" element={<VillasList />} isAdmin ={true} />
             <Route path="/admin/forms/all" element ={<FormList/>} isAdmin ={true} />
             <Route path="/admin/forms/:id" element={<ProcessForms />} isAdmin ={true} />
+            <Route path="/admin/users" element ={<UsersList/>} isAdmin ={true} />
+
 
           </Route>
         </Routes>
