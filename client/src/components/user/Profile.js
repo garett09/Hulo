@@ -3,6 +3,8 @@ import { Link,useNavigate } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux'
 import { useAlert } from 'react-alert'
 import { clearErrors } from '../../actions/formAction'
+import { Grid } from "@mui/material";
+import Header2 from "../../components/Header2"
 
 
 const Profile = () => {
@@ -26,6 +28,7 @@ const Profile = () => {
         <Fragment>
               {!loading && 
               <>
+              <Grid><Header2/></Grid>
                     <h2 className="mt-5 ml-5">My Profile</h2>
                     <div className="row justify-content-around mt-5 user-info">
                         <div className="col-12 col-md-3">

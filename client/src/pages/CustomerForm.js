@@ -17,6 +17,8 @@ import { createForm, clearErrors } from "../actions/formAction";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Header2 from "../../src/components/Header2"
+
 
 
 const CustomerForm = () => {
@@ -149,8 +151,9 @@ finalPriceInPeso.format(fields.price);
 
   return (
     <div>
+      <Grid><Header2/></Grid>
       <form onSubmit={submitHandler}>
-        <Grid>
+        <Grid sx={{paddingTop: 12}}>
           <Grid container justifyContent="center">
             <Typography variant="h2" component="h2">
               Customer Booking

@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateProfile, loadUser, clearErrors } from '../../actions/userActions'
 import { UPDATE_PROFILE_RESET } from '../../constants/userConstants'
 import {useNavigate } from "react-router-dom";
+import { Grid } from "@mui/material";
+import Header2 from "../../components/Header2";
 
 const UpdateProfile = ({ history }) => {
 
@@ -77,6 +79,8 @@ const UpdateProfile = ({ history }) => {
     }
     return (
         <Fragment>
+
+            <Grid><Header2/></Grid>
 
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
