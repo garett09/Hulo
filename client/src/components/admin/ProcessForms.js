@@ -110,8 +110,8 @@ const ProcessForms = () => {
                         value={status}
                         onChange={(e) => setStatus(e.target.value)}
                       >
-                        <option value="Processing with Dates Approved">Processing with Dates Approved</option>
                         <option value="Processing with Dates not Approved">Processing with Dates not Approved</option>
+                        <option value="Processing with Dates Approved">Processing with Dates Approved</option>
                         <option value="Dates approved and paid">Dates approved and paid</option>
                         <option value="Denied">Denied</option>
                       </select>

@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
 const CustomerForm = () => {
   
   const [userInfo, setUserInfo] = useState({
@@ -143,6 +144,9 @@ const CustomerForm = () => {
     setSelectedField(e.target.value);
   };
 
+  var finalPriceInPeso = new Intl.NumberFormat();
+finalPriceInPeso.format(fields.price);
+
   return (
     <div>
       <form onSubmit={submitHandler}>
@@ -206,7 +210,7 @@ const CustomerForm = () => {
               type="text"
               name="villaPrice"
               label="Villa Price"
-              value={fields.price.toLocaleString('en-US') + " ₱"}
+              value={fields.price?.toLocaleString('en-US')  + " ₱" || '' + " ₱"}
               onChange={onChange}
             />
              <TextField
@@ -215,7 +219,7 @@ const CustomerForm = () => {
               type="text"
               name="totalPrice"
               label="Total Price"
-              value={finalPrice.toLocaleString('en-US') + " ₱"}
+              value={totalPrice?.toLocaleString('en-US')  + " ₱" || '' + " ₱"}
               onChange={onChange}
             />
           </Grid>

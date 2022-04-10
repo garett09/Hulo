@@ -38,10 +38,12 @@ const formsSchema = new mongoose.Schema(
 
     checkInDate: {
       type: Date,
+      required: [true, "Please enter check in date"],
       
     },
     checkOutDate: {
       type: Date,
+      required: [true, "Please enter check out date"],
       
     },
     attachments: {
@@ -59,7 +61,7 @@ const formsSchema = new mongoose.Schema(
     bookingStatus: {
       type: String,
      
-      default: "Processing",
+      default: "Processing with Dates not Approved",
     },
     sentAt: {
       type: Date,
