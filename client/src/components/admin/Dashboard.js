@@ -1,10 +1,9 @@
 import React, { Fragment, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { allForms, clearErrors } from "../../actions/formAction";
 import { allUsers } from "../../actions/userActions";
-import Header from "../../components/Header"
-import Footer from "../../components/Footer"
+import { Grid } from "@mui/material";
 
 import Sidebar from "./Sidebar";
 
@@ -12,6 +11,7 @@ const Dashboard = () => {
   const { forms } = useSelector((state) => state.allForms);
   const { users } = useSelector((state) => state.allUsers);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(allForms());
@@ -20,7 +20,6 @@ const Dashboard = () => {
 
   return (
     <Fragment>
-      <Header />
       <div className="row">
         <div className="col-12 col-md-2 p-6 ">
           <Sidebar />
@@ -70,6 +69,15 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
+            <Grid sx ={{paddingTop: 5}}>
+              {" "}
+              <button
+                className="btn btn-secondary"
+                onClick={() => navigate("/")}
+              >
+                <i className="fa fa-arrow-left"> Go back</i>{" "}
+              </button>
+            </Grid>
           </Fragment>
         </div>
       </div>

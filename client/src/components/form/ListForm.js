@@ -1,7 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MDBDataTable } from "mdbreact";
 import dateformat from "dateformat";
+import { Grid } from "@mui/material";
 
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,18 +11,18 @@ import { myForm, clearErrors } from "../../actions/formAction";
 const ListForm = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { loading, error, forms } = useSelector((state) => state.myForm);
   const changeDateFormat = (date) => dateformat(date, "fullDate");
 
   useEffect(() => {
-
-    
     dispatch(myForm());
 
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
+      navigate("/");
     }
   }, [dispatch, alert, error]);
 
@@ -66,18 +67,19 @@ const ListForm = () => {
       forms.forEach((form) => {
         data.rows.push({
           createdAt: changeDateFormat(form.createdAt),
-          name: form.formRequestor.firstName + " " + form.formRequestor.lastName,
+          name:
+            form.formRequestor.firstName + " " + form.formRequestor.lastName,
           villaName: form.villaDetails.villaName,
-          totalPrice: form.totalPrice.toLocaleString('en-US') + " ₱",
+          totalPrice: form.totalPrice.toLocaleString("en-US") + " ₱",
           bookingStatus:
-                    form.bookingStatus &&
-                    String(form.bookingStatus).includes("Dates approved and paid") ? (
-                      <p style={{ color: "green" }}>{form.bookingStatus}</p>
-                    ) : String(form.bookingStatus).includes("Processing") ? (
-                      <p style={{ color: "#DBA800" }}>{form.bookingStatus}</p>
-                    ) : (
-                      <p style={{ color: "red" }}>{form.bookingStatus}</p>
-                    ),
+            form.bookingStatus &&
+            String(form.bookingStatus).includes("Dates approved and paid") ? (
+              <p style={{ color: "green" }}>{form.bookingStatus}</p>
+            ) : String(form.bookingStatus).includes("Processing") ? (
+              <p style={{ color: "#DBA800" }}>{form.bookingStatus}</p>
+            ) : (
+              <p style={{ color: "red" }}>{form.bookingStatus}</p>
+            ),
           actions: (
             <Link to={`/form/${form._id}`} className="btn btn-primary">
               <i className="fa fa-eye"></i>
@@ -92,8 +94,13 @@ const ListForm = () => {
   return (
     <Fragment>
       <h1 className="my-5">My Bookings</h1>
-
       <MDBDataTable data={setForm()} className="px-3" bordered striped hover />
+
+      <Grid>
+        <button className="btn btn-secondary" onClick={() => navigate("/")}>
+          <i className="fa fa-arrow-left"> Go back</i>{" "}
+        </button>
+      </Grid>
     </Fragment>
   );
 };

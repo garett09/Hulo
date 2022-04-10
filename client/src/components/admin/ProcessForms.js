@@ -1,6 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import { Grid } from "@mui/material";
+
 
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -130,6 +132,11 @@ const ProcessForms = () => {
           </Fragment>
         </div>
       </div>
+      <Grid>
+        <button className="btn btn-secondary" onClick={() => navigate("/")}>
+          <i className="fa fa-arrow-left"> Go back</i>{" "}
+        </button>
+      </Grid>
     </Fragment>
   );
 };
