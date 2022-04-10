@@ -59,7 +59,7 @@ function SectionAccomodation() {
               </Typography>
               </Link>
               <img
-                src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
+                src={process.env.PUBLIC_URL + "/images/CASAAURELIA.jpg"}
                 alt="test"
               />
             </Box>
@@ -87,7 +87,7 @@ function SectionAccomodation() {
                 </Typography>
               </Link>
               <img
-                src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
+                src={process.env.PUBLIC_URL + "/images/KuboNiBasyong.jpg"}
                 alt="test"
               />
             </Box>
@@ -114,7 +114,7 @@ function SectionAccomodation() {
               </Typography>
               </Link>
               <img
-                src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
+                src={process.env.PUBLIC_URL + "/images/CasaSalud.jpg"}
                 alt="test"
               />
             </Box>
@@ -141,7 +141,7 @@ function SectionAccomodation() {
               </Typography>
               </Link>
               <img
-                src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
+                src={process.env.PUBLIC_URL + "/images/Caminos.jpg"}
                 alt="test"
               />
             </Box>

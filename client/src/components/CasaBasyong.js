@@ -41,7 +41,7 @@ function CasaBasyong() {
           }}
         >
           <img
-            src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
+            src={process.env.PUBLIC_URL + "/images/KuboNiBasyong.jpg"}
             alt="test"
           />
         </Box>

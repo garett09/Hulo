@@ -40,7 +40,7 @@ function CasaDePrimavera() {
         }}
       >
         <img
-          src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
+          src={process.env.PUBLIC_URL + "/images/Caminos.jpg"}
           alt="test"
         />
       </Box>

@@ -41,7 +41,7 @@ function CasaAurelia() {
           }}
         >
           <img
-            src={process.env.PUBLIC_URL + "/images/CelsoHall.jpg"}
+            src={process.env.PUBLIC_URL + "/images/CASAAURELIA.jpg"}
             alt="test"
           />
         </Box>
