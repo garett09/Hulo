@@ -20,9 +20,7 @@ import axios from "axios";
 import Header2 from "../../src/components/Header2"
 
 
-
 const CustomerForm = () => {
-  
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     lastName: "",
@@ -119,13 +117,12 @@ const CustomerForm = () => {
     dispatch(createForm(form));
   };
 
-
- const overAllPrice= fields.price
- let finalPrice = overAllPrice * totalDays;
+  const overAllPrice = fields.price;
+  let finalPrice = overAllPrice * totalDays;
   totalPrice = finalPrice;
 
-  console.log(totalDays)
-  
+  console.log(totalDays);
+
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -140,14 +137,14 @@ const CustomerForm = () => {
 
   const onChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-  
+
     setCheckInDate(e.target.value);
     setCheckOutDate(e.target.value);
     setSelectedField(e.target.value);
   };
 
   var finalPriceInPeso = new Intl.NumberFormat();
-finalPriceInPeso.format(fields.price);
+  finalPriceInPeso.format(fields.price);
 
   return (
     <div>
@@ -168,6 +165,7 @@ finalPriceInPeso.format(fields.price);
               label="First Name"
               value={user && user.firstName}
               onChange={onChange}
+              disabled 
             />
           </Grid>
 
@@ -179,6 +177,7 @@ finalPriceInPeso.format(fields.price);
               label="Last Name"
               value={user && user.lastName}
               onChange={onChange}
+              disabled 
             />
           </Grid>
           <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
@@ -189,12 +188,16 @@ finalPriceInPeso.format(fields.price);
               label="Email"
               value={user && user.email}
               onChange={onChange}
+              disabled 
             />
           </Grid>
           <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
+          <InputLabel htmlFor="component-simple">Villa</InputLabel>
             <FormControl width={4}>
+           
               <select
                 name="villaName"
+                label="Villa Name"
                 value={selectedField}
                 onChange={onChange}
               >
@@ -213,16 +216,7 @@ finalPriceInPeso.format(fields.price);
               type="text"
               name="villaPrice"
               label="Villa Price"
-              value={fields.price?.toLocaleString('en-US')  + " ₱" || '' + " ₱"}
-              onChange={onChange}
-            />
-             <TextField
-              InputLabelProps={{ shrink: true }}
-              shrink
-              type="text"
-              name="totalPrice"
-              label="Total Price"
-              value={totalPrice?.toLocaleString('en-US')  + " ₱" || '' + " ₱"}
+              value={fields.price?.toLocaleString("en-US") + " ₱" || "" + " ₱"}
               onChange={onChange}
             />
           </Grid>
@@ -248,7 +242,17 @@ finalPriceInPeso.format(fields.price);
               dateFormat="yyyy/MM/dd"
             />
           </Grid>
-
+          <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              shrink
+              type="text"
+              name="totalPrice"
+              label="Total Price"
+              value={totalPrice?.toLocaleString("en-US") + " ₱" || "" + " ₱"}
+              onChange={onChange}
+            />
+          </Grid>
           <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
             <Button
               text="submit"
