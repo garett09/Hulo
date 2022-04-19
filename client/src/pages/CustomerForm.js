@@ -17,21 +17,23 @@ import { createForm, clearErrors } from "../actions/formAction";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Header2 from "../../src/components/Header2"
-
+import Header2 from "../../src/components/Header2";
 
 const CustomerForm = () => {
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     lastName: "",
-    email: "",
-    villaName: "",
-    villaPrice: 0,
-    description: "",
+    email: ""
   });
 
-  const { firstName, lastName, email, villaName, villaPrice, description } =
-    userInfo;
+  const [villaInfo, setVillaInfo] = useState({
+    villaName: "",
+    villaPrice: "",
+    email: ""
+  });
+
+  const { firstName, lastName, email } = userInfo;
+  const { villaName, villaPrice } = villaInfo;
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -94,34 +96,29 @@ const CustomerForm = () => {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+    });
+
+    setVillaInfo({
       villaName: selectedField,
-      villaPrice: fields.price,
-      description: fields.description,
+      villaPrice: fields.price
     });
 
     setCheckInDate(checkInDate);
     setCheckOutDate(checkOutDate);
     setTotalPrice(totalPrice);
+    setSelectedField(selectedField)
+    console.log(fields, selectedField)
 
-    const form = new FormData();
-    form.set("firstName", firstName);
-    form.set("lastName", lastName);
-    form.set("email", email);
-    form.set("villasName", villaName);
-    form.set("villasPrice", villaPrice);
-    form.set("description", description);
-    form.set("checkInDate", checkInDate);
-    form.set("checkOutDate", checkOutDate);
-    form.set("totalPrice", totalPrice);
+    dispatch(createForm({firstName: firstName, lastName: lastName, email: email, villaName: selectedField, villaPrice: villaPrice, checkInDate: checkInDate, checkOutDate: checkOutDate, totalPrice: totalPrice}));
 
-    dispatch(createForm(form));
   };
+
+
 
   const overAllPrice = fields.price;
   let finalPrice = overAllPrice * totalDays;
   totalPrice = finalPrice;
 
-  console.log(totalDays);
 
   useEffect(() => {
     if (error) {
@@ -143,14 +140,13 @@ const CustomerForm = () => {
     setSelectedField(e.target.value);
   };
 
-  var finalPriceInPeso = new Intl.NumberFormat();
-  finalPriceInPeso.format(fields.price);
-
   return (
     <div>
-      <Grid><Header2/></Grid>
+      <Grid>
+        <Header2 />
+      </Grid>
       <form onSubmit={submitHandler}>
-        <Grid sx={{paddingTop: 12}}>
+        <Grid sx={{ paddingTop: 12 }}>
           <Grid container justifyContent="center">
             <Typography variant="h2" component="h2">
               Customer Booking
@@ -165,7 +161,7 @@ const CustomerForm = () => {
               label="First Name"
               value={user && user.firstName}
               onChange={onChange}
-              disabled 
+              disabled
             />
           </Grid>
 
@@ -177,7 +173,7 @@ const CustomerForm = () => {
               label="Last Name"
               value={user && user.lastName}
               onChange={onChange}
-              disabled 
+              disabled
             />
           </Grid>
           <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
@@ -188,13 +184,12 @@ const CustomerForm = () => {
               label="Email"
               value={user && user.email}
               onChange={onChange}
-              disabled 
+              disabled
             />
           </Grid>
           <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
-          <InputLabel htmlFor="component-simple">Villa</InputLabel>
+            <InputLabel htmlFor="component-simple">Villa</InputLabel>
             <FormControl width={4}>
-           
               <select
                 name="villaName"
                 label="Villa Name"

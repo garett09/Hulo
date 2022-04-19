@@ -30,10 +30,6 @@ const formsSchema = new mongoose.Schema(
         type: Number,
         required: [true, "Please enter villa price"],
       },
-      description: {
-        type: String,
-        required: [true, "Please enter villa price"],
-      },
     },
 
     checkInDate: {

@@ -39,6 +39,11 @@ const FormList = () => {
     const data = {
       columns: [
         {
+          label: "Booking ID",
+          field: "id",
+          width: 100,
+        },
+        {
           label: "Created At",
           field: "createdAt",
           width: 100,
@@ -75,6 +80,7 @@ const FormList = () => {
     forms &&
       forms.forEach((form) => {
         data.rows.push({
+          id: form._id,
           createdAt: changeDateFormat(form.createdAt),
           name:
             form.formRequestor.firstName + " " + form.formRequestor.lastName,

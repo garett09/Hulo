@@ -20,9 +20,7 @@ exports.newForm = catchAsyncErrors(async (req, res, next) => {
   if (!villa) { return next(new ErrorHandler('Cannot find villa type')) }
   const villaDetails = {
     villaName: villa.villaName,
-    villaPrice: villa.villaPrice,
-    description: villa.description,
-
+    villaPrice: villa.villaPrice
   }
 
   //const totalPrice = villa.villaPrice * duration;
