@@ -29,6 +29,10 @@ cloudinary.config({
   api_secret:  process.env.CLOUDINARY_API_SECRET
 
 })
+
+// Setting up config file
+if (process.env.NODE_ENV !== 'PRODUCTION') require('dotenv').config({ path: '.env' })
+
 // Handle uncaught exception
 process.on("uncaughtException", (err) => {
   if (process.env.NODE_ENV === "DEVELOPMENT") {
