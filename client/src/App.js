@@ -52,12 +52,12 @@ function App() {
           <Route path="/" element={<SectionMain />} />
           <Route path="/celsohall" element={<SectionCelso />} />
           <Route path="/aboutus" element={<SectionAboutUs />} />
-          <Route path="accomodation" element={<SectionAccomodation />} />
-          <Route path="accomodation/casaaurelia" element={<CasaAurelia />} />
-          <Route path="accomodation/casabasyong" element={<CasaBasyong />} />
-          <Route path="accomodation/casasalud" element={<CasaSalud />} />
+          <Route path="/accomodation" element={<SectionAccomodation />} />
+          <Route path="/accomodation/casaaurelia" element={<CasaAurelia />} />
+          <Route path="/accomodation/casabasyong" element={<CasaBasyong />} />
+          <Route path="/accomodation/casasalud" element={<CasaSalud />} />
           <Route
-            path="accomodation/casadeprimavera"
+            path="/accomodation/casadeprimavera"
             element={<CasaDePrimavera />}
           />
           
