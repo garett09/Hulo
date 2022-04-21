@@ -9,7 +9,7 @@
     "dev": "SET NODE_ENV=DEVELOPMENT& nodemon server.js",
     "prod": "SET NODE_ENV=PRODUCTION& nodemon server.js",
     "seeder": "node utils/seeder.js",
-    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION=false yarn && yarn add --cwd client && yarn build --cwd client"
+    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION=false && yarn add --cwd client && yarn build --cwd client"
   },
   "repository": {
     "type": "git",
