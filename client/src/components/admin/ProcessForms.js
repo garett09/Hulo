@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { Grid } from "@mui/material";
+import dateformat from "dateformat";
 
 
 import { useAlert } from "react-alert";
@@ -19,6 +20,7 @@ const ProcessForms = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const changeDateFormat = (date) => dateformat(date, "fullDate");
 
   const { error, formDetails, loading, success } = useSelector(
     (state) => state.formDetails
@@ -37,7 +39,9 @@ const ProcessForms = () => {
   const { firstName, lastName, email } = formRequestor;
   const { villaName } = villaDetails;
   const [bookingStatus, setBookingStatus] = useState("");
-  const [bookingTangina, setBookingTangina] = useState("");
+  const [bookingFinal, setBookingFinal] = useState("");
+  const [checkInDate, setCheckInDate] = useState("");
+  const [checkOutDate, setCheckOutDate] = useState("");
 
   const [TotalPrice, setTotalPrice] = useState("");
 
@@ -48,7 +52,9 @@ const ProcessForms = () => {
       setFormRequestor(formDetails.formRequestor);
       setVillaDetails(formDetails.villaDetails);
       setTotalPrice(formDetails.totalPrice);
-      setBookingTangina(formDetails.bookingStatus);
+      setBookingFinal(formDetails.bookingStatus);
+      setCheckInDate(formDetails.checkInDate);
+      setCheckOutDate(formDetails.checkOutDate);
     } else {
       dispatch(getFormDetails(id));
     }
@@ -96,10 +102,17 @@ const ProcessForms = () => {
                     <b>Amount: </b>{TotalPrice.toLocaleString('en-US') + " ₱"} Pesos
                   </p>
 
+                  <p>
+                    <b>Checkin Date: </b>{changeDateFormat(checkInDate)} 
+                  </p>
+                  <p>
+                    <b>Check Out Date: </b>{changeDateFormat(checkInDate)} 
+                  </p>
+
                   <hr />
 
                   <h4 className="my-4">Booking Status:</h4>
-                  <p>{bookingTangina}</p>
+                  <p>{bookingFinal}</p>
 
                   <div className="col-12 col-lg-3 mt-5">
                     <h4 className="my-4">Status</h4>

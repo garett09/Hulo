@@ -16,8 +16,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import Header from "./Header";
-import { Link } from "react-router-dom";
-
+import { Link,Redirect  } from "react-router-dom";
 
 const bounce = keyframes`
   from, 20%, 53%, 80%, to {
@@ -45,104 +44,107 @@ function SectionMain() {
   return (
     <div>
       <Header />
- 
-    <div className="background1">
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        style={{ minHeight: "100vh" }}
-      >
-        <Grid item sm={6}>
-          <Collapse
-            in={checked}
-            {...(checked ? { timeout: 1000 } : {})}
-            collapsedHeight={50}
-          >
-            <Typography
-              variant="h1"
-              component="div"
-              gutterBottom
-              alignItems="center"
-              fontFamily="Averia Serif Libre"
-              color="#CEBCA3"
+
+      <div className="background1">
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          style={{ minHeight: "100vh" }}
+        >
+          <Grid item sm={6}>
+            <Collapse
+              in={checked}
+              {...(checked ? { timeout: 1000 } : {})}
+              collapsedHeight={50}
             >
-              Welcome to Hulo Farm
-            </Typography>
-            <IconButton>
-              <ExpandMoreIcon
-                sx={{
-                  animation: `${bounce} 2s infinite ease`,
-                  color: "black",
-                  fontSize: "3rem",
-                }}
-              />
-            </IconButton>
-          </Collapse>
-        </Grid>
-      </Grid>
-      <Grid container rowSpacing={25} position="absolute">
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <Box
-                sx={{
-                  width: "100%",
-                  maxWidth: 55,
-                  bgcolor: "white",
-                  ml: 30,
-                  boxShadow: 0,
-                }}
-                className="icons"
+              <Typography
+                variant="h1"
+                component="div"
+                gutterBottom
+                alignItems="center"
+                fontFamily="Averia Serif Libre"
+                color="#CEBCA3"
               >
-                <nav aria-label="main mailbox folders">
-                  <List>
-                    <ListItem disablePadding>
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <InstagramIcon />
-                        </ListItemIcon>
-                      </ListItemButton>
-                    </ListItem>
-                    <ListItem disablePadding>
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <FacebookIcon />
-                        </ListItemIcon>
-                      </ListItemButton>
-                    </ListItem>
-                    <ListItem disablePadding>
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <MailOutlineIcon />
-                        </ListItemIcon>
-                      </ListItemButton>
-                    </ListItem>
-                  </List>
-                </nav>
-              </Box>
-            </Grid>
-            <Grid item xs={6}></Grid>
-            <Grid item xs>
-              <Link to = "/form/new"><Button
-                style={{
-                  borderRadius: 35,
-                  backgroundColor: "#73c2fd",
-                  padding: "18px 36px",
-                  fontSize: "18px",
-                }}
-                variant="contained"
-              >
-                Book Now
-              </Button></Link>
-            </Grid>
+                Welcome to Hulo Farm
+              </Typography>
+              <IconButton>
+                <ExpandMoreIcon
+                  sx={{
+                    animation: `${bounce} 2s infinite ease`,
+                    color: "black",
+                    fontSize: "3rem",
+                  }}
+                />
+              </IconButton>
+            </Collapse>
           </Grid>
-        </Box>
-      </Grid>
-    </div>
-   
+        </Grid>
+        <Grid container rowSpacing={25} position="absolute">
+          <Box sx={{ flexGrow: 1 }}>
+            <Grid container spacing={3}>
+              <Grid item xs>
+                <Box
+                  sx={{
+                    width: "100%",
+                    maxWidth: 55,
+                    bgcolor: "white",
+                    ml: 30,
+                    boxShadow: 0,
+                  }}
+                  className="icons"
+                >
+                  <nav aria-label="main mailbox folders">
+                    <List>
+                      <ListItem disablePadding>
+                        <ListItemButton>
+                          <ListItemIcon>
+                            <InstagramIcon />
+                          </ListItemIcon>
+                        </ListItemButton>
+                      </ListItem>
+                      <ListItem disablePadding>
+                        <ListItemButton>
+                          <ListItemIcon>
+                          <Link to ="facebook.com">
+                            <FacebookIcon />
+                            </Link>
+                          </ListItemIcon>
+                        </ListItemButton>
+                      </ListItem>
+                      <ListItem disablePadding>
+                        <ListItemButton>
+                          <ListItemIcon>
+                            <MailOutlineIcon />
+                          </ListItemIcon>
+                        </ListItemButton>
+                      </ListItem>
+                    </List>
+                  </nav>
+                </Box>
+              </Grid>
+              <Grid item xs={6}></Grid>
+              <Grid item xs>
+                <Link to="/form/new">
+                  <Button
+                    style={{
+                      borderRadius: 35,
+                      backgroundColor: "#73c2fd",
+                      padding: "18px 36px",
+                      fontSize: "18px",
+                    }}
+                    variant="contained"
+                  >
+                    Book Now
+                  </Button>
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Grid>
+      </div>
     </div>
   );
 }

@@ -23,13 +23,13 @@ const CustomerForm = () => {
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     lastName: "",
-    email: ""
+    email: "",
   });
 
   const [villaInfo, setVillaInfo] = useState({
     villaName: "",
     villaPrice: "",
-    email: ""
+    email: "",
   });
 
   const { firstName, lastName, email } = userInfo;
@@ -100,25 +100,32 @@ const CustomerForm = () => {
 
     setVillaInfo({
       villaName: selectedField,
-      villaPrice: fields.price
+      villaPrice: fields.price,
     });
 
     setCheckInDate(checkInDate);
     setCheckOutDate(checkOutDate);
     setTotalPrice(totalPrice);
-    setSelectedField(selectedField)
-    console.log(fields, selectedField)
+    setSelectedField(selectedField);
+    console.log(fields, selectedField);
 
-    dispatch(createForm({firstName: firstName, lastName: lastName, email: email, villaName: selectedField, villaPrice: villaPrice, checkInDate: checkInDate, checkOutDate: checkOutDate, totalPrice: totalPrice}));
-
+    dispatch(
+      createForm({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        villaName: selectedField,
+        villaPrice: villaPrice,
+        checkInDate: checkInDate,
+        checkOutDate: checkOutDate,
+        totalPrice: totalPrice,
+      })
+    );
   };
-
-
 
   const overAllPrice = fields.price;
   let finalPrice = overAllPrice * totalDays;
   totalPrice = finalPrice;
-
 
   useEffect(() => {
     if (error) {
@@ -127,7 +134,9 @@ const CustomerForm = () => {
     }
 
     if (success) {
-      alert.success("Please check your email for confirmation");
+      alert.success(
+        "Please monitor your bookings via this website to see if your booking is confirmed"
+      );
       nav("/");
     }
   }, [dispatch, alert, error, success]);

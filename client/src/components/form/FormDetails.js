@@ -68,6 +68,7 @@ const FormDetails = ({ match }) => {
   const totalDays = getDifferenceInDays(date1, date2);
   const totalPricePerDay = totalPrice / totalDays;
   const finalPrice = villaPrice * totalDays;
+  const downPayment = finalPrice * 0.20;
 
   return (
     <Fragment>
@@ -101,6 +102,9 @@ const FormDetails = ({ match }) => {
             <hr></hr>
             <h2>
               <b>Total Price:</b> {finalPrice.toLocaleString('en-US')} ₱
+            </h2>
+            <h2>
+              <b>Down payment:</b> {downPayment.toLocaleString('en-US')} ₱
             </h2>
             <h3>
             <b>booking status:</b> {bookingStatus}
