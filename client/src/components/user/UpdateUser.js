@@ -88,7 +88,7 @@ const UpdateProfile = ({ history }) => {
                         <h1 className="mt-2 mb-5">Update Profile</h1>
 
                         <div className="form-group">
-                            <label htmlFor="email_field">Name</label>
+                            <label htmlFor="email_field">First Name</label>
                             <input
                                 type="name"
                                 id="name_field"
@@ -99,7 +99,7 @@ const UpdateProfile = ({ history }) => {
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="email_field">Name</label>
+                            <label htmlFor="email_field">Last Name</label>
                             <input
                                 type="name"
                                 id="name_field"
