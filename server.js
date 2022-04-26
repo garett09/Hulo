@@ -33,7 +33,7 @@ cloudinary.config({
 // Setting up config file
 require("dotenv").config({ path: ".env" });
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "PRODUCTION") {
   //Set static folder
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
