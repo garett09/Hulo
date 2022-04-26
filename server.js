@@ -33,13 +33,7 @@ cloudinary.config({
 // Setting up config file
 require("dotenv").config({ path: ".env" });
 
-if (process.env.NODE_ENV === "PRODUCTION") {
-  //Set static folder
-  app.use(express.static("client/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
+
 
 // Handle uncaught exception
 process.on("uncaughtException", (err) => {
@@ -62,6 +56,14 @@ app.use("/api/v1", auth);
 app.use("/api/v1", villas);
 app.use("/api/v1", forms);
 app.use("/api", require("./routes/upload"));
+
+if (process.env.NODE_ENV === "PRODUCTION") {
+  //Set static folder
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 //Error Middleware to handle errors
 app.use(errorMiddleware);
