@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Container, Modal } from "react-bootstrap";
 import { Markup } from "interweave";
 import { register, clearErrors } from "../../actions/userActions";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Register = ({ history }) => {
   const [user, setUser] = useState({
@@ -32,6 +33,12 @@ const Register = ({ history }) => {
     (state) => state.auth
   );
 
+  const [verification, setVerification] = useState(false);
+
+  const verifyMe = () => {
+    setVerification(true);
+    window.alert("Verification Successful");
+  };
   useEffect(() => {
     if (isAuthenticated) {
       nav("/");
@@ -401,7 +408,6 @@ const Register = ({ history }) => {
               onChange={onChange}
             />
           </div>
-
           <div>
             <label htmlFor="name">Last Name</label>
             <input
@@ -413,7 +419,6 @@ const Register = ({ history }) => {
               onChange={onChange}
             />
           </div>
-
           <div>
             <label htmlFor="email">Email Address</label>
             <input
@@ -447,9 +452,15 @@ const Register = ({ history }) => {
               onChange={onChange}
             />
           </div>
-
+          <ReCAPTCHA
+            sitekey="6Lea36sfAAAAAPZOICa84zp4PEOxu9SHnQrysJc9"
+            onChange={verifyMe}
+          />
+          ,
           <div className="row">
-            <button type="submit">Register</button>
+            <button disabled={!verification} type="submit">
+              Register
+            </button>
           </div>
         </form>
         <Card.Text>
