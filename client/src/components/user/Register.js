@@ -452,11 +452,12 @@ const Register = ({ history }) => {
               onChange={onChange}
             />
           </div>
+          <div>
           <ReCAPTCHA
             sitekey="6Lea36sfAAAAAPZOICa84zp4PEOxu9SHnQrysJc9"
             onChange={verifyMe}
           />
-          ,
+          </div>,
           <div className="row">
             <button disabled={!verification} type="submit">
               Register
