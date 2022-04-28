@@ -18,12 +18,17 @@ const Register = ({ history }) => {
     cf_password: "",
   });
 
-  const { firstName, lastName, email, mobileNumber, password } = user;
+  const { firstName, lastName, email, mobileNumber, password, cf_password } = user;
 
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(
     "/images/default_avatar.jpg"
   );
+
+  const isMatch = (password, cf_password) => {
+    if(password === cf_password) return true
+    return false
+}
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -52,6 +57,9 @@ const Register = ({ history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    if(!isMatch(password, cf_password))
+    return window.alert("Password did not match")
 
     const formData = new FormData();
     formData.set("firstName", firstName);
@@ -449,6 +457,18 @@ const Register = ({ history }) => {
               id="password"
               value={password}
               name="password"
+              onChange={onChange}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password">Confirm Password</label>
+            <input
+              type="password"
+              placeholder="Confirm password"
+              id="confirmPassword"
+              value={cf_password}
+              name="cf_password"
               onChange={onChange}
             />
           </div>
