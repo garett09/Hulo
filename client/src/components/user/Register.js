@@ -7,6 +7,7 @@ import { Button, Card, Container, Modal } from "react-bootstrap";
 import { Markup } from "interweave";
 import { register, clearErrors } from "../../actions/userActions";
 import ReCAPTCHA from "react-google-recaptcha";
+import Header2 from "../../components/Header2"
 
 const Register = ({ history }) => {
   const [user, setUser] = useState({
@@ -309,6 +310,7 @@ const Register = ({ history }) => {
 
     return (
       <>
+      <Header2 />
         <span
           onClick={() => setShow(true)}
           style={{ color: "blue", fontSize: "15px" }}

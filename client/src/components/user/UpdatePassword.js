@@ -1,6 +1,7 @@
 
 import React, { Fragment, useState, useEffect } from 'react'
 import "../user/user.css";
+import { Box, Container, Grid, Typography } from "@mui/material";
 
 
 
@@ -9,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updatePassword, clearErrors } from '../../actions/userActions'
 import { UPDATE_PASSWORD_RESET } from '../../constants/userConstants'
 import {useNavigate } from "react-router-dom";
+import Header2 from "../../components/Header2";
 
 const UpdatePassword = ({ history }) => {
 
@@ -53,10 +55,12 @@ const UpdatePassword = ({ history }) => {
     return (
         <Fragment>
 
+        <Grid><Header2/></Grid>
+        <Grid container sx = {{paddingTop: "90px", justifyContent: "center"}}>
 
-            <div className="row wrapper">
-                <div className="col-10 col-lg-5">
-                    <form className="shadow-lg" onSubmit={submitHandler}>
+            <div>
+                <div >
+                    <form  onSubmit={submitHandler}>
                         <h1 className="mt-2 mb-5">Update Password</h1>
                         <div className="form-group">
                             <label for="old_password_field">Old Password</label>
@@ -80,10 +84,11 @@ const UpdatePassword = ({ history }) => {
                             />
                         </div>
 
-                        <button type="submit" className="btn update-btn btn-block mt-4 mb-3" disabled={loading ? true : false} >Update Password</button>
+                        <button type="submit" className="btn update-btn btn-block mt-4 mb-3 btn btn-primary" disabled={loading ? true : false} >Update Password</button>
                     </form>
                 </div>
             </div>
+        </Grid>
 
         </Fragment>
     )

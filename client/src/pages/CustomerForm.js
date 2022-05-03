@@ -161,7 +161,10 @@ const CustomerForm = () => {
               Customer Booking
             </Typography>
           </Grid>
-
+          <Grid container spacing={1} columns={16} sx={{ paddingTop: 15 }}>
+            <Grid lg={4}>
+            </Grid>
+        <Grid lg= {5} sx={{ textAlign: "left"}}>
           <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
             <TextField
               InputLabelProps={{ shrink: true }}
@@ -212,7 +215,8 @@ const CustomerForm = () => {
               </select>
             </FormControl>
           </Grid>
-
+          </Grid>
+          <Grid lg= {3} sx={{ textAlign: "left"}}>
           <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
             <TextField
               InputLabelProps={{ shrink: true }}
@@ -256,6 +260,8 @@ const CustomerForm = () => {
               value={totalPrice?.toLocaleString("en-US") + " ₱" || "" + " ₱"}
               onChange={onChange}
             />
+          </Grid>
+          </Grid>
           </Grid>
           <Grid sx={{ flexGrow: 1, paddingTop: "15px" }}>
             <Button

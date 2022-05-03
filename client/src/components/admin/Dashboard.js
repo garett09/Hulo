@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { allForms, clearErrors } from "../../actions/formAction";
 import { allUsers } from "../../actions/userActions";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 import Sidebar from "./Sidebar";
 
@@ -26,14 +26,31 @@ const Dashboard = () => {
         </div>
 
         <div className="col-12 col-md-10">
-          <h1 className="my-4">Dashboard</h1>
+          <Typography
+            variant="h2"
+            textAlign="center"
+            fontFamily="Abhaya Libre SemiBold"
+            color="Black"
+            fontWeight="500"
+            paddingBottom={5}
+          >
+            Dashboard
+          </Typography>
           <Fragment>
             <div className="row pr-4">
               <div className="col-xl-6 col-sm-6 mb-6">
                 <div className="card text-white bg-danger o-hidden h-100">
                   <div className="card-body">
                     <div className="text-center card-font-size">
-                      Bookings
+                      <Typography
+                        variant="h5"
+                        textAlign="center"
+                        fontFamily="Abhaya Libre SemiBold"
+                        color="white"
+                        fontWeight="400"
+                      >
+                        Bookings
+                      </Typography>
                       <br /> <b>{forms && forms.length}</b>
                     </div>
                   </div>
@@ -53,7 +70,15 @@ const Dashboard = () => {
                 <div className="card text-white bg-info o-hidden h-100">
                   <div className="card-body">
                     <div className="text-center card-font-size">
-                      Users
+                    <Typography
+                        variant="h5"
+                        textAlign="center"
+                        fontFamily="Abhaya Libre SemiBold"
+                        color="white"
+                        fontWeight="400"
+                      >
+                        Users
+                      </Typography>
                       <br /> <b>{users && users.length}</b>
                     </div>
                   </div>
@@ -69,7 +94,7 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-            <Grid sx ={{paddingTop: 5}}>
+            <Grid sx={{ paddingTop: 5 }}>
               {" "}
               <button
                 className="btn btn-secondary"

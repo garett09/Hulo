@@ -4,6 +4,8 @@ import dateformat from "dateformat";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { getFormDetails, clearErrors } from "../../actions/formAction";
+import { Box, Container, Grid, Typography } from "@mui/material";
+import Header2 from "../../components/Header2";
 
 const FormDetails = ({ match }) => {
   const changeDateFormat = (date) => dateformat(date, "fullDate");
@@ -71,53 +73,135 @@ const FormDetails = ({ match }) => {
   return (
     <Fragment>
       {!loading && (
-        <div className="row d-flex justify-content-between">
-          <div className="col-12 col-lg-8 mt-5 order-details">
-            <h1 className="mb-4">Booking Info</h1>
-            <h3 className="mb-4">Your booking ID is {id} </h3>
+        <Grid>
+          <Header2 />
+          <Grid lg="auto" sx={{ paddingTop: 12 }}>
+            <Typography
+              variant="h2"
+              textAlign="center"
+              fontFamily="Abhaya Libre SemiBold"
+              color="Black"
+              fontWeight="1000"
+            >
+              Booking Information
+            </Typography>
+            <Typography
+              variant="h4"
+              textAlign="center"
+              fontFamily="Abhaya Libre SemiBold"
+              color="Black"
+              fontWeight="1000"
+            >
+              Your booking ID is {id}
+            </Typography>
+          </Grid>
 
-            <p>
-              <b>Name:</b> {firstName + lastName}
-            </p>
-            <p>
-              <b>email:</b> {email}
-            </p>
-            <p>
-              <b>Villa Name:</b> {villaName}
-            </p>
-            <p>
-              <b>Check In Date:</b> {changeDateFormat(checkInDate)}
-            </p>
-            <p>
-              <b>Check Out Date:</b> {changeDateFormat(checkOutDate)}
-            </p>
-            <p>
-              <b>Number of days:</b> {getDifferenceInDays(date2, date1)}
-            </p>
-            <p>
-              <b>Number of Nights:</b> {totalDays - 1}
-            </p>
-            <hr></hr>
-            <h2>
-              <b>Total Price:</b> {finalPrice.toLocaleString("en-US")} ₱
-            </h2>
-            <h2>
-              <b>Down payment:</b> {downPayment.toLocaleString("en-US")} ₱
-            </h2>
-            <h3>
-              <b>booking status:</b> {bookingStatus}
-            </h3>
-            <h4>
-              <b>Instructions:</b>
-              <p>
-                Please use the booking ID as your payment reference. You can pay
-                the full amount or the down payment.
-              </p>
-              Please monitor your booking status, only PAY if your booking
-              status says PROCESSING WITH DATES APPROVED.
-            </h4>
-
-            <h4>
+          <Grid container spacing={1} columns={16} sx={{ paddingTop: 15 }}>
+            <Grid lg={4}></Grid>
+            <Grid
+              container
+              rowSpacing={12}
+              lg={4}
+              sx={{ textAlign: "left", minHeight: "20vh" }}
+            >
+              <Typography
+                variant="h5"
+                textAlign="left"
+                fontFamily="Abhaya Libre SemiBold"
+                color="Black"
+                fontWeight="1000"
+                paddingBottom={2}
+              >
+                Name: {firstName + " " + lastName}
+              </Typography>
+              <Typography
+                variant="h5"
+                textAlign="left"
+                fontFamily="Abhaya Libre SemiBold"
+                color="Black"
+                fontWeight="1000"
+                paddingBottom={2}
+              >
+                Email: {email}
+              </Typography>
+              <Typography
+                variant="h5"
+                textAlign="left"
+                fontFamily="Abhaya Libre SemiBold"
+                color="Black"
+                fontWeight="1000"
+                paddingBottom={2}
+              >
+                Villa Name: {villaName}
+              </Typography>
+              <Typography
+                variant="h5"
+                textAlign="left"
+                fontFamily="Abhaya Libre SemiBold"
+                color="Black"
+                fontWeight="1000"
+                paddingBottom={2}
+              >
+                Check In Date:{changeDateFormat(checkInDate)}
+              </Typography>
+              <Typography
+                variant="h5"
+                textAlign="left"
+                fontFamily="Abhaya Libre SemiBold"
+                color="Black"
+                fontWeight="1000"
+                paddingBottom={2}
+              >
+                Check Out Date:{changeDateFormat(checkOutDate)}
+              </Typography>
+            </Grid>
+            <Grid lg={1}></Grid>
+            <Grid
+              container
+              rowSpacing={12}
+              lg={3}
+              sx={{ textAlign: "left", minHeight: "20vh" }}
+            >
+              <Typography
+                variant="h5"
+                textAlign="left"
+                fontFamily="Abhaya Libre SemiBold"
+                color="Black"
+                fontWeight="1000"
+                paddingBottom={2}
+              >
+                Number of days: {getDifferenceInDays(date2, date1)}
+              </Typography>
+              <Typography
+                variant="h5"
+                textAlign="left"
+                fontFamily="Abhaya Libre SemiBold"
+                color="Black"
+                fontWeight="1000"
+                paddingBottom={2}
+              >
+                Number of Nights: {totalDays - 1}
+              </Typography>
+              <Typography
+                variant="h5"
+                textAlign="left"
+                fontFamily="Abhaya Libre SemiBold"
+                color="Black"
+                fontWeight="1000"
+                paddingBottom={2}
+              >
+                Total Price: {finalPrice.toLocaleString("en-US")} ₱
+              </Typography>
+              <Typography
+                variant="h5"
+                textAlign="left"
+                fontFamily="Abhaya Libre SemiBold"
+                color="Black"
+                fontWeight="1000"
+                paddingBottom={2}
+              >
+                Down payment: {downPayment.toLocaleString("en-US")} ₱
+              </Typography>
               <a
                 href="https://www.paypal.me/garett09?country.x=PH&locale.x=en_US"
                 className="btn btn-primary"
@@ -125,9 +209,53 @@ const FormDetails = ({ match }) => {
               >
                 <i className="fa fa-money"> Pay here via PayPal</i>{" "}
               </a>
-            </h4>
-          </div>
-        </div>
+            </Grid>
+          </Grid>
+          <hr></hr>
+
+          <Typography
+            variant="h5"
+            textAlign="center"
+            fontFamily="Abhaya Libre SemiBold"
+            color="red"
+            fontWeight="1000"
+          >
+            Booking Status: {bookingStatus}
+          </Typography>
+
+          <h4>
+          <Typography
+          variant="h3"
+            textAlign="center"
+            fontFamily="Abhaya Libre SemiBold"
+            color="red"
+            fontWeight="1000"
+          >
+            Instructions:
+          </Typography>
+    
+            <Typography
+              variant="h4"
+              textAlign="center"
+              fontFamily="Abhaya Libre SemiBold"
+              color="Black"
+              fontWeight="1000"
+            >
+              Please use the booking ID as your payment reference. You can pay
+              the full amount or the down payment.
+            </Typography>
+            <Typography
+              variant="h4"
+              textAlign="center"
+              fontFamily="Abhaya Libre SemiBold"
+              color="Black"
+              fontWeight="1000"
+            >
+            Please monitor your booking status, only PAY if your booking status
+            says PROCESSING WITH DATES APPROVED.
+            </Typography>
+          </h4>
+        </Grid>
       )}
       <button
         className="btn btn-secondary"

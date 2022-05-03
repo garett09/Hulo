@@ -6,6 +6,7 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { login, clearErrors } from "../../actions/userActions";
 import { Button } from "react-bootstrap";
+import Header2 from "../../components/Header2"
 
 const Login = ({ history }) => {
   const alert = useAlert();
@@ -35,13 +36,17 @@ const Login = ({ history }) => {
     e.preventDefault();
     dispatch(login(email, password));
   };
+   
+
 
   return (
     <Fragment>
       <div>
         <div className="login_page">
+          <Header2 />
+          
           <h2>Login</h2>
-
+ 
           <form onSubmit={submitHandler}>
             <div>
               <label htmlFor="email">Email Address</label>
@@ -54,17 +59,19 @@ const Login = ({ history }) => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div>
-              <label htmlFor="password">Password</label>
+            <label htmlFor="password">Password</label>
+            <div className="passHol">
+              
               <input
                 type={showPassword ? "password" : "text"}
                 placeholder="Enter password"
                 id="password"
                 value={password}
                 name="password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)} 
+
               />
-              <Button variant="secondary" onClick={showPasswordToggle}>
+              <Button variant="secondary"onClick={showPasswordToggle}>
                 <span className="fa-sm">
                   <i
                     className={showPassword ? "fa fa-eye-slash" : "fa fa-eye"}
@@ -78,7 +85,7 @@ const Login = ({ history }) => {
               <Link to="/password/forgot">Forgot your password?</Link>
             </div>
           </form>
-          <p>
+          <p className="newCustomer">
             New Customer? <Link to="/register">Register</Link>
           </p>
         </div>

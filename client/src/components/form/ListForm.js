@@ -2,11 +2,12 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MDBDataTable } from "mdbreact";
 import dateformat from "dateformat";
-import { Grid } from "@mui/material";
+import { Grid, Typography} from "@mui/material";
 
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { myForm, clearErrors } from "../../actions/formAction";
+import Header2 from "../../components/Header2";
 
 const ListForm = () => {
   const alert = useAlert();
@@ -93,13 +94,25 @@ const ListForm = () => {
 
   return (
     <Fragment>
-      <h1 className="my-5">My Bookings</h1>
+      <Header2 />
+      
+      <Grid sx={{paddingTop: 15}}>
+          <Typography
+          variant="h3"
+            textAlign="center"
+            fontFamily="Abhaya Libre SemiBold"
+            color="Black"
+            fontWeight="1000"
+          >
+            My Bookings
+          </Typography>
       <MDBDataTable data={setForm()} className="px-3" bordered striped hover />
 
       <Grid>
         <button className="btn btn-secondary" onClick={() => navigate("/")}>
           <i className="fa fa-arrow-left"> Go back</i>{" "}
         </button>
+      </Grid>
       </Grid>
     </Fragment>
   );

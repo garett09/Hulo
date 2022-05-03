@@ -1,9 +1,10 @@
 .login_page{
     max-width: 500px;
-    margin: auto;
+    margin: 110px auto;
     color: #444;
     padding: 0 15px;
 }
+
 .login_page h2{
     text-transform: uppercase;
     font-size: 2rem;
@@ -99,5 +100,20 @@
     text-transform: capitalize;
     letter-spacing: 1.3px;
     box-shadow: 0 2px 4px #777;
+}
+.login_page h2{
+    justify-content: center;
+}
+.login_page .passHol{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.login_page .newCustomer{
+    display: flex;
+    justify-content: left;
+
+
 }
 

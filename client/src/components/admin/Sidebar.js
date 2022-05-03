@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { Box, Container, Grid, Typography } from "@mui/material";
 const Sidebar = () => {
   return (
     <div className="sidebar-wrapper">
@@ -8,24 +8,65 @@ const Sidebar = () => {
         <ul className="list-unstyled components">
           <li>
             <Link to="/dashboard">
-              <i className="fa fa-tachometer"></i> Dashboard
+              <Typography
+                variant="h5"
+                textAlign="left"
+                fontFamily="Abhaya Libre SemiBold"
+                color="Black"
+                fontWeight="500"
+                paddingLeft={2}
+                paddingBottom={2}
+                paddingTop={2}
+              >
+                <i className="fa fa-tachometer"></i>Dashboard
+              </Typography>
             </Link>
           </li>
 
           <li>
             <Link to="/admin/forms/all">
-              <i className="fa fa-shopping-basket"></i> Bookings
+              <Typography
+                variant="h5"
+                textAlign="left"
+                fontFamily="Abhaya Libre SemiBold"
+                color="Black"
+                fontWeight="500"
+                paddingLeft={2}
+                paddingBottom={2}
+              >
+                <i className="fa fa-shopping-basket"></i> Bookings
+              </Typography>
             </Link>
           </li>
 
           <li>
             <Link to="/admin/users">
-              <i className="fa fa-users"></i> Users
+              <Typography
+                variant="h5"
+                textAlign="left"
+                fontFamily="Abhaya Libre SemiBold"
+                color="Black"
+                fontWeight="500"
+                paddingLeft={2}
+                paddingBottom={2}
+              >
+                <i className="fa fa-users"></i> Users
+              </Typography>
             </Link>
           </li>
           <li>
             <Link to="/">
-            <i class="fa fa-home" aria-hidden="true"></i> Main Menu
+              <Typography
+                variant="h5"
+                textAlign="left"
+                fontFamily="Abhaya Libre SemiBold"
+                color="Black"
+                fontWeight="500"
+                paddingLeft={2}
+                paddingBottom={2}
+              >
+                <i class="fa fa-home" aria-hidden="true"></i> Main Menu
+              </Typography>
             </Link>
           </li>
         </ul>

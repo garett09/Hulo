@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import "../user/user.css";
+import { Box, Container, Grid, Typography } from "@mui/material";
 
 
 import { useAlert } from 'react-alert'
@@ -7,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateProfile, loadUser, clearErrors } from '../../actions/userActions'
 import { UPDATE_PROFILE_RESET } from '../../constants/userConstants'
 import {useNavigate } from "react-router-dom";
-import { Grid } from "@mui/material";
+
 import Header2 from "../../components/Header2";
 
 const UpdateProfile = ({ history }) => {
@@ -81,10 +82,10 @@ const UpdateProfile = ({ history }) => {
         <Fragment>
 
             <Grid><Header2/></Grid>
-
-            <div className="row wrapper">
-                <div className="col-10 col-lg-5">
-                    <form className="shadow-lg" onSubmit={submitHandler} encType='multipart/form-data'>
+        <Grid container sx = {{paddingTop: "90px", justifyContent: "center"}}>
+            <div >
+                <div>
+                    <form onSubmit={submitHandler} encType='multipart/form-data'>
                         <h1 className="mt-2 mb-5">Update Profile</h1>
 
                         <div className="form-group">
@@ -126,7 +127,7 @@ const UpdateProfile = ({ history }) => {
                             <label htmlFor='avatar_upload'>Avatar</label>
                             <div className='d-flex align-items-center'>
                                 <div>
-                                    <figure className='avatar mr-3 item-rtl'>
+                                    <figure className='avatar mr-2 item-rtl'>
                                         <img
                                             src={avatarPreview}
                                             className='rounded-circle'
@@ -150,10 +151,11 @@ const UpdateProfile = ({ history }) => {
                             </div>
                         </div>
 
-                        <button type="submit" className="btn update-btn btn-block mt-4 mb-3" disabled={loading ? true : false} >Update</button>
+                        <button type="submit" className="btn update-btn btn-block mt-4 mb-3 btn btn-primary" disabled={loading ? true : false} >Update</button>
                     </form>
                 </div>
             </div>
+            </Grid>
         </Fragment>
     )
 }

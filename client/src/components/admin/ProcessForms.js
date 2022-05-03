@@ -1,9 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import dateformat from "dateformat";
-
 
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +15,7 @@ import { UPDATE_FORM_RESET } from "../../constants/formConstants";
 
 const ProcessForms = () => {
   const [status, setStatus] = useState("");
-  const alert = useAlert()
+  const alert = useAlert();
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -71,9 +70,7 @@ const ProcessForms = () => {
   }, [dispatch, id, alert, error, isUpdated, formDetails]);
 
   const updateFormHandler = (id) => {
-
-    dispatch(updateForm(id, { status: status})
-    );
+    dispatch(updateForm(id, { status: status }));
   };
 
   return (
@@ -86,36 +83,115 @@ const ProcessForms = () => {
         <div className="col-12 col-md-10">
           <Fragment>
             {!loading && (
-              <div className="row d-flex justify-content-around">
-                <div className="col-12 col-lg-7 order-details">
-                  <h4 className="mb-4">Booking Info</h4>
-                  <h3 className="mb-4">The booking ID is {id} </h3>
-                  <p>
-                    <b>Name: </b> {firstName + " " + lastName}
-                  </p>
+              <Grid>
+                <Grid>
+                  <Grid sx ={{paddingTop:"100px"}}>
+                    <Typography
+                      variant="h2"
+                      textAlign="center"
+                      fontFamily="Abhaya Libre SemiBold"
+                      color="Black"
+                      fontWeight="1000"
+                    >
+                      Booking Information
+                    </Typography>
+                    <Typography
+                      variant="h4"
+                      textAlign="center"
+                      fontFamily="Abhaya Libre SemiBold"
+                      color="Black"
+                      fontWeight="1000"
+                    >
+                      Your booking ID is {id}
+                    </Typography>
+                  </Grid>
+                  <Grid
+                    container
+                    spacing={1}
+                    columns={16}
+                    sx={{ paddingTop: 8 }}
+                  >
+                    <Grid item lg={2}></Grid>
+                    <Grid lg={6}>
+                      <Typography
+                        variant="h5"
+                        textAlign="left"
+                        fontFamily="Abhaya Libre SemiBold"
+                        color="Black"
+                        fontWeight="1000"
+                        paddingBottom={2}
+                      >
+                        Name: {firstName + " " + lastName}
+                      </Typography>
 
-                  <p className="mb-4">
-                    <b>Booking:</b>
-                    {villaName}
-                  </p>
-                  <p>
-                    <b>Amount: </b>{TotalPrice.toLocaleString('en-US') + " ₱"} Pesos
-                  </p>
-
-                  <p>
-                    <b>Checkin Date: </b>{changeDateFormat(checkInDate)} 
-                  </p>
-                  <p>
-                    <b>Check Out Date: </b>{changeDateFormat(checkInDate)} 
-                  </p>
+                      <Typography
+                        variant="h5"
+                        textAlign="left"
+                        fontFamily="Abhaya Libre SemiBold"
+                        color="Black"
+                        fontWeight="1000"
+                        paddingBottom={2}
+                      >
+                        Boooking: {villaName}
+                      </Typography>
+                      <Typography
+                        variant="h5"
+                        textAlign="left"
+                        fontFamily="Abhaya Libre SemiBold"
+                        color="Black"
+                        fontWeight="1000"
+                        paddingBottom={2}
+                      >
+                        Amount: {TotalPrice.toLocaleString("en-US") + " ₱"}{" "}
+                        Pesos
+                      </Typography>
+                    </Grid>
+                    <Grid lg={8}>
+                      <Typography
+                        variant="h5"
+                        textAlign="left"
+                        fontFamily="Abhaya Libre SemiBold"
+                        color="Black"
+                        fontWeight="1000"
+                        paddingBottom={2}
+                      >
+                        Check In Date: {changeDateFormat(checkInDate)}
+                      </Typography>
+                      <Typography
+                        variant="h5"
+                        textAlign="left"
+                        fontFamily="Abhaya Libre SemiBold"
+                        color="Black"
+                        fontWeight="1000"
+                        paddingBottom={2}
+                      >
+                        Check Out Date: {changeDateFormat(checkInDate)}
+                      </Typography>
+                    </Grid>
+                  </Grid>
 
                   <hr />
 
-                  <h4 className="my-4">Booking Status:</h4>
-                  <p>{bookingFinal}</p>
+                  <Typography
+                    variant="h5"
+                    textAlign="center"
+                    fontFamily="Abhaya Libre SemiBold"
+                    color="red"
+                    fontWeight="1000"
+                  >
+                    Booking Status: {bookingFinal}
+                  </Typography>
 
-                  <div className="col-12 col-lg-3 mt-5">
-                    <h4 className="my-4">Status</h4>
+                  <Grid>
+                  <Typography
+                    variant="h4"
+                    textAlign="center"
+                    fontFamily="Abhaya Libre SemiBold"
+                    color="Black"
+                    fontWeight="500"
+                  > 
+                  Status
+                  </Typography>
                     <p>{bookingStatus}</p>
 
                     <div className="form-group">
@@ -125,9 +201,15 @@ const ProcessForms = () => {
                         value={status}
                         onChange={(e) => setStatus(e.target.value)}
                       >
-                        <option value="Processing with Dates not Approved">Processing with Dates not Approved</option>
-                        <option value="Processing with Dates Approved">Processing with Dates Approved</option>
-                        <option value="Dates approved and paid">Dates approved and paid</option>
+                        <option value="Processing with Dates not Approved">
+                          Processing with Dates not Approved
+                        </option>
+                        <option value="Processing with Dates Approved">
+                          Processing with Dates Approved
+                        </option>
+                        <option value="Dates approved and paid">
+                          Dates approved and paid
+                        </option>
                         <option value="Denied">Denied</option>
                       </select>
                     </div>
@@ -138,18 +220,21 @@ const ProcessForms = () => {
                     >
                       Update Status
                     </button>
-                  </div>
-                </div>
-              </div>
+                  </Grid>
+                </Grid>
+                <Grid sx= {{paddingTop:"10px"}}>
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => navigate("/")}
+                  >
+                    <i className="fa fa-arrow-left"> Go back</i>{" "}
+                  </button>
+                </Grid>
+              </Grid>
             )}
           </Fragment>
         </div>
       </div>
-      <Grid>
-        <button className="btn btn-secondary" onClick={() => navigate("/")}>
-          <i className="fa fa-arrow-left"> Go back</i>{" "}
-        </button>
-      </Grid>
     </Fragment>
   );
 };

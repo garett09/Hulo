@@ -58,7 +58,7 @@ function Header2() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar sx={{ bgcolor: "#808080", boxShadow: 0 }}>
+      <AppBar sx={{ bgcolor: "#AE9376", boxShadow: 0 }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -69,7 +69,7 @@ function Header2() {
           >
             <MenuIcon onClick={() => setOpen(true)} />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, position:"relative", top:-8 }}>
             <img
               src={process.env.PUBLIC_URL + "/images/Hulofarmlogo.png"}
               alt="Hulo Logo"

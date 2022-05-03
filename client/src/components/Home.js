@@ -4,6 +4,7 @@ import SectionCelso from "./SectionCelso";
 import SectionAboutUs from "./SectionAboutUs";
 import { BrowserRouter as Router, Routes, Route,Link } from "react-router-dom";
 import SectionAccomodation from "./SectionAccomodation";
+import FAQ from "./FAQ";
 
 
 function Home() {
@@ -12,7 +13,9 @@ function Home() {
     <SectionMain />
     <SectionCelso />
     <SectionAboutUs />
+    <FAQ />
     <SectionAccomodation />
+    
     </>
   );
 }
