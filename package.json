@@ -10,7 +10,7 @@
     "prod": "SET NODE_ENV=PRODUCTION& nodemon server.js",
     "seeder": "node utils/seeder.js",
     "build": "yarn build",
-    "heroku-postbuild" : "YARN_PRODUCTION=false && cd client && yarn && yarn run build"
+    "heroku-postbuild" : "YARN_PRODUCTION=true && cd client && yarn && yarn run build"
   },
   "repository": {
     "type": "git",
