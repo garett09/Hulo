@@ -128,7 +128,14 @@ function SectionMain() {
                         <ListItemButton>
                           <ListItemIcon>
                             <MailOutlineIcon 
-                            href={`mailto:test@example.com`}/>
+                              onClick={() =>
+                                window.open(
+                                  "mailto: huloleisurefarm@gmail.com",
+                                  "_blank"
+                                )
+                              }
+
+                           />
                           </ListItemIcon>
                         </ListItemButton>
                       </ListItem>
