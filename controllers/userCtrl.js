@@ -68,7 +68,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   //Create reset password URL
 
-  const resetURL = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
+  const resetURL = `https://huloleisurefarm.herokuapp.com/password/reset/${resetToken}`;
 
   const message = `
   <div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
