@@ -4,6 +4,7 @@ import { IconButton, Grid, Typography, Collapse } from "@mui/material";
 import "../css/SectionAboutUs.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { keyframes } from "@mui/system";
+import Header from "./Header";
 
 const bounce = keyframes`
   from, 20%, 53%, 80%, to {
@@ -29,7 +30,9 @@ function SectionAboutUs() {
     setChecked(true);
   }, []);
   return (
+   
     <div className="background2" id="section-about-us">
+       <Header/>
       <Grid
         container
         spacing={0}
