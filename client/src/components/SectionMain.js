@@ -16,7 +16,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import Header from "./Header";
-import { Link,Redirect  } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const bounce = keyframes`
   from, 20%, 53%, 80%, to {
@@ -101,23 +101,34 @@ function SectionMain() {
                       <ListItem disablePadding>
                         <ListItemButton>
                           <ListItemIcon>
-                            <InstagramIcon />
+                            <InstagramIcon onClick={() =>
+                                window.open(
+                                  "https://www.instagram.com/huloleisurefarm/?hl=en",
+                                  "_blank"
+                                )
+                              }/>
                           </ListItemIcon>
                         </ListItemButton>
                       </ListItem>
                       <ListItem disablePadding>
                         <ListItemButton>
                           <ListItemIcon>
-                          <Link to ="facebook.com">
-                            <FacebookIcon />
-                            </Link>
+                            <FacebookIcon
+                              onClick={() =>
+                                window.open(
+                                  "https://www.facebook.com/huloleisurefarm/",
+                                  "_blank"
+                                )
+                              }
+                            />
                           </ListItemIcon>
                         </ListItemButton>
                       </ListItem>
                       <ListItem disablePadding>
                         <ListItemButton>
                           <ListItemIcon>
-                            <MailOutlineIcon />
+                            <MailOutlineIcon 
+                            href={`mailto:test@example.com`}/>
                           </ListItemIcon>
                         </ListItemButton>
                       </ListItem>
