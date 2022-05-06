@@ -476,6 +476,7 @@ const Register = ({ history }) => {
             />
           </div>
           <div>
+          <label htmlFor="password">Let us know you're human</label>
             <ReCAPTCHA
               sitekey="6Lea36sfAAAAAPZOICa84zp4PEOxu9SHnQrysJc9"
               onChange={verifyMe}
