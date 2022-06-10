@@ -102,6 +102,28 @@ function SectionCelso() {
             Payment can be made thru PayPal.
           </Typography>
         </Grid>
+         <Grid lg={5}>
+          <Typography
+            variant="h5"
+            component="div"
+            gutterBottom
+            textAlign="center"
+            fontFamily="Averia Serif Libre"
+            color="white"
+          >
+            What is the mode of payment?
+          </Typography>
+          <Typography
+            variant="h6"
+            component="div"
+            gutterBottom
+            textAlign="center"
+            fontFamily="Averia Serif Libre"
+            color="white"
+          >
+            Payment can be made thru PayPal.
+          </Typography>
+        </Grid>
       </Grid>
     </div>
   );
