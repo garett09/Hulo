@@ -56,7 +56,6 @@ function SectionCelso() {
           spacing={2}
           direction="column"
           justifyContent="flex-start"
-          
         ></Grid>
         <Grid lg={5}>
           <Typography
@@ -66,9 +65,7 @@ function SectionCelso() {
             textAlign="center"
             fontFamily="Averia Serif Libre"
             color="white"
-            
           >
-
             How many days will the booking take?
           </Typography>
           <Typography
@@ -84,7 +81,7 @@ function SectionCelso() {
           </Typography>
         </Grid>
         <Grid lg={5}>
-        <Typography
+          <Typography
             variant="h5"
             component="div"
             gutterBottom
@@ -92,8 +89,7 @@ function SectionCelso() {
             fontFamily="Averia Serif Libre"
             color="white"
           >
-
-What is the mode of payment?
+            What is the mode of payment?
           </Typography>
           <Typography
             variant="h6"
@@ -105,7 +101,6 @@ What is the mode of payment?
           >
             Payment can be made thru PayPal.
           </Typography>
-         
         </Grid>
       </Grid>
     </div>
